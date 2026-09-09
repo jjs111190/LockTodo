@@ -1,0 +1,429 @@
+<title>LockTodo 캐러셀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;800;900&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+
+<style>
+  /* ---- LockTodo Instagram carousel · fixed light marketing world ----
+     Single committed visual world (exported as images), so colors are painted
+     explicitly and the design does not adapt to the viewer's theme.        */
+  :root {
+    --ink:        #0C1524;   /* near-black with a blue bias */
+    --ink-soft:   #55607A;   /* muted body text */
+    --ground:     #EEF2F8;   /* cool off-white, chosen not defaulted */
+    --card:       #FFFFFF;
+    --tint:       #E4EDFD;   /* soft blue surface */
+    --accent:     #007AFF;   /* iOS system blue — the app's color */
+    --accent-deep:#0A5BD6;
+    --flame-a:    #FF9F0A;
+    --flame-b:    #FF3B30;
+    --mint:       #B9F1E0;   /* pet antenna */
+    --pet:        #EDF6F3;   /* pet body */
+    --hair:       rgba(12,21,36,.08);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: #D7DEEA;
+    margin: 0;
+    font-family: "IBM Plex Sans KR", "Gothic A1", system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    padding: 28px 16px 60px;
+  }
+
+  .intro {
+    max-width: 540px;
+    margin: 0 auto 26px;
+    text-align: center;
+    color: #2A3450;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .intro strong { font-weight: 700; color: #0C1524; }
+
+  .deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+  }
+
+  /* Each slide is exactly Instagram 4:5. Type scales with the slide via
+     container-query units, so it's full-res at 1080px and crisp when scaled. */
+  .slide {
+    width: min(100%, 540px);
+    aspect-ratio: 1080 / 1350;
+    container-type: inline-size;
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background: var(--ground);
+    box-shadow: 0 18px 50px -20px rgba(12,21,36,.45);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* chrome shared by every slide */
+  .pad { padding: 8cqw 7.5cqw; display: flex; flex-direction: column; height: 100%; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; }
+  .wordmark { display: flex; align-items: center; gap: 2cqw; font-weight: 800; font-size: 3.4cqw; letter-spacing: -.02em; color: var(--ink); }
+  .logo {
+    width: 6.4cqw; height: 6.4cqw; border-radius: 1.7cqw;
+    background: linear-gradient(160deg, #3D9BFF, var(--accent));
+    display: grid; place-items: center; color: #fff; flex: none;
+    box-shadow: 0 1.2cqw 3cqw -1cqw rgba(0,122,255,.6);
+  }
+  .logo svg { width: 62%; height: 62%; }
+  .page-no { font-weight: 600; font-size: 3cqw; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+  .eyebrow {
+    font-family: "Gothic A1", sans-serif;
+    font-weight: 800; font-size: 3.3cqw; letter-spacing: .04em;
+    color: var(--accent); text-transform: none;
+    display: inline-flex; align-items: center; gap: 2cqw;
+  }
+  .eyebrow::before { content: ""; width: 5cqw; height: .5cqw; border-radius: 1cqw; background: var(--accent); }
+
+  h1, h2 { font-family: "Gothic A1", sans-serif; margin: 0; text-wrap: balance; letter-spacing: -.035em; }
+  .display { font-weight: 900; font-size: 11cqw; line-height: 1.02; }
+  h2 { font-weight: 900; font-size: 8.4cqw; line-height: 1.08; }
+  .lead { font-size: 4.3cqw; line-height: 1.5; color: var(--ink-soft); font-weight: 500; text-wrap: balance; }
+  .kbig { color: var(--accent); }
+  .grow { flex: 1; }
+
+  /* ---------- Slide 1 · cover ---------- */
+  .cover { background: radial-gradient(120% 90% at 80% 0%, #E9F1FE 0%, var(--ground) 55%); }
+  .cover .headline { font-size: 12.5cqw; font-weight: 900; line-height: 1.0; margin-top: 2cqw; }
+  .cover .lead { font-size: 4.6cqw; margin-top: 3.5cqw; }
+
+  /* phone lock-screen mockup */
+  .phone {
+    width: 58cqw; align-self: center; margin-top: auto;
+    aspect-ratio: 300 / 500;
+    background: linear-gradient(180deg, #10233F, #0A1830);
+    border-radius: 9cqw;
+    padding: 6cqw 4.5cqw;
+    box-shadow: 0 4cqw 10cqw -2cqw rgba(10,24,48,.6), inset 0 0 0 .5cqw rgba(255,255,255,.08);
+    display: flex; flex-direction: column; gap: 3cqw;
+    color: #fff; position: relative;
+  }
+  .phone .notch { width: 22cqw; height: 3.2cqw; background: #000; border-radius: 3cqw; align-self: center; }
+  .phone .time { text-align: center; font-family: "Gothic A1"; font-weight: 800; font-size: 11cqw; letter-spacing: -.03em; margin-top: 1cqw; }
+  .lw {
+    margin-top: auto;
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(8px);
+    border: .4cqw solid rgba(255,255,255,.16);
+    border-radius: 4cqw; padding: 3.4cqw;
+    display: flex; gap: 3cqw; align-items: center;
+  }
+  .lw .txt { flex: 1; min-width: 0; }
+  .lw .t1 { font-weight: 700; font-size: 3.5cqw; }
+  .lw .t2 { font-size: 2.9cqw; color: rgba(255,255,255,.7); margin-top: .6cqw; }
+  .lw .bar { height: 1.4cqw; border-radius: 1cqw; background: rgba(255,255,255,.2); margin-top: 2cqw; overflow: hidden; }
+  .lw .bar i { display: block; width: 66%; height: 100%; background: #4DA3FF; }
+
+  /* pixel-ish pet built from soft shapes */
+  .pet { position: relative; flex: none; }
+  .pet.sm { width: 12cqw; height: 12cqw; }
+  .pet.lg { width: 30cqw; height: 30cqw; }
+  .pet .body { position: absolute; inset: 18% 8% 6% 8%; background: var(--pet); border-radius: 46% 46% 30% 30%/ 52% 52% 30% 30%; box-shadow: inset 0 -6% 0 rgba(12,21,36,.05); }
+  .pet .ant { position: absolute; top: 2%; left: 44%; width: 12%; height: 20%; background: var(--mint); border-radius: 2cqw; }
+  .pet .eye { position: absolute; top: 44%; width: 12%; height: 15%; background: #16233B; border-radius: 1.4cqw; }
+  .pet .eye.l { left: 30%; } .pet .eye.r { right: 30%; }
+  .pet .ch { position: absolute; top: 58%; width: 9%; height: 6%; background: #FFB4A2; border-radius: 50%; opacity: .8; }
+  .pet .ch.l { left: 24%; } .pet .ch.r { right: 24%; }
+  .pet .shadow { position: absolute; left: 20%; right: 20%; bottom: 0; height: 6%; background: rgba(12,21,36,.12); border-radius: 50%; filter: blur(1px); }
+
+  /* ---------- generic feature slide body ---------- */
+  .feat .lead { margin-top: 4cqw; }
+  .stage {
+    margin-top: auto;
+    background: var(--card);
+    border-radius: 6cqw;
+    box-shadow: 0 3cqw 8cqw -3cqw rgba(12,21,36,.22), inset 0 0 0 .4cqw var(--hair);
+    padding: 7cqw;
+    display: flex; flex-direction: column; gap: 4cqw;
+  }
+
+  /* task rows */
+  .row { display: flex; align-items: center; gap: 3.4cqw; font-size: 4cqw; font-weight: 600; }
+  .row .ck { width: 6.2cqw; height: 6.2cqw; border-radius: 50%; border: .7cqw solid var(--accent); flex: none; display: grid; place-items: center; }
+  .row.done .ck { background: var(--accent); border-color: var(--accent); }
+  .row.done .ck svg { width: 60%; color: #fff; }
+  .row.done span { color: var(--ink-soft); text-decoration: line-through; }
+  .row .edge { width: .9cqw; align-self: stretch; border-radius: 1cqw; background: var(--accent); }
+
+  .chip { display: inline-flex; align-items: center; gap: 1.4cqw; padding: 1.7cqw 3.2cqw; border-radius: 10cqw; font-weight: 700; font-size: 3.2cqw; background: var(--tint); color: var(--accent-deep); }
+  .chips { display: flex; flex-wrap: wrap; gap: 2.2cqw; }
+
+  .streak { display: inline-flex; align-items: center; gap: 1.6cqw; padding: 1.8cqw 3.4cqw; border-radius: 10cqw; font-weight: 800; font-size: 3.6cqw;
+            color: #fff; background: linear-gradient(135deg, var(--flame-a), var(--flame-b)); box-shadow: 0 2cqw 5cqw -1.5cqw rgba(255,59,48,.6); }
+
+  /* focus ring */
+  .ring { width: 34cqw; height: 34cqw; border-radius: 50%; align-self: center;
+          background: conic-gradient(var(--accent) 72%, var(--tint) 0); display: grid; place-items: center; }
+  .ring .hole { width: 76%; height: 76%; border-radius: 50%; background: var(--card); display: grid; place-items: center; }
+  .ring .hole b { font-family: "Gothic A1"; font-weight: 800; font-size: 8cqw; letter-spacing: -.04em; }
+
+  /* mini bar chart */
+  .chart { display: flex; align-items: flex-end; gap: 3cqw; height: 34cqw; padding-top: 2cqw; }
+  .chart .col { flex: 1; border-radius: 2cqw 2cqw 1cqw 1cqw; background: linear-gradient(180deg, #4DA3FF, var(--accent)); }
+
+  /* map pin */
+  .mapwrap { margin-top: auto; background: linear-gradient(160deg,#DCEBFF,#EAF1FB); border-radius: 6cqw; height: 46cqw; position: relative; overflow: hidden; box-shadow: inset 0 0 0 .4cqw var(--hair); }
+  .mapwrap .road { position: absolute; background: #fff; opacity: .8; }
+  .pin { position: absolute; left: 50%; top: 40%; transform: translate(-50%,-100%); width: 12cqw; height: 12cqw; }
+  .pin .head { width: 100%; height: 100%; background: var(--accent); border-radius: 50% 50% 50% 0; transform: rotate(45deg); box-shadow: 0 2cqw 5cqw -1cqw rgba(0,122,255,.6); }
+  .pin .dot { position: absolute; inset: 26%; background: #fff; border-radius: 50%; }
+  .ripple { position: absolute; left: 50%; top: 40%; width: 34cqw; height: 34cqw; transform: translate(-50%,-50%); border: 1cqw solid rgba(0,122,255,.35); border-radius: 50%; }
+
+  /* value badges */
+  .badges { margin-top: auto; display: grid; gap: 3.5cqw; }
+  .badge { display: flex; align-items: center; gap: 4cqw; background: var(--card); border-radius: 5cqw; padding: 5cqw 6cqw; box-shadow: inset 0 0 0 .4cqw var(--hair); }
+  .badge .ic { width: 12cqw; height: 12cqw; border-radius: 3.4cqw; display: grid; place-items: center; flex: none; color: #fff; }
+  .badge .ic svg { width: 52%; }
+  .badge .bt { font-weight: 800; font-size: 4.4cqw; }
+  .badge .bs { font-size: 3.3cqw; color: var(--ink-soft); margin-top: .4cqw; }
+
+  /* CTA */
+  .cta { background: linear-gradient(165deg, #0B63D6 0%, #0A4FB0 100%); color: #fff; }
+  .cta .eyebrow { color: #BBD8FF; } .cta .eyebrow::before { background: #BBD8FF; }
+  .cta h2 { color: #fff; }
+  .cta .lead { color: rgba(255,255,255,.82); }
+  .search { margin-top: 7cqw; background: rgba(255,255,255,.16); border: .5cqw solid rgba(255,255,255,.28); border-radius: 4cqw; padding: 4cqw 5cqw; display: flex; align-items: center; gap: 3cqw; font-size: 4.6cqw; font-weight: 700; }
+  .search svg { width: 5.5cqw; opacity: .85; }
+  .store { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 3cqw; background: #fff; color: #0C1524; border-radius: 4cqw; padding: 4cqw 6cqw; font-weight: 800; font-size: 4.4cqw; box-shadow: 0 3cqw 8cqw -3cqw rgba(0,0,0,.4); }
+  .store .apple { width: 7cqw; height: 7cqw; }
+  .store small { display: block; font-size: 2.7cqw; font-weight: 600; color: var(--ink-soft); }
+</style>
+
+<p class="intro">
+  <strong>LockTodo 인스타 캐러셀 · 10장 (1080×1350).</strong> 각 카드를 스크롤해 화면 캡처하거나,
+  브라우저를 넓게 열어 전체 해상도로 저장하세요. 아래 캡션은 게시글에 그대로 붙여넣으면 됩니다.
+</p>
+
+<div class="deck">
+
+  <!-- 1 · COVER -->
+  <section class="slide cover">
+    <div class="pad">
+      <div class="topbar">
+        <div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div>
+        <div class="page-no">1 / 10</div>
+      </div>
+      <div style="margin-top:6cqw">
+        <div class="eyebrow">잠금화면 To-Do · 키우는 펫</div>
+        <div class="headline display">할 일이<br>잠금화면에서<br><span class="kbig">보이기</span> 시작하다</div>
+        <div class="lead">앱을 열지 않아도 오늘이 보이고,<br>하나 끝낼 때마다 펫이 자라는 To-Do.</div>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="time">9:41</div>
+        <div class="lw">
+          <div class="pet sm"><span class="ant"></span><span class="body"></span><span class="eye l"></span><span class="eye r"></span><span class="ch l"></span><span class="ch r"></span></div>
+          <div class="txt">
+            <div class="t1">오늘 할 일 3개</div>
+            <div class="t2">2개 완료 · 66%</div>
+            <div class="bar"><i></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · PROBLEM -->
+  <section class="slide">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div><div class="page-no">2 / 10</div></div>
+      <div class="grow" style="display:flex;flex-direction:column;justify-content:center;gap:5cqw">
+        <div class="eyebrow">솔직히</div>
+        <h2>할 일 앱,<br>켜기도 귀찮으셨죠?</h2>
+        <div class="lead">적으러 앱을 열고, 확인하러 또 열고…<br>그 사이 할 일은 계속 잊혀집니다.</div>
+      </div>
+      <div class="stage" style="flex-direction:row;align-items:center;justify-content:center;gap:6cqw;padding:9cqw">
+        <div style="font-size:20cqw;filter:grayscale(1);opacity:.5">📱</div>
+        <div style="font-size:9cqw;font-weight:900;color:var(--ink-soft)">→ 🙄</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · LOCK SCREEN WIDGET -->
+  <section class="slide feat">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div><div class="page-no">3 / 10</div></div>
+      <div style="margin-top:5cqw">
+        <div class="eyebrow">01 · 잠금화면 위젯</div>
+        <h2>앱을 열지 않아도<br><span class="kbig">오늘이 보여요</span></h2>
+        <div class="lead">잠금화면 위젯과 실시간 활동으로<br>오늘 할 일·완료율을 바로 확인.</div>
+      </div>
+      <div class="phone" style="margin-top:auto">
+        <div class="notch"></div>
+        <div class="time">7:30</div>
+        <div class="lw">
+          <div class="pet sm"><span class="ant"></span><span class="body"></span><span class="eye l"></span><span class="eye r"></span><span class="ch l"></span><span class="ch r"></span></div>
+          <div class="txt">
+            <div class="t1">회의 자료 정리</div>
+            <div class="t2">다음 · 오전 10시 · 4개 남음</div>
+            <div class="bar"><i style="width:40%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · SWIPE COMPLETE + PET -->
+  <section class="slide feat">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div><div class="page-no">4 / 10</div></div>
+      <div style="margin-top:5cqw">
+        <div class="eyebrow">02 · 밀어서 완료</div>
+        <h2>하나 끝낼 때마다<br>펫이 자라요 🐣</h2>
+        <div class="lead">밀면 완료, 연속으로 끝내면 스트릭이 쌓이고<br>펫이 레벨업합니다.</div>
+      </div>
+      <div class="stage">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div class="pet lg"><span class="ant"></span><span class="body"></span><span class="eye l"></span><span class="eye r"></span><span class="ch l"></span><span class="ch r"></span><span class="shadow"></span></div>
+          <div class="streak">🔥 7일 연속</div>
+        </div>
+        <div class="row done"><span class="edge" style="background:#34C759"></span><span class="ck">${CHECK}</span><span>아침 운동</span></div>
+        <div class="row"><span class="edge"></span><span class="ck"></span><span>보고서 마무리</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · SMART INPUT -->
+  <section class="slide feat">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div><div class="page-no">5 / 10</div></div>
+      <div style="margin-top:5cqw">
+        <div class="eyebrow">03 · 스마트 입력</div>
+        <h2>한 문장이면<br><span class="kbig">알아서 정리</span></h2>
+        <div class="lead">날짜·시간·태그·색상을 자동으로 해석해요.</div>
+      </div>
+      <div class="stage">
+        <div style="font-size:4.2cqw;font-weight:600">“내일 오후 3시 병원 <span style="color:var(--accent)">#건강</span> 색상:파랑”</div>
+        <div style="height:.4cqw;background:var(--hair);border-radius:1cqw"></div>
+        <div class="chips">
+          <span class="chip">📅 내일</span>
+          <span class="chip">🕒 오후 3:00</span>
+          <span class="chip"># 건강</span>
+          <span class="chip">🔵 파랑</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · FOCUS + HABIT -->
+  <section class="slide feat">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div><div class="page-no">6 / 10</div></div>
+      <div style="margin-top:5cqw">
+        <div class="eyebrow">04 · 집중 · 습관</div>
+        <h2>몰입하고,<br>매일을 <span class="kbig">이어가요</span></h2>
+        <div class="lead">할 일에 포모도로 집중 타이머,<br>습관은 스트릭으로 꾸준히.</div>
+      </div>
+      <div class="stage">
+        <div class="ring"><div class="hole"><b>25:00</b></div></div>
+        <div class="chips" style="justify-content:center">
+          <span class="chip">💧 물 마시기</span>
+          <span class="chip">📖 독서</span>
+          <span class="chip">🏃 운동</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · LOCATION -->
+  <section class="slide feat">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div><div class="page-no">7 / 10</div></div>
+      <div style="margin-top:5cqw">
+        <div class="eyebrow">05 · 위치 알림</div>
+        <h2>도착하면<br><span class="kbig">알아서 알림</span></h2>
+        <div class="lead">저장한 장소 근처에 오면 그 할 일을<br>잠금화면에 띄워줘요. 이제 안 까먹어요.</div>
+      </div>
+      <div class="mapwrap">
+        <span class="road" style="left:0;right:0;top:60%;height:3cqw"></span>
+        <span class="road" style="top:0;bottom:0;left:38%;width:3cqw"></span>
+        <span class="ripple"></span>
+        <span class="pin"><span class="head"></span><span class="dot"></span></span>
+        <div class="lw" style="position:absolute;left:5cqw;right:5cqw;bottom:5cqw;background:#fff;border-color:var(--hair);color:var(--ink)">
+          <div style="font-size:8cqw">🛒</div>
+          <div class="txt"><div class="t1" style="color:var(--ink)">마트 도착 · 우유 사기</div><div class="t2" style="color:var(--ink-soft)">지금 근처예요</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · INSIGHTS -->
+  <section class="slide feat">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div><div class="page-no">8 / 10</div></div>
+      <div style="margin-top:5cqw">
+        <div class="eyebrow">06 · 인사이트</div>
+        <h2>내 완료 흐름을<br><span class="kbig">한눈에</span></h2>
+        <div class="lead">주간·월간 완료 추이, 연속 기록, 집중 시간까지.</div>
+      </div>
+      <div class="stage">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <div style="font-weight:800;font-size:4.4cqw">이번 주 완료</div>
+          <div style="font-weight:900;font-size:6cqw;color:var(--accent)">23<span style="font-size:3.4cqw;color:var(--ink-soft)">개</span></div>
+        </div>
+        <div class="chart">
+          <div class="col" style="height:40%"></div><div class="col" style="height:66%"></div>
+          <div class="col" style="height:52%"></div><div class="col" style="height:88%"></div>
+          <div class="col" style="height:74%"></div><div class="col" style="height:100%"></div>
+          <div class="col" style="height:58%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · FREE / NO ADS -->
+  <section class="slide">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark"><span class="logo">${CHECK}</span> LockTodo</div><div class="page-no">9 / 10</div></div>
+      <div style="margin-top:5cqw">
+        <div class="eyebrow">부담 없이</div>
+        <h2>무료로 시작,<br><span class="kbig">광고 없음</span></h2>
+      </div>
+      <div class="badges">
+        <div class="badge"><span class="ic" style="background:linear-gradient(150deg,#34C759,#28A745)">${CHECK}</span><div><div class="bt">핵심 기능 무료</div><div class="bs">할 일·잠금화면 위젯·펫·기본 습관</div></div></div>
+        <div class="badge"><span class="ic" style="background:linear-gradient(150deg,#8E8E93,#636366)">${NOADS}</span><div><div class="bt">광고 없는 화면</div><div class="bs">집중을 방해하지 않아요</div></div></div>
+        <div class="badge"><span class="ic" style="background:linear-gradient(150deg,#5E5CE6,#7A5CFF)">${LOCK}</span><div><div class="bt">데이터는 내 기기에만</div><div class="bs">외부로 전송하지 않습니다</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · CTA -->
+  <section class="slide cta">
+    <div class="pad">
+      <div class="topbar"><div class="wordmark" style="color:#fff"><span class="logo" style="background:rgba(255,255,255,.18)">${CHECK}</span> LockTodo</div><div class="page-no" style="color:rgba(255,255,255,.7)">10 / 10</div></div>
+      <div style="margin-top:6cqw">
+        <div class="eyebrow">지금 시작하세요</div>
+        <h2>App Store에서<br>만나요</h2>
+        <div class="lead">잠금화면에서 할 일 하고, 펫을 키우는 To-Do.</div>
+        <div class="search">${SEARCH}<span>App Store에서 <b style="color:#fff">‘LockTodo’</b> 검색</span></div>
+      </div>
+      <div class="store">
+        <svg class="apple" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.5c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .4-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM20 17.4c-.5 1.2-.8 1.7-1.5 2.7-1 1.4-2.3 3.1-4 3.1-1.5 0-1.9-1-3.9-1-2 0-2.5 1-4 1-1.6 0-2.9-1.6-3.9-2.9C-.2 16.7-.5 11 1.6 8c1-1.4 2.6-2.3 4.1-2.3 1.6 0 2.6 1 3.9 1 1.3 0 2-1 3.9-1 1.4 0 2.9.8 4 2.1-3.5 1.9-2.9 6.9.5 8.6z"/></svg>
+        <div>App Store<small>다운로드하기</small></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Inject shared inline SVG icons (keeps the markup above readable).
+  const ICONS = {
+    CHECK:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+    LOCK:   '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm3 8H9V6a3 3 0 0 1 6 0z"/></svg>',
+    NOADS:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>',
+    SEARCH: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
+  };
+  document.body.innerHTML = document.body.innerHTML.replace(/\$\{(\w+)\}/g, (_, k) => ICONS[k] || '');
+</script>

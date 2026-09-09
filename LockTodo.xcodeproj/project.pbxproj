@@ -1,0 +1,1011 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EDA7FB2B0E1FCC84F6EEB1AD /* FocusSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E440085FB629EAC3A6A4431 /* FocusSession.swift */; };
+		3905381DAD6EF7818F4713E9 /* FocusSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E440085FB629EAC3A6A4431 /* FocusSession.swift */; };
+		AE3FADEF35EDD49FE7204767 /* TaskFocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E52A79783FDA303BC8ACF /* TaskFocusTimerView.swift */; };
+		PRIVACY00000000000000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIVACY00000000000000002 /* PrivacyInfo.xcprivacy */; };
+		PROACCESS0000000000000001 /* ProAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROACCESS0000000000000002 /* ProAccessService.swift */; };
+		PROUPGRADE000000000000001 /* ProUpgradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROUPGRADE000000000000002 /* ProUpgradeView.swift */; };
+		CDC34656497AC159398A0A37 /* SwipeActionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A25BA04F03F4C452059BF2 /* SwipeActionsRow.swift */; };
+		E73B2E3AD627F36DAF54D51B /* LockTodoToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DE5B0CE0F07C3764A7B504 /* LockTodoToast.swift */; };
+		0E6E2F61A662E7019634FA28 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB1EDB54BDC3B7F9DB827B /* InsightsView.swift */; };
+		A10000000000000000000005 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000021 /* RiveRuntime */; };
+		0B9BC97B170726FEA2B8253B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67CC7AD1B175E858E32AD2 /* NotificationService.swift */; };
+		0C945EB6DF127969E92F86B2 /* HabitRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6647048329BCA10AF6A8D1 /* HabitRecord.swift */; };
+		0DDBFDD8ED3F6182292AD6ED /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBC309B3D8FE0CB91C51E4F /* TaskViewModel.swift */; };
+		0EEC167DAA297F3B4AE264D7 /* LockTodoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749AAD5DC937C890A12019AB /* LockTodoApp.swift */; };
+		170FFB0AF81F4C0262B6F206 /* WidgetDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB593BB4D202201654CA2E0 /* WidgetDataStore.swift */; };
+		18FACCFCA66B6B186D8C4A77 /* ShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA3D2E9A5F99598F950FDF /* ShortcutService.swift */; };
+		19B0A69357434F961F2E9B5B /* WidgetDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB593BB4D202201654CA2E0 /* WidgetDataStore.swift */; };
+		1CB32CF710DAFE9FF95F35DB /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A8EE0C8C08BDA62345559 /* ProgressRing.swift */; };
+		207759A0C243DC424C61055C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6B8AE33560DA29A54487AA /* Color+Hex.swift */; };
+		266B93E4B40D498F5A11ADC9 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9060DC7B79BA83588C3B2E /* CalendarDayCell.swift */; };
+		2D46CAA1BA1063E8545996D1 /* TaskBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A640FDF388C495DD96D310 /* TaskBoard.swift */; };
+		2F4F0EC36D52CAE16307EA6F /* LockTodoLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B707298E482A4C4D78FBE /* LockTodoLiveActivityView.swift */; };
+		31390AFE503061175FAED7D4 /* QuickAddBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDAB272C6766D94D257547 /* QuickAddBar.swift */; };
+		324B26056A6F4D63CF3E25D0 /* LockTodoActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD2DAF198DB0CAF903667B0 /* LockTodoActivityAttributes.swift */; };
+		36F2604D362875702F8CC311 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7154AB50D88153A18ABEC115 /* Habit.swift */; };
+		3B46D6BA2B320E3AF6096BBE /* ShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA3D2E9A5F99598F950FDF /* ShortcutService.swift */; };
+		3CB7F40A0871F3C78C4D9719 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157C8BA761E4BDB3DB08271 /* TaskItem.swift */; };
+		3D07F9420B0E17FD891FC31E /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F151216282666DAA975B67 /* CalendarViewModel.swift */; };
+		3D538833C208220C373DB1A0 /* RepeatRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F566333C388FD554AF5A22DB /* RepeatRule.swift */; };
+		4AAEC86AAFE9F76BB9FDAF2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C86BBA221AE1F3D210540E2 /* Foundation.framework */; };
+		4AEA0BE347DE34DB4C394707 /* MemoryCapsuleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA56D25B04A9A332E3E93A1 /* MemoryCapsuleCard.swift */; };
+		5582726B1486C1D4044078C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C86BBA221AE1F3D210540E2 /* Foundation.framework */; };
+		5C6B1F7B3CCEE9028F3DD8C9 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2DE861714D51652405CECD /* DiaryEntry.swift */; };
+		600B0A13C22F507CF0C68848 /* WidgetPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85841DFDC9967788D6BB68 /* WidgetPreviewView.swift */; };
+		E800A001C22F507CF0C68848 /* HabitManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B001FDC9967788D6BB68 /* HabitManagementView.swift */; };
+		E800A002C22F507CF0C68848 /* HabitEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B002FDC9967788D6BB68 /* HabitEditView.swift */; };
+		63533C95DF386800F5C35F16 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F2EF863FA035E9254F9EBE /* TaskCategory.swift */; };
+		64A89B23762E901E0AC83A20 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D14B944B75D6D1424DA5214 /* AddTaskView.swift */; };
+		6585229AA4319143E8AC206B /* LiveActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B6E8C411012693E5F60D26 /* LiveActivityService.swift */; };
+		6E0C61AAB1AD1B93E869973E /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EE29C3408B2EEBEDDCBA09 /* TaskDetailView.swift */; };
+		725AED9319C034AD179E0C31 /* AddTaskIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3B936093AC851F5691D95 /* AddTaskIntent.swift */; };
+		76F3D5B4A82C9E1076543D21 /* LockTodoQuickAddControlWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8E2C4D9B7F135024681ACE /* LockTodoQuickAddControlWidget.swift */; };
+		7B8FAB65A3E661D7008C2F0B /* StartFocusTaskIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F745C6FC001A3DBCC32AA1F1 /* StartFocusTaskIntent.swift */; };
+		7F27F9B9C080DC12759CDF19 /* DiaryWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F4AC1847E4FF1AF82A6140 /* DiaryWriteView.swift */; };
+		8453036FA41642EB277809BF /* LockTodoActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD2DAF198DB0CAF903667B0 /* LockTodoActivityAttributes.swift */; };
+		85DE163B0B09F1035BB9A927 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2DE861714D51652405CECD /* DiaryEntry.swift */; };
+		8749349FBCE59A94A8610F70 /* LockTodoWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070F9A9E0A91E8D2C22D5F9 /* LockTodoWidgetBundle.swift */; };
+		8934F7BF03B9D1D8AA2EDED2 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787BCBAFB8C6BD90D08CCC7 /* TodayView.swift */; };
+		9076CB52AEB25E8629CE1C56 /* RepeatRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F566333C388FD554AF5A22DB /* RepeatRule.swift */; };
+		91136A2720A65D43E29ED494 /* LockTodoWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F489CB4DC3419240C1100C66 /* LockTodoWidgetProvider.swift */; };
+		9A7D4387BB33DD45D42E7557 /* TaskBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A640FDF388C495DD96D310 /* TaskBoard.swift */; };
+		9D14C800D67537AE4F5CFAB7 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D84E5D8A1DBEC7DDB7F05 /* CalendarView.swift */; };
+		9D6AAF08F6FFC8DFFFD26EE3 /* AddTaskIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3B936093AC851F5691D95 /* AddTaskIntent.swift */; };
+		A49A38F78C8AB2A3689BF960 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB2F771212F13AD81B0B46 /* BoardListView.swift */; };
+		A9E48962817A98CD7C8AB5A5 /* HabitFocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A6CC60DD18B82BBD81226 /* HabitFocusTimerView.swift */; };
+		AC60B2CA8741BFC5C05CE174 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A8EE0C8C08BDA62345559 /* ProgressRing.swift */; };
+		ACE9AAD224E16D4E1F2EE02F /* HabitRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6647048329BCA10AF6A8D1 /* HabitRecord.swift */; };
+		ADA9296BBB073308AAD30CA8 /* LockTodoLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B707298E482A4C4D78FBE /* LockTodoLiveActivityView.swift */; };
+		ADE8A3A2CDCCE5FE46B1EEC2 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C001F100B51EBD0969C8631 /* AppRouter.swift */; };
+		AEB57F97E6226A5B850FA7A3 /* LockTodoLockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E867E3A8DD3CE331C5D4FED /* LockTodoLockScreenWidget.swift */; };
+		AF1534DB97F602CCD166AA52 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29541646C3B1D79DEFB675 /* TaskRow.swift */; };
+		ANDREXP0000000000000001 /* LockTodoAndroidExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ANDREXP0000000000000002 /* LockTodoAndroidExportService.swift */; };
+		B12C6ACB8944FEB4B6680287 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7154AB50D88153A18ABEC115 /* Habit.swift */; };
+		B1C2D3E4F5061728394A5B6C /* ToggleTaskCompletionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5C /* ToggleTaskCompletionIntent.swift */; };
+		B52229DBBB41D7B010946E5D /* BoardPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A42CC3D4B44715033AF6734 /* BoardPickerView.swift */; };
+		B5F0C0622AED9ADE79839680 /* BoardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1173F368F98D7E4680393 /* BoardEditView.swift */; };
+		B6A8D2E4F9C1012345678901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A8D2E4F9C1012345678902 /* LaunchScreen.storyboard */; };
+		B8BE7AA3FBF9647D71E14701 /* LiveActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B6E8C411012693E5F60D26 /* LiveActivityService.swift */; };
+		C1D2E3F40516273849A5B6C7 /* ToggleTaskCompletionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5C /* ToggleTaskCompletionIntent.swift */; };
+		CC3D77E38A3F1B46DB285302 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67CC7AD1B175E858E32AD2 /* NotificationService.swift */; };
+		D1CC2A486273E8455ACB94E4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CAFA0CA966A5C9270AF809 /* SettingsView.swift */; };
+		DBC78446EDDE0AE731147C67 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F2EF863FA035E9254F9EBE /* TaskCategory.swift */; };
+		DEBE12E41D9FE85506673797 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157C8BA761E4BDB3DB08271 /* TaskItem.swift */; };
+		E8AEE4CDCE83D212BF31FEDF /* ShortcutGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EB2DB705284DE2112017A4 /* ShortcutGuideView.swift */; };
+		ECF39F5A1E5029CCCF46FC21 /* CaptureCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2F17358B9AF561B1F56669 /* CaptureCompleteView.swift */; };
+		F1535E8CE5C6870F7CE80801 /* StartFocusTaskIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F745C6FC001A3DBCC32AA1F1 /* StartFocusTaskIntent.swift */; };
+		F4127FEA23592F38E30A3707 /* LockTodoWidgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3E52F82913A0CFEA5F3A33BA /* LockTodoWidgets.appex */; };
+		F6FA094B4E44FC1AF7911F99 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF811173D022364ABF436503 /* TutorialView.swift */; };
+		FAF1EBA7C3500C28BE7101E7 /* BoardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041A24AAFAEFCAB0563F6DFB /* BoardDetailView.swift */; };
+		FD23A9D596C79B467FF2939E /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6B8AE33560DA29A54487AA /* Color+Hex.swift */; };
+		FDC6CDF64CD8E8592CEC3BC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0961A7CBFDCA48739A361E68 /* Assets.xcassets */; };
+		LOCREM000000000000000001 /* LocationReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LOCREM000000000000000002 /* LocationReminderService.swift */; };
+		MAPTOD000000000000000001 /* MapTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = MAPTOD000000000000000002 /* MapTodoView.swift */; };
+		SHOWTODAY000000000000002 /* ShowTodayTasksIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHOWTODAY000000000000001 /* ShowTodayTasksIntent.swift */; };
+		SHOWTODAY000000000000003 /* ShowTodayTasksIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHOWTODAY000000000000001 /* ShowTodayTasksIntent.swift */; };
+		TACTILE00000000000000002 /* TactileButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = TACTILE00000000000000001 /* TactileButtonStyle.swift */; };
+		WATCH00000000000000000001 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = WATCH00000000000000000002 /* WatchConnectivityService.swift */; };
+		WATCH00000000000000000003 /* LockTodoWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = WATCH00000000000000000004 /* LockTodoWatchApp.swift */; };
+		WATCH00000000000000000005 /* LockTodoWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = WATCH00000000000000000006 /* LockTodoWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		WATCHASSETS000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0961A7CBFDCA48739A361E68 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1A5EBEDD5BAC3CEB64B9CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5847CC9E7408E448A7333AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7758A41A6B469A308CCEAE37;
+			remoteInfo = LockTodoWidgets;
+		};
+		WATCH00000000000000000007 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5847CC9E7408E448A7333AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = WATCH00000000000000000008;
+			remoteInfo = LockTodoWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D439D9B856FF022570FC7D44 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F4127FEA23592F38E30A3707 /* LockTodoWidgets.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		WATCH00000000000000000009 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				WATCH00000000000000000005 /* LockTodoWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1E440085FB629EAC3A6A4431 /* FocusSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FocusSession.swift; path = Models/FocusSession.swift; sourceTree = "<group>"; };
+		B70E52A79783FDA303BC8ACF /* TaskFocusTimerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskFocusTimerView.swift; path = Views/TaskFocusTimerView.swift; sourceTree = "<group>"; };
+		PRIVACY00000000000000002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Resources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		PROACCESS0000000000000002 /* ProAccessService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProAccessService.swift; path = Services/ProAccessService.swift; sourceTree = "<group>"; };
+		PROUPGRADE000000000000002 /* ProUpgradeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProUpgradeView.swift; path = Views/ProUpgradeView.swift; sourceTree = "<group>"; };
+		STOREKIT00000000000000001 /* LockTodo.storekit */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LockTodo.storekit; path = Resources/LockTodo.storekit; sourceTree = "<group>"; };
+		61A25BA04F03F4C452059BF2 /* SwipeActionsRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeActionsRow.swift; path = Components/SwipeActionsRow.swift; sourceTree = "<group>"; };
+		19DE5B0CE0F07C3764A7B504 /* LockTodoToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoToast.swift; path = Components/LockTodoToast.swift; sourceTree = "<group>"; };
+		D1DB1EDB54BDC3B7F9DB827B /* InsightsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InsightsView.swift; path = Views/InsightsView.swift; sourceTree = "<group>"; };
+		041A24AAFAEFCAB0563F6DFB /* BoardDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoardDetailView.swift; path = LockTodo/Views/BoardDetailView.swift; sourceTree = "<group>"; };
+		08F2EF863FA035E9254F9EBE /* TaskCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskCategory.swift; path = Models/TaskCategory.swift; sourceTree = "<group>"; };
+		0961A7CBFDCA48739A361E68 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		0CCB2F771212F13AD81B0B46 /* BoardListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoardListView.swift; path = LockTodo/Views/BoardListView.swift; sourceTree = "<group>"; };
+		0D14B944B75D6D1424DA5214 /* AddTaskView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AddTaskView.swift; path = Views/AddTaskView.swift; sourceTree = "<group>"; };
+		0F6647048329BCA10AF6A8D1 /* HabitRecord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitRecord.swift; path = LockTodo/Models/HabitRecord.swift; sourceTree = "<group>"; };
+		16B6E8C411012693E5F60D26 /* LiveActivityService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LiveActivityService.swift; path = Services/LiveActivityService.swift; sourceTree = "<group>"; };
+		1C001F100B51EBD0969C8631 /* AppRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppRouter.swift; path = App/AppRouter.swift; sourceTree = "<group>"; };
+		1E867E3A8DD3CE331C5D4FED /* LockTodoLockScreenWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoLockScreenWidget.swift; path = Widgets/LockTodoLockScreenWidget.swift; sourceTree = "<group>"; };
+		1EF159162C8F3ABD37E7E43C /* LockTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2787BCBAFB8C6BD90D08CCC7 /* TodayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TodayView.swift; path = Views/TodayView.swift; sourceTree = "<group>"; };
+		2BBC309B3D8FE0CB91C51E4F /* TaskViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskViewModel.swift; path = ViewModels/TaskViewModel.swift; sourceTree = "<group>"; };
+		3B67CC7AD1B175E858E32AD2 /* NotificationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationService.swift; path = Services/NotificationService.swift; sourceTree = "<group>"; };
+		3E2F17358B9AF561B1F56669 /* CaptureCompleteView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CaptureCompleteView.swift; path = LockTodo/Views/CaptureCompleteView.swift; sourceTree = "<group>"; };
+		3E52F82913A0CFEA5F3A33BA /* LockTodoWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockTodoWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		55F151216282666DAA975B67 /* CalendarViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarViewModel.swift; path = ViewModels/CalendarViewModel.swift; sourceTree = "<group>"; };
+		56A640FDF388C495DD96D310 /* TaskBoard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskBoard.swift; path = LockTodo/Models/TaskBoard.swift; sourceTree = "<group>"; };
+		5B85841DFDC9967788D6BB68 /* WidgetPreviewView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetPreviewView.swift; path = Views/WidgetPreviewView.swift; sourceTree = "<group>"; };
+		E800B001FDC9967788D6BB68 /* HabitManagementView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitManagementView.swift; path = Views/HabitManagementView.swift; sourceTree = "<group>"; };
+		E800B002FDC9967788D6BB68 /* HabitEditView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitEditView.swift; path = Views/HabitEditView.swift; sourceTree = "<group>"; };
+		5C9060DC7B79BA83588C3B2E /* CalendarDayCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarDayCell.swift; path = Components/CalendarDayCell.swift; sourceTree = "<group>"; };
+		6A8E2C4D9B7F135024681ACE /* LockTodoQuickAddControlWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoQuickAddControlWidget.swift; path = Widgets/LockTodoQuickAddControlWidget.swift; sourceTree = "<group>"; };
+		7154AB50D88153A18ABEC115 /* Habit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Habit.swift; path = LockTodo/Models/Habit.swift; sourceTree = "<group>"; };
+		749AAD5DC937C890A12019AB /* LockTodoApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoApp.swift; path = App/LockTodoApp.swift; sourceTree = "<group>"; };
+		78FA3D2E9A5F99598F950FDF /* ShortcutService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShortcutService.swift; path = Services/ShortcutService.swift; sourceTree = "<group>"; };
+		7A42CC3D4B44715033AF6734 /* BoardPickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoardPickerView.swift; path = LockTodo/Views/BoardPickerView.swift; sourceTree = "<group>"; };
+		7F2DE861714D51652405CECD /* DiaryEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiaryEntry.swift; path = LockTodo/Models/DiaryEntry.swift; sourceTree = "<group>"; };
+		9C86BBA221AE1F3D210540E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A1B2C3D4E5F60718293A4B5C /* ToggleTaskCompletionIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToggleTaskCompletionIntent.swift; path = Intents/ToggleTaskCompletionIntent.swift; sourceTree = "<group>"; };
+		A4BDAB272C6766D94D257547 /* QuickAddBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickAddBar.swift; path = Components/QuickAddBar.swift; sourceTree = "<group>"; };
+		A95B707298E482A4C4D78FBE /* LockTodoLiveActivityView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoLiveActivityView.swift; path = LiveActivity/LockTodoLiveActivityView.swift; sourceTree = "<group>"; };
+		ANDREXP0000000000000002 /* LockTodoAndroidExportService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoAndroidExportService.swift; path = LockTodo/Services/LockTodoAndroidExportService.swift; sourceTree = "<group>"; };
+		B157C8BA761E4BDB3DB08271 /* TaskItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskItem.swift; path = Models/TaskItem.swift; sourceTree = "<group>"; };
+		B4EE29C3408B2EEBEDDCBA09 /* TaskDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDetailView.swift; path = Views/TaskDetailView.swift; sourceTree = "<group>"; };
+		B6A8D2E4F9C1012345678902 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BFB593BB4D202201654CA2E0 /* WidgetDataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetDataStore.swift; path = Services/WidgetDataStore.swift; sourceTree = "<group>"; };
+		C05A6CC60DD18B82BBD81226 /* HabitFocusTimerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitFocusTimerView.swift; path = LockTodo/Views/HabitFocusTimerView.swift; sourceTree = "<group>"; };
+		C1F4AC1847E4FF1AF82A6140 /* DiaryWriteView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiaryWriteView.swift; path = LockTodo/Views/DiaryWriteView.swift; sourceTree = "<group>"; };
+		C2EAFBA4D1B1DECF834063FA /* Contents.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = Contents.json; path = Resources/Assets.xcassets/AppIcon.appiconset/Contents.json; sourceTree = "<group>"; };
+		C81F3349645669B659D91E6F /* Contents.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = Contents.json; path = Resources/Assets.xcassets/Contents.json; sourceTree = "<group>"; };
+		CFA56D25B04A9A332E3E93A1 /* MemoryCapsuleCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MemoryCapsuleCard.swift; path = LockTodo/Components/MemoryCapsuleCard.swift; sourceTree = "<group>"; };
+		D070F9A9E0A91E8D2C22D5F9 /* LockTodoWidgetBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoWidgetBundle.swift; path = Widgets/LockTodoWidgetBundle.swift; sourceTree = "<group>"; };
+		D2F1173F368F98D7E4680393 /* BoardEditView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoardEditView.swift; path = LockTodo/Views/BoardEditView.swift; sourceTree = "<group>"; };
+		D42A8EE0C8C08BDA62345559 /* ProgressRing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProgressRing.swift; path = Components/ProgressRing.swift; sourceTree = "<group>"; };
+		D5B9BC42BD526B2B48A96A72 /* Contents.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = Contents.json; path = Resources/Assets.xcassets/AccentColor.colorset/Contents.json; sourceTree = "<group>"; };
+		DDD2DAF198DB0CAF903667B0 /* LockTodoActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoActivityAttributes.swift; path = LiveActivity/LockTodoActivityAttributes.swift; sourceTree = "<group>"; };
+		E0EB2DB705284DE2112017A4 /* ShortcutGuideView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShortcutGuideView.swift; path = Views/ShortcutGuideView.swift; sourceTree = "<group>"; };
+		E5F3B936093AC851F5691D95 /* AddTaskIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AddTaskIntent.swift; path = Intents/AddTaskIntent.swift; sourceTree = "<group>"; };
+		F1CAFA0CA966A5C9270AF809 /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Views/SettingsView.swift; sourceTree = "<group>"; };
+		F489CB4DC3419240C1100C66 /* LockTodoWidgetProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoWidgetProvider.swift; path = Widgets/LockTodoWidgetProvider.swift; sourceTree = "<group>"; };
+		F48D84E5D8A1DBEC7DDB7F05 /* CalendarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarView.swift; path = Views/CalendarView.swift; sourceTree = "<group>"; };
+		F566333C388FD554AF5A22DB /* RepeatRule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RepeatRule.swift; path = Models/RepeatRule.swift; sourceTree = "<group>"; };
+		F745C6FC001A3DBCC32AA1F1 /* StartFocusTaskIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StartFocusTaskIntent.swift; path = Intents/StartFocusTaskIntent.swift; sourceTree = "<group>"; };
+		FB29541646C3B1D79DEFB675 /* TaskRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskRow.swift; path = Components/TaskRow.swift; sourceTree = "<group>"; };
+		FF6B8AE33560DA29A54487AA /* Color+Hex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Color+Hex.swift"; path = "LockTodo/Components/Color+Hex.swift"; sourceTree = "<group>"; };
+		FF811173D022364ABF436503 /* TutorialView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = Views/TutorialView.swift; sourceTree = "<group>"; };
+		LOCREM000000000000000002 /* LocationReminderService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocationReminderService.swift; path = LockTodo/Services/LocationReminderService.swift; sourceTree = "<group>"; };
+		MAPTOD000000000000000002 /* MapTodoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapTodoView.swift; path = Views/MapTodoView.swift; sourceTree = "<group>"; };
+		SHOWTODAY000000000000001 /* ShowTodayTasksIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShowTodayTasksIntent.swift; path = Intents/ShowTodayTasksIntent.swift; sourceTree = "<group>"; };
+		TACTILE00000000000000001 /* TactileButtonStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TactileButtonStyle.swift; path = LockTodo/Components/TactileButtonStyle.swift; sourceTree = "<group>"; };
+		WATCH00000000000000000002 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchConnectivityService.swift; path = LockTodo/Services/WatchConnectivityService.swift; sourceTree = "<group>"; };
+		WATCH00000000000000000004 /* LockTodoWatchApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockTodoWatchApp.swift; sourceTree = "<group>"; };
+		WATCH00000000000000000006 /* LockTodoWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockTodoWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		WATCH00000000000000000010 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CED26EF696900DA4E7F76350 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000005 /* RiveRuntime in Frameworks */,
+				4AAEC86AAFE9F76BB9FDAF2B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56931A01472942C48670E72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5582726B1486C1D4044078C3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		WATCH00000000000000000011 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0ED120CF4EAE88FF9B39A5FA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9C86BBA221AE1F3D210540E2 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7886383DF794675868CF8821 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0ED120CF4EAE88FF9B39A5FA /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8175770475343F5B31A7231A = {
+			isa = PBXGroup;
+			children = (
+				E1F14A6F2DD997714E228E06 /* Products */,
+				7886383DF794675868CF8821 /* Frameworks */,
+				B5C6DE36D3439C609DFF2DF9 /* LockTodo */,
+				WATCH00000000000000000012 /* LockTodoWatch */,
+				A1FD4257201DD441F23FE238 /* Models */,
+				CF2ED0BAFC7CC1C215CD2107 /* Components */,
+				AE7822B00D8C2AB2AB0A7F76 /* Views */,
+				D5E22447703C3FF69971EC05 /* Services */,
+			);
+			sourceTree = "<group>";
+		};
+		A1FD4257201DD441F23FE238 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				56A640FDF388C495DD96D310 /* TaskBoard.swift */,
+				7F2DE861714D51652405CECD /* DiaryEntry.swift */,
+				7154AB50D88153A18ABEC115 /* Habit.swift */,
+				0F6647048329BCA10AF6A8D1 /* HabitRecord.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		AE7822B00D8C2AB2AB0A7F76 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0CCB2F771212F13AD81B0B46 /* BoardListView.swift */,
+				C05A6CC60DD18B82BBD81226 /* HabitFocusTimerView.swift */,
+				3E2F17358B9AF561B1F56669 /* CaptureCompleteView.swift */,
+				D2F1173F368F98D7E4680393 /* BoardEditView.swift */,
+				7A42CC3D4B44715033AF6734 /* BoardPickerView.swift */,
+				C1F4AC1847E4FF1AF82A6140 /* DiaryWriteView.swift */,
+				041A24AAFAEFCAB0563F6DFB /* BoardDetailView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B5C6DE36D3439C609DFF2DF9 /* LockTodo */ = {
+			isa = PBXGroup;
+			children = (
+				PRIVACY00000000000000002 /* PrivacyInfo.xcprivacy */,
+				PROACCESS0000000000000002 /* ProAccessService.swift */,
+				PROUPGRADE000000000000002 /* ProUpgradeView.swift */,
+				STOREKIT00000000000000001 /* LockTodo.storekit */,
+				SHOWTODAY000000000000001 /* ShowTodayTasksIntent.swift */,
+				1C001F100B51EBD0969C8631 /* AppRouter.swift */,
+				749AAD5DC937C890A12019AB /* LockTodoApp.swift */,
+				5C9060DC7B79BA83588C3B2E /* CalendarDayCell.swift */,
+				D42A8EE0C8C08BDA62345559 /* ProgressRing.swift */,
+				A4BDAB272C6766D94D257547 /* QuickAddBar.swift */,
+				FB29541646C3B1D79DEFB675 /* TaskRow.swift */,
+				1E440085FB629EAC3A6A4431 /* FocusSession.swift */,
+				B70E52A79783FDA303BC8ACF /* TaskFocusTimerView.swift */,
+				61A25BA04F03F4C452059BF2 /* SwipeActionsRow.swift */,
+				19DE5B0CE0F07C3764A7B504 /* LockTodoToast.swift */,
+				D1DB1EDB54BDC3B7F9DB827B /* InsightsView.swift */,
+				E5F3B936093AC851F5691D95 /* AddTaskIntent.swift */,
+				A1B2C3D4E5F60718293A4B5C /* ToggleTaskCompletionIntent.swift */,
+				F745C6FC001A3DBCC32AA1F1 /* StartFocusTaskIntent.swift */,
+				DDD2DAF198DB0CAF903667B0 /* LockTodoActivityAttributes.swift */,
+				A95B707298E482A4C4D78FBE /* LockTodoLiveActivityView.swift */,
+				F566333C388FD554AF5A22DB /* RepeatRule.swift */,
+				08F2EF863FA035E9254F9EBE /* TaskCategory.swift */,
+				B157C8BA761E4BDB3DB08271 /* TaskItem.swift */,
+				D5B9BC42BD526B2B48A96A72 /* Contents.json */,
+				C2EAFBA4D1B1DECF834063FA /* Contents.json */,
+				C81F3349645669B659D91E6F /* Contents.json */,
+				16B6E8C411012693E5F60D26 /* LiveActivityService.swift */,
+				3B67CC7AD1B175E858E32AD2 /* NotificationService.swift */,
+				78FA3D2E9A5F99598F950FDF /* ShortcutService.swift */,
+				BFB593BB4D202201654CA2E0 /* WidgetDataStore.swift */,
+				55F151216282666DAA975B67 /* CalendarViewModel.swift */,
+				2BBC309B3D8FE0CB91C51E4F /* TaskViewModel.swift */,
+				0D14B944B75D6D1424DA5214 /* AddTaskView.swift */,
+				F48D84E5D8A1DBEC7DDB7F05 /* CalendarView.swift */,
+				F1CAFA0CA966A5C9270AF809 /* SettingsView.swift */,
+				E0EB2DB705284DE2112017A4 /* ShortcutGuideView.swift */,
+				B4EE29C3408B2EEBEDDCBA09 /* TaskDetailView.swift */,
+				2787BCBAFB8C6BD90D08CCC7 /* TodayView.swift */,
+				MAPTOD000000000000000002 /* MapTodoView.swift */,
+				5B85841DFDC9967788D6BB68 /* WidgetPreviewView.swift */,
+				E800B001FDC9967788D6BB68 /* HabitManagementView.swift */,
+				E800B002FDC9967788D6BB68 /* HabitEditView.swift */,
+				1E867E3A8DD3CE331C5D4FED /* LockTodoLockScreenWidget.swift */,
+				D070F9A9E0A91E8D2C22D5F9 /* LockTodoWidgetBundle.swift */,
+				F489CB4DC3419240C1100C66 /* LockTodoWidgetProvider.swift */,
+				6A8E2C4D9B7F135024681ACE /* LockTodoQuickAddControlWidget.swift */,
+				0961A7CBFDCA48739A361E68 /* Assets.xcassets */,
+				B6A8D2E4F9C1012345678902 /* LaunchScreen.storyboard */,
+				FF811173D022364ABF436503 /* TutorialView.swift */,
+			);
+			path = LockTodo;
+			sourceTree = "<group>";
+		};
+		CF2ED0BAFC7CC1C215CD2107 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				TACTILE00000000000000001 /* TactileButtonStyle.swift */,
+				CFA56D25B04A9A332E3E93A1 /* MemoryCapsuleCard.swift */,
+				FF6B8AE33560DA29A54487AA /* Color+Hex.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		D5E22447703C3FF69971EC05 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				WATCH00000000000000000002 /* WatchConnectivityService.swift */,
+				LOCREM000000000000000002 /* LocationReminderService.swift */,
+				ANDREXP0000000000000002 /* LockTodoAndroidExportService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		E1F14A6F2DD997714E228E06 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1EF159162C8F3ABD37E7E43C /* LockTodo.app */,
+				3E52F82913A0CFEA5F3A33BA /* LockTodoWidgets.appex */,
+				WATCH00000000000000000006 /* LockTodoWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		WATCH00000000000000000012 /* LockTodoWatch */ = {
+			isa = PBXGroup;
+			children = (
+				WATCH00000000000000000004 /* LockTodoWatchApp.swift */,
+				WATCH00000000000000000010 /* Info.plist */,
+			);
+			path = LockTodoWatch;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		653B9742FC96237B9DE66C72 /* LockTodo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F95D52322CB34DDADD7E7B28 /* Build configuration list for PBXNativeTarget "LockTodo" */;
+			buildPhases = (
+				984E56FC6145B671BA235925 /* Sources */,
+				CED26EF696900DA4E7F76350 /* Frameworks */,
+				E9F91CD47DB7558861FF93B7 /* Resources */,
+				D439D9B856FF022570FC7D44 /* Embed App Extensions */,
+				WATCH00000000000000000009 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				772E9A8732D43111BAC8BAD5 /* PBXTargetDependency */,
+				WATCH00000000000000000013 /* PBXTargetDependency */,
+			);
+			name = LockTodo;
+			packageProductDependencies = (
+				A10000000000000000000021 /* RiveRuntime */,
+			);
+			productName = LockTodo;
+			productReference = 1EF159162C8F3ABD37E7E43C /* LockTodo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7758A41A6B469A308CCEAE37 /* LockTodoWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B886684C72B9BD951CAEBA8A /* Build configuration list for PBXNativeTarget "LockTodoWidgets" */;
+			buildPhases = (
+				FFC4579F479C83EFFD5EE750 /* Sources */,
+				E56931A01472942C48670E72 /* Frameworks */,
+				83DFBC905FC571ACB33F6848 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LockTodoWidgets;
+			productName = LockTodoWidgets;
+			productReference = 3E52F82913A0CFEA5F3A33BA /* LockTodoWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		WATCH00000000000000000008 /* LockTodoWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = WATCH00000000000000000014 /* Build configuration list for PBXNativeTarget "LockTodoWatch" */;
+			buildPhases = (
+				WATCH00000000000000000015 /* Sources */,
+				WATCH00000000000000000011 /* Frameworks */,
+				WATCH00000000000000000016 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LockTodoWatch;
+			productName = LockTodoWatch;
+			productReference = WATCH00000000000000000006 /* LockTodoWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C5847CC9E7408E448A7333AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 2650;
+				LastUpgradeCheck = 2650;
+				TargetAttributes = {
+					653B9742FC96237B9DE66C72 = {
+						DevelopmentTeam = H7JG5Z7X5T;
+						ProvisioningStyle = Automatic;
+					};
+					7758A41A6B469A308CCEAE37 = {
+						DevelopmentTeam = H7JG5Z7X5T;
+						ProvisioningStyle = Automatic;
+					};
+					WATCH00000000000000000008 = {
+						DevelopmentTeam = H7JG5Z7X5T;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8DE1395E6C675F64666CCDE1 /* Build configuration list for PBXProject "LockTodo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8175770475343F5B31A7231A;
+			packageReferences = (
+				A10000000000000000000020 /* XCRemoteSwiftPackageReference "rive-ios" */,
+			);
+			productRefGroup = E1F14A6F2DD997714E228E06 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				653B9742FC96237B9DE66C72 /* LockTodo */,
+				7758A41A6B469A308CCEAE37 /* LockTodoWidgets */,
+				WATCH00000000000000000008 /* LockTodoWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83DFBC905FC571ACB33F6848 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F91CD47DB7558861FF93B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				PRIVACY00000000000000001 /* PrivacyInfo.xcprivacy in Resources */,
+				FDC6CDF64CD8E8592CEC3BC5 /* Assets.xcassets in Resources */,
+				B6A8D2E4F9C1012345678901 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		WATCH00000000000000000016 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				WATCHASSETS000000000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		984E56FC6145B671BA235925 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3905381DAD6EF7818F4713E9 /* FocusSession.swift in Sources */,
+				AE3FADEF35EDD49FE7204767 /* TaskFocusTimerView.swift in Sources */,
+				PROACCESS0000000000000001 /* ProAccessService.swift in Sources */,
+				PROUPGRADE000000000000001 /* ProUpgradeView.swift in Sources */,
+				CDC34656497AC159398A0A37 /* SwipeActionsRow.swift in Sources */,
+				E73B2E3AD627F36DAF54D51B /* LockTodoToast.swift in Sources */,
+				0E6E2F61A662E7019634FA28 /* InsightsView.swift in Sources */,
+				SHOWTODAY000000000000002 /* ShowTodayTasksIntent.swift in Sources */,
+				TACTILE00000000000000002 /* TactileButtonStyle.swift in Sources */,
+				ADE8A3A2CDCCE5FE46B1EEC2 /* AppRouter.swift in Sources */,
+				0EEC167DAA297F3B4AE264D7 /* LockTodoApp.swift in Sources */,
+				266B93E4B40D498F5A11ADC9 /* CalendarDayCell.swift in Sources */,
+				1CB32CF710DAFE9FF95F35DB /* ProgressRing.swift in Sources */,
+				31390AFE503061175FAED7D4 /* QuickAddBar.swift in Sources */,
+				AF1534DB97F602CCD166AA52 /* TaskRow.swift in Sources */,
+				9D6AAF08F6FFC8DFFFD26EE3 /* AddTaskIntent.swift in Sources */,
+				B1C2D3E4F5061728394A5B6C /* ToggleTaskCompletionIntent.swift in Sources */,
+				F1535E8CE5C6870F7CE80801 /* StartFocusTaskIntent.swift in Sources */,
+				324B26056A6F4D63CF3E25D0 /* LockTodoActivityAttributes.swift in Sources */,
+				9076CB52AEB25E8629CE1C56 /* RepeatRule.swift in Sources */,
+				63533C95DF386800F5C35F16 /* TaskCategory.swift in Sources */,
+				3CB7F40A0871F3C78C4D9719 /* TaskItem.swift in Sources */,
+				6585229AA4319143E8AC206B /* LiveActivityService.swift in Sources */,
+				0B9BC97B170726FEA2B8253B /* NotificationService.swift in Sources */,
+				3B46D6BA2B320E3AF6096BBE /* ShortcutService.swift in Sources */,
+				19B0A69357434F961F2E9B5B /* WidgetDataStore.swift in Sources */,
+				3D07F9420B0E17FD891FC31E /* CalendarViewModel.swift in Sources */,
+				0DDBFDD8ED3F6182292AD6ED /* TaskViewModel.swift in Sources */,
+				64A89B23762E901E0AC83A20 /* AddTaskView.swift in Sources */,
+				9D14C800D67537AE4F5CFAB7 /* CalendarView.swift in Sources */,
+				D1CC2A486273E8455ACB94E4 /* SettingsView.swift in Sources */,
+				E8AEE4CDCE83D212BF31FEDF /* ShortcutGuideView.swift in Sources */,
+				6E0C61AAB1AD1B93E869973E /* TaskDetailView.swift in Sources */,
+				8934F7BF03B9D1D8AA2EDED2 /* TodayView.swift in Sources */,
+				MAPTOD000000000000000001 /* MapTodoView.swift in Sources */,
+				600B0A13C22F507CF0C68848 /* WidgetPreviewView.swift in Sources */,
+				E800A001C22F507CF0C68848 /* HabitManagementView.swift in Sources */,
+				E800A002C22F507CF0C68848 /* HabitEditView.swift in Sources */,
+				F6FA094B4E44FC1AF7911F99 /* TutorialView.swift in Sources */,
+				ADA9296BBB073308AAD30CA8 /* LockTodoLiveActivityView.swift in Sources */,
+				9A7D4387BB33DD45D42E7557 /* TaskBoard.swift in Sources */,
+				85DE163B0B09F1035BB9A927 /* DiaryEntry.swift in Sources */,
+				B12C6ACB8944FEB4B6680287 /* Habit.swift in Sources */,
+				ACE9AAD224E16D4E1F2EE02F /* HabitRecord.swift in Sources */,
+				4AEA0BE347DE34DB4C394707 /* MemoryCapsuleCard.swift in Sources */,
+				A49A38F78C8AB2A3689BF960 /* BoardListView.swift in Sources */,
+				A9E48962817A98CD7C8AB5A5 /* HabitFocusTimerView.swift in Sources */,
+				ECF39F5A1E5029CCCF46FC21 /* CaptureCompleteView.swift in Sources */,
+				B5F0C0622AED9ADE79839680 /* BoardEditView.swift in Sources */,
+				B52229DBBB41D7B010946E5D /* BoardPickerView.swift in Sources */,
+				7F27F9B9C080DC12759CDF19 /* DiaryWriteView.swift in Sources */,
+				FAF1EBA7C3500C28BE7101E7 /* BoardDetailView.swift in Sources */,
+				WATCH00000000000000000001 /* WatchConnectivityService.swift in Sources */,
+				LOCREM000000000000000001 /* LocationReminderService.swift in Sources */,
+				ANDREXP0000000000000001 /* LockTodoAndroidExportService.swift in Sources */,
+				FD23A9D596C79B467FF2939E /* Color+Hex.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFC4579F479C83EFFD5EE750 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDA7FB2B0E1FCC84F6EEB1AD /* FocusSession.swift in Sources */,
+				SHOWTODAY000000000000003 /* ShowTodayTasksIntent.swift in Sources */,
+				AC60B2CA8741BFC5C05CE174 /* ProgressRing.swift in Sources */,
+				8453036FA41642EB277809BF /* LockTodoActivityAttributes.swift in Sources */,
+				2F4F0EC36D52CAE16307EA6F /* LockTodoLiveActivityView.swift in Sources */,
+				3D538833C208220C373DB1A0 /* RepeatRule.swift in Sources */,
+				DBC78446EDDE0AE731147C67 /* TaskCategory.swift in Sources */,
+				DEBE12E41D9FE85506673797 /* TaskItem.swift in Sources */,
+				18FACCFCA66B6B186D8C4A77 /* ShortcutService.swift in Sources */,
+				170FFB0AF81F4C0262B6F206 /* WidgetDataStore.swift in Sources */,
+				C1D2E3F40516273849A5B6C7 /* ToggleTaskCompletionIntent.swift in Sources */,
+				AEB57F97E6226A5B850FA7A3 /* LockTodoLockScreenWidget.swift in Sources */,
+				8749349FBCE59A94A8610F70 /* LockTodoWidgetBundle.swift in Sources */,
+				91136A2720A65D43E29ED494 /* LockTodoWidgetProvider.swift in Sources */,
+				76F3D5B4A82C9E1076543D21 /* LockTodoQuickAddControlWidget.swift in Sources */,
+				725AED9319C034AD179E0C31 /* AddTaskIntent.swift in Sources */,
+				7B8FAB65A3E661D7008C2F0B /* StartFocusTaskIntent.swift in Sources */,
+				CC3D77E38A3F1B46DB285302 /* NotificationService.swift in Sources */,
+				B8BE7AA3FBF9647D71E14701 /* LiveActivityService.swift in Sources */,
+				2D46CAA1BA1063E8545996D1 /* TaskBoard.swift in Sources */,
+				5C6B1F7B3CCEE9028F3DD8C9 /* DiaryEntry.swift in Sources */,
+				36F2604D362875702F8CC311 /* Habit.swift in Sources */,
+				0C945EB6DF127969E92F86B2 /* HabitRecord.swift in Sources */,
+				207759A0C243DC424C61055C /* Color+Hex.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		WATCH00000000000000000015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				WATCH00000000000000000003 /* LockTodoWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		772E9A8732D43111BAC8BAD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LockTodoWidgets;
+			target = 7758A41A6B469A308CCEAE37 /* LockTodoWidgets */;
+			targetProxy = A1A5EBEDD5BAC3CEB64B9CEA /* PBXContainerItemProxy */;
+		};
+		WATCH00000000000000000013 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LockTodoWatch;
+			target = WATCH00000000000000000008 /* LockTodoWatch */;
+			targetProxy = WATCH00000000000000000007 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04D161FED496799C1CD5AD50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = LockTodo/Widgets/LockTodoWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = H7JG5Z7X5T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LockTodo/Widgets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaeseok.LockTodo.LockTodoWidgets0801;
+				PRODUCT_NAME = LockTodoWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		633C32B8F873F99D0DC4ACCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = LockTodo/Widgets/LockTodoWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = H7JG5Z7X5T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LockTodo/Widgets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaeseok.LockTodo.LockTodoWidgets0801;
+				PRODUCT_NAME = LockTodoWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		792BD23F1B5660844BB63448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = LockTodo/LockTodo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = H7JG5Z7X5T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LockTodo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaeseok.LockTodo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) LOCKTODO_MAIN_APP";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B786469A510781130C7023C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = LockTodo/LockTodo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = H7JG5Z7X5T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LockTodo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaeseok.LockTodo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) LOCKTODO_MAIN_APP";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D939E34B9F40C5F87FCE6592 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DISABLE_MANUAL_TARGET_ORDER_BUILD_WARNING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EE2141254DC68086394990DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DISABLE_MANUAL_TARGET_ORDER_BUILD_WARNING = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		WATCH00000000000000000017 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = H7JG5Z7X5T;
+				DISABLE_MANUAL_TARGET_ORDER_BUILD_WARNING = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LockTodoWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaeseok.LockTodo.watchkitapp;
+				PRODUCT_NAME = LockTodoWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		WATCH00000000000000000018 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = H7JG5Z7X5T;
+				DISABLE_MANUAL_TARGET_ORDER_BUILD_WARNING = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LockTodoWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaeseok.LockTodo.watchkitapp;
+				PRODUCT_NAME = LockTodoWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8DE1395E6C675F64666CCDE1 /* Build configuration list for PBXProject "LockTodo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D939E34B9F40C5F87FCE6592 /* Debug */,
+				EE2141254DC68086394990DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B886684C72B9BD951CAEBA8A /* Build configuration list for PBXNativeTarget "LockTodoWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				633C32B8F873F99D0DC4ACCB /* Release */,
+				04D161FED496799C1CD5AD50 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F95D52322CB34DDADD7E7B28 /* Build configuration list for PBXNativeTarget "LockTodo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B786469A510781130C7023C9 /* Release */,
+				792BD23F1B5660844BB63448 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		WATCH00000000000000000014 /* Build configuration list for PBXNativeTarget "LockTodoWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				WATCH00000000000000000018 /* Release */,
+				WATCH00000000000000000017 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A10000000000000000000020 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.20.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10000000000000000000021 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000020 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C5847CC9E7408E448A7333AA /* Project object */;
+}
