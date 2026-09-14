@@ -57,9 +57,9 @@
 
   /* LOCK */
   #lock{background:radial-gradient(120% 70% at 62% 20%,#2b4a8f 0,#14294e 45%,#0a1730 78%),radial-gradient(90% 60% at 30% 92%,#12574f 0,transparent 55%),#0a1428;color:#fff;display:flex;flex-direction:column;padding:0 16px 20px}
-  #lock .cw{text-align:center;margin-top:74px} #lock .date{font-size:16px;font-weight:600;opacity:.92} #lock .clock{font-size:78px;font-weight:600;line-height:1;letter-spacing:-.02em;margin-top:2px;font-feature-settings:"tnum"}
+  #lock .cw{text-align:center;margin-top:52px} #lock .date{font-size:16px;font-weight:600;opacity:.92} #lock .clock{font-size:70px;font-weight:600;line-height:1;letter-spacing:-.02em;margin-top:2px;font-feature-settings:"tnum"}
   #lock .sp{flex:1;min-height:16px}
-  .la{background:rgba(22,30,46,.62);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:14px 15px;box-shadow:0 20px 50px -24px rgba(0,0,0,.7)}
+  .la{background:rgba(28,38,58,.72);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:14px 15px;box-shadow:0 20px 50px -24px rgba(0,0,0,.7)}
   .la-h{display:flex;align-items:center;gap:9px;margin-bottom:11px} .la-h .ic{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.1);display:grid;place-items:center} .la-h .ic svg{width:15px;height:15px}
   .la-h .t{flex:1;min-width:0} .la-h .t b{display:block;font-size:9.5px;letter-spacing:.02em;color:rgba(255,255,255,.6);font-weight:600;text-transform:uppercase} .la-h .t span{display:block;font-size:14px;font-weight:700} .la-h .pct{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
   .la-bar{height:4px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-bottom:12px} .la-bar i{display:block;height:100%;background:linear-gradient(90deg,#5aa9ff,#3e9bff);transition:width .5s cubic-bezier(.2,.8,.2,1)}
@@ -68,6 +68,15 @@
   .la-i .ck{flex:none;width:17px;height:17px;border-radius:50%;border:1.6px solid rgba(255,255,255,.55);display:grid;place-items:center;transition:.15s} .la-i.done .ck{background:#3e9bff;border-color:#3e9bff} .la-i .ck svg{width:11px;height:11px;opacity:0} .la-i.done .ck svg{opacity:1}
   .la-i .lbl{font-size:12.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .la-i.done .lbl{color:rgba(255,255,255,.5);text-decoration:line-through}
   #lock .swipe{text-align:center;margin-top:14px;font-size:12.5px;color:rgba(255,255,255,.62)} #lock .grip{width:130px;height:5px;border-radius:99px;background:rgba(255,255,255,.5);margin:16px auto 4px}
+  /* lock-screen accessory widgets */
+  .lw-inline{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:rgba(255,255,255,.92);margin-bottom:2px} .lw-inline svg{width:15px;height:15px}
+  .lw-row{display:flex;gap:12px;justify-content:center;align-items:stretch;margin-top:18px;padding:0 4px}
+  .lw-circ{width:76px;height:76px;position:relative;flex:none;cursor:pointer} .lw-circ svg{transform:rotate(-90deg);width:100%;height:100%} .lw-circ .cc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff} .lw-circ .cc b{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1} .lw-circ .cc span{font-size:8px;opacity:.72;margin-top:2px;letter-spacing:.02em}
+  .lw-rect{flex:1;max-width:212px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:9px 11px}
+  .lw-rect .rh{display:flex;align-items:center;gap:6px;margin-bottom:6px} .lw-rect .rh svg{width:12px;height:12px;color:#fff;opacity:.85} .lw-rect .rh b{font-size:10px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.03em;flex:1} .lw-rect .rh span{font-size:10px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+  .lw-rr{display:flex;align-items:center;gap:6px;padding:2px 0;cursor:pointer} .lw-rr .k{flex:none;width:13px;height:13px;border-radius:50%;border:1.4px solid rgba(255,255,255,.6);display:grid;place-items:center} .lw-rr.done .k{background:#fff;border-color:#fff} .lw-rr .k svg{width:9px;height:9px;color:#0a1730;opacity:0} .lw-rr.done .k svg{opacity:1}
+  .lw-rr .l{font-size:11.5px;color:#fff;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .lw-rr.done .l{opacity:.5;text-decoration:line-through}
+  .lw-hint{text-align:center;font-size:11px;color:rgba(255,255,255,.5);margin-top:12px}
 
   /* APP shared */
   .app-scope{background:var(--bg);color:var(--fg);display:flex;flex-direction:column}
@@ -288,13 +297,27 @@ function go(tab){TAB=tab;if(VIEW!=="app")showApp();else render();}
 function render(){if(VIEW==="lock")renderLock();else renderApp();}
 
 /* ---------- LOCK ---------- */
-function renderLock(){var c=counts("today");
-  var items=tasksIn("today").slice(0,4).map(function(t){return '<div class="la-i'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="ck">'+CHKW+'</span><span class="lbl">'+esc(t.title)+'</span></div>';}).join('');
+function renderLock(){var c=counts("today");var all=tasksIn("today");
+  // Live Activity items
+  var items=all.slice(0,4).map(function(t){return '<div class="la-i'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="ck">'+CHKW+'</span><span class="lbl">'+esc(t.title)+'</span></div>';}).join('');
   if(!items)items='<div class="la-i" style="grid-column:span 2;cursor:default"><span class="lbl" style="color:rgba(255,255,255,.6)">오늘 할 일이 없어요</span></div>';
-  document.getElementById("lock").innerHTML='<div class="cw"><div class="date">'+fmtDateShort()+'</div><div class="clock" id="lockclock">'+fmtClock()+'</div></div><div class="sp"></div>'+
-    '<div class="la"><div class="la-h"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h3M5 12h3M5 18h3" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M11 6h8M11 12h8M11 18h5" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/></svg></span><span class="t"><b>오늘 체크리스트</b><span>'+(c.remaining===0?"모두 완료":c.remaining+"개 남음")+'</span></span><span class="pct">'+c.pct+'%</span></div>'+
+  // Circular accessory widget (progress ring)
+  var R=32,C=2*Math.PI*R,off=C*(1-c.pct/100);
+  var circ='<div class="lw-circ" data-act="openapp" title="LockTodo 위젯"><svg viewBox="0 0 76 76"><circle cx="38" cy="38" r="'+R+'" stroke="rgba(255,255,255,.22)" stroke-width="7" fill="none"/><circle cx="38" cy="38" r="'+R+'" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+off+'"/></svg><div class="cc"><b>'+c.pct+'%</b><span>완료</span></div></div>';
+  // Rectangular accessory widget (task list)
+  var rrows=all.slice(0,3).map(function(t){return '<div class="lw-rr'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="k">'+CHKW.replace(/#fff/g,'currentColor')+'</span><span class="l">'+esc(t.title)+'</span></div>';}).join('');
+  if(!rrows)rrows='<div class="lw-rr"><span class="l" style="opacity:.6">할 일 없음</span></div>';
+  var rect='<div class="lw-rect"><div class="rh"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h3M5 12h3M5 18h3M11 6h8M11 12h8M11 18h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><b>오늘 체크리스트</b><span>'+c.done+'/'+c.total+'</span></div>'+rrows+'</div>';
+  var inline='<div class="lw-inline"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'+(c.remaining===0?'오늘 모두 완료':c.remaining+'개 남음')+' · '+c.pct+'%</div>';
+
+  document.getElementById("lock").innerHTML=
+    '<div class="cw">'+inline+'<div class="date">'+fmtDateShort()+'</div><div class="clock" id="lockclock">'+fmtClock()+'</div>'+
+      '<div class="lw-row">'+circ+rect+'</div>'+
+      '<div class="lw-hint">↑ LockTodo 잠금화면 위젯 · 위젯을 누르면 앱이 열려요</div>'+
+    '</div><div class="sp"></div>'+
+    '<div class="la"><div class="la-h"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h3M5 12h3M5 18h3" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M11 6h8M11 12h8M11 18h5" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/></svg></span><span class="t"><b>Live Activity · 실시간</b><span>'+(c.remaining===0?"모두 완료":c.remaining+"개 남음")+'</span></span><span class="pct">'+c.pct+'%</span></div>'+
     '<div class="la-bar"><i style="width:'+c.pct+'%"></i></div><div class="la-g">'+items+'</div></div>'+
-    '<div class="swipe">탭하여 완료 · 아래 <b style="all:unset;font-weight:600">앱 열기</b>로 전체 보기</div><div class="grip"></div>';
+    '<div class="swipe">위젯·Live Activity를 탭해 완료 · 아래 <b style="all:unset;font-weight:600">앱 열기</b>로 전체 보기</div><div class="grip"></div>';
 }
 
 /* ---------- APP shell ---------- */
@@ -482,6 +505,7 @@ document.addEventListener("click",function(e){
     else if(k==="theme")setTheme(S.theme==="dark"?"light":"dark");
     else if(k==="focus")openFocus();else if(k==="insights")openInsights();else if(k==="diary")openDiary();else if(k==="pro")openPro();
     else if(k==="addloc")toast("데모에서는 지도의 파란 원(강남역 반경)에 예시 할 일이 표시됩니다");
+    else if(k==="openapp"){TAB="today";showApp();toast("위젯에서 앱을 열었어요");}
     return;}
 });
 document.getElementById("btn-lock").addEventListener("click",showLock);
