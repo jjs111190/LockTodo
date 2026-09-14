@@ -3,6 +3,10 @@
 > 앱을 열지 않고 **잠금화면에서 바로** 오늘 할 일을 확인하고 체크하는 iOS 생산성 앱.
 > 100% 오프라인(서버·계정·네트워킹 없음), SwiftUI + SwiftData 기반.
 
+### ▶︎ 웹에서 바로 체험: **https://jjs111190.github.io/LockTodo/**
+
+브라우저에서 핵심 기능(할 일 추가·완료, 잠금화면 Live Activity 동기화)을 아이폰 시뮬레이터로 체험할 수 있습니다. 설치 불필요.
+
 <p align="center">
   <img src="docs/screenshot-lockscreen.png" width="24%" alt="잠금화면 Live Activity"/>
   <img src="docs/screenshot-today.png" width="24%" alt="오늘 화면"/>
