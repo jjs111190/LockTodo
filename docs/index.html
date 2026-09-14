@@ -277,7 +277,7 @@ function addTask(title,cat){title=(title||"").trim();if(!title)return;S.tasks.un
 function del(id){S.tasks=S.tasks.filter(function(t){return t.id!==id;});save();render();}
 function toggleHabit(id){var h=S.habits.filter(function(x){return x.id===id;})[0];if(!h)return;h.done=!h.done;h.streak+=h.done?1:-1;if(h.streak<0)h.streak=0;save();render();if(h.done)toast("‘"+h.title+"’ 완료 · "+h.streak+"일 연속");}
 function reset(){if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}S=seed();save();render();toast("데모를 초기화했어요");}
-function setTheme(t){S.theme=t;save();applyTheme();}
+function setTheme(t){S.theme=t;save();applyTheme();if(VIEW==="app")render();}
 function applyTheme(){var app=document.getElementById("app");app.classList.toggle("dark",S.theme==="dark");document.getElementById("sbar").classList.toggle("dark",VIEW==="app");}
 
 /* ---------- view switching ---------- */
