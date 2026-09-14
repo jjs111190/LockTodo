@@ -358,9 +358,9 @@ function renderMap(){return '<div class="map-wrap"><div id="mapEl"></div></div><
 function initMap(){
   var el=document.getElementById("mapEl");if(!el||typeof L==="undefined")return;
   if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}
-  mapObj=L.map(el,{zoomControl:false,attributionControl:false}).setView([37.5013,127.0396],13);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(mapObj);
-  L.control.attribution({prefix:false,position:"bottomright"}).addAttribution('© OSM · CARTO').addTo(mapObj);
+  mapObj=L.map(el,{zoomControl:false,attributionControl:false}).setView([37.5013,127.0396],14);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,crossOrigin:true}).addTo(mapObj);
+  L.control.attribution({prefix:false,position:"bottomright"}).addAttribution('© OpenStreetMap').addTo(mapObj);
   var locTasks=S.tasks.filter(function(t){return t.loc;});
   if(!locTasks.length){locTasks=[{title:"장보기",loc:[37.4979,127.0276,"강남역"]}];}
   var b=[];
