@@ -7,19 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EDA7FB2B0E1FCC84F6EEB1AD /* FocusSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E440085FB629EAC3A6A4431 /* FocusSession.swift */; };
-		3905381DAD6EF7818F4713E9 /* FocusSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E440085FB629EAC3A6A4431 /* FocusSession.swift */; };
-		AE3FADEF35EDD49FE7204767 /* TaskFocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E52A79783FDA303BC8ACF /* TaskFocusTimerView.swift */; };
-		PRIVACY00000000000000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIVACY00000000000000002 /* PrivacyInfo.xcprivacy */; };
-		PROACCESS0000000000000001 /* ProAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROACCESS0000000000000002 /* ProAccessService.swift */; };
-		PROUPGRADE000000000000001 /* ProUpgradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROUPGRADE000000000000002 /* ProUpgradeView.swift */; };
-		CDC34656497AC159398A0A37 /* SwipeActionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A25BA04F03F4C452059BF2 /* SwipeActionsRow.swift */; };
-		E73B2E3AD627F36DAF54D51B /* LockTodoToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DE5B0CE0F07C3764A7B504 /* LockTodoToast.swift */; };
-		0E6E2F61A662E7019634FA28 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB1EDB54BDC3B7F9DB827B /* InsightsView.swift */; };
-		A10000000000000000000005 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000021 /* RiveRuntime */; };
 		0B9BC97B170726FEA2B8253B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67CC7AD1B175E858E32AD2 /* NotificationService.swift */; };
 		0C945EB6DF127969E92F86B2 /* HabitRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6647048329BCA10AF6A8D1 /* HabitRecord.swift */; };
 		0DDBFDD8ED3F6182292AD6ED /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBC309B3D8FE0CB91C51E4F /* TaskViewModel.swift */; };
+		0E6E2F61A662E7019634FA28 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB1EDB54BDC3B7F9DB827B /* InsightsView.swift */; };
 		0EEC167DAA297F3B4AE264D7 /* LockTodoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749AAD5DC937C890A12019AB /* LockTodoApp.swift */; };
 		170FFB0AF81F4C0262B6F206 /* WidgetDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB593BB4D202201654CA2E0 /* WidgetDataStore.swift */; };
 		18FACCFCA66B6B186D8C4A77 /* ShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA3D2E9A5F99598F950FDF /* ShortcutService.swift */; };
@@ -32,6 +23,7 @@
 		31390AFE503061175FAED7D4 /* QuickAddBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDAB272C6766D94D257547 /* QuickAddBar.swift */; };
 		324B26056A6F4D63CF3E25D0 /* LockTodoActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD2DAF198DB0CAF903667B0 /* LockTodoActivityAttributes.swift */; };
 		36F2604D362875702F8CC311 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7154AB50D88153A18ABEC115 /* Habit.swift */; };
+		3905381DAD6EF7818F4713E9 /* FocusSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E440085FB629EAC3A6A4431 /* FocusSession.swift */; };
 		3B46D6BA2B320E3AF6096BBE /* ShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA3D2E9A5F99598F950FDF /* ShortcutService.swift */; };
 		3CB7F40A0871F3C78C4D9719 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157C8BA761E4BDB3DB08271 /* TaskItem.swift */; };
 		3D07F9420B0E17FD891FC31E /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F151216282666DAA975B67 /* CalendarViewModel.swift */; };
@@ -41,8 +33,6 @@
 		5582726B1486C1D4044078C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C86BBA221AE1F3D210540E2 /* Foundation.framework */; };
 		5C6B1F7B3CCEE9028F3DD8C9 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2DE861714D51652405CECD /* DiaryEntry.swift */; };
 		600B0A13C22F507CF0C68848 /* WidgetPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85841DFDC9967788D6BB68 /* WidgetPreviewView.swift */; };
-		E800A001C22F507CF0C68848 /* HabitManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B001FDC9967788D6BB68 /* HabitManagementView.swift */; };
-		E800A002C22F507CF0C68848 /* HabitEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B002FDC9967788D6BB68 /* HabitEditView.swift */; };
 		63533C95DF386800F5C35F16 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F2EF863FA035E9254F9EBE /* TaskCategory.swift */; };
 		64A89B23762E901E0AC83A20 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D14B944B75D6D1424DA5214 /* AddTaskView.swift */; };
 		6585229AA4319143E8AC206B /* LiveActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B6E8C411012693E5F60D26 /* LiveActivityService.swift */; };
@@ -60,12 +50,14 @@
 		9A7D4387BB33DD45D42E7557 /* TaskBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A640FDF388C495DD96D310 /* TaskBoard.swift */; };
 		9D14C800D67537AE4F5CFAB7 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D84E5D8A1DBEC7DDB7F05 /* CalendarView.swift */; };
 		9D6AAF08F6FFC8DFFFD26EE3 /* AddTaskIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3B936093AC851F5691D95 /* AddTaskIntent.swift */; };
+		A10000000000000000000005 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000021 /* RiveRuntime */; };
 		A49A38F78C8AB2A3689BF960 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB2F771212F13AD81B0B46 /* BoardListView.swift */; };
 		A9E48962817A98CD7C8AB5A5 /* HabitFocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A6CC60DD18B82BBD81226 /* HabitFocusTimerView.swift */; };
 		AC60B2CA8741BFC5C05CE174 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A8EE0C8C08BDA62345559 /* ProgressRing.swift */; };
 		ACE9AAD224E16D4E1F2EE02F /* HabitRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6647048329BCA10AF6A8D1 /* HabitRecord.swift */; };
 		ADA9296BBB073308AAD30CA8 /* LockTodoLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B707298E482A4C4D78FBE /* LockTodoLiveActivityView.swift */; };
 		ADE8A3A2CDCCE5FE46B1EEC2 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C001F100B51EBD0969C8631 /* AppRouter.swift */; };
+		AE3FADEF35EDD49FE7204767 /* TaskFocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E52A79783FDA303BC8ACF /* TaskFocusTimerView.swift */; };
 		AEB57F97E6226A5B850FA7A3 /* LockTodoLockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E867E3A8DD3CE331C5D4FED /* LockTodoLockScreenWidget.swift */; };
 		AF1534DB97F602CCD166AA52 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29541646C3B1D79DEFB675 /* TaskRow.swift */; };
 		ANDREXP0000000000000001 /* LockTodoAndroidExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ANDREXP0000000000000002 /* LockTodoAndroidExportService.swift */; };
@@ -77,11 +69,16 @@
 		B8BE7AA3FBF9647D71E14701 /* LiveActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B6E8C411012693E5F60D26 /* LiveActivityService.swift */; };
 		C1D2E3F40516273849A5B6C7 /* ToggleTaskCompletionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5C /* ToggleTaskCompletionIntent.swift */; };
 		CC3D77E38A3F1B46DB285302 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67CC7AD1B175E858E32AD2 /* NotificationService.swift */; };
+		CDC34656497AC159398A0A37 /* SwipeActionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A25BA04F03F4C452059BF2 /* SwipeActionsRow.swift */; };
 		D1CC2A486273E8455ACB94E4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CAFA0CA966A5C9270AF809 /* SettingsView.swift */; };
 		DBC78446EDDE0AE731147C67 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F2EF863FA035E9254F9EBE /* TaskCategory.swift */; };
 		DEBE12E41D9FE85506673797 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157C8BA761E4BDB3DB08271 /* TaskItem.swift */; };
+		E73B2E3AD627F36DAF54D51B /* LockTodoToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DE5B0CE0F07C3764A7B504 /* LockTodoToast.swift */; };
+		E800A001C22F507CF0C68848 /* HabitManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B001FDC9967788D6BB68 /* HabitManagementView.swift */; };
+		E800A002C22F507CF0C68848 /* HabitEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800B002FDC9967788D6BB68 /* HabitEditView.swift */; };
 		E8AEE4CDCE83D212BF31FEDF /* ShortcutGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EB2DB705284DE2112017A4 /* ShortcutGuideView.swift */; };
 		ECF39F5A1E5029CCCF46FC21 /* CaptureCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2F17358B9AF561B1F56669 /* CaptureCompleteView.swift */; };
+		EDA7FB2B0E1FCC84F6EEB1AD /* FocusSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E440085FB629EAC3A6A4431 /* FocusSession.swift */; };
 		F1535E8CE5C6870F7CE80801 /* StartFocusTaskIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F745C6FC001A3DBCC32AA1F1 /* StartFocusTaskIntent.swift */; };
 		F4127FEA23592F38E30A3707 /* LockTodoWidgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3E52F82913A0CFEA5F3A33BA /* LockTodoWidgets.appex */; };
 		F6FA094B4E44FC1AF7911F99 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF811173D022364ABF436503 /* TutorialView.swift */; };
@@ -90,6 +87,9 @@
 		FDC6CDF64CD8E8592CEC3BC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0961A7CBFDCA48739A361E68 /* Assets.xcassets */; };
 		LOCREM000000000000000001 /* LocationReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LOCREM000000000000000002 /* LocationReminderService.swift */; };
 		MAPTOD000000000000000001 /* MapTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = MAPTOD000000000000000002 /* MapTodoView.swift */; };
+		PRIVACY00000000000000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = PRIVACY00000000000000002 /* PrivacyInfo.xcprivacy */; };
+		PROACCESS0000000000000001 /* ProAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROACCESS0000000000000002 /* ProAccessService.swift */; };
+		PROUPGRADE000000000000001 /* ProUpgradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROUPGRADE000000000000002 /* ProUpgradeView.swift */; };
 		SHOWTODAY000000000000002 /* ShowTodayTasksIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHOWTODAY000000000000001 /* ShowTodayTasksIntent.swift */; };
 		SHOWTODAY000000000000003 /* ShowTodayTasksIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = SHOWTODAY000000000000001 /* ShowTodayTasksIntent.swift */; };
 		TACTILE00000000000000002 /* TactileButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = TACTILE00000000000000001 /* TactileButtonStyle.swift */; };
@@ -142,15 +142,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1E440085FB629EAC3A6A4431 /* FocusSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FocusSession.swift; path = Models/FocusSession.swift; sourceTree = "<group>"; };
-		B70E52A79783FDA303BC8ACF /* TaskFocusTimerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskFocusTimerView.swift; path = Views/TaskFocusTimerView.swift; sourceTree = "<group>"; };
-		PRIVACY00000000000000002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Resources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		PROACCESS0000000000000002 /* ProAccessService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProAccessService.swift; path = Services/ProAccessService.swift; sourceTree = "<group>"; };
-		PROUPGRADE000000000000002 /* ProUpgradeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProUpgradeView.swift; path = Views/ProUpgradeView.swift; sourceTree = "<group>"; };
-		STOREKIT00000000000000001 /* LockTodo.storekit */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LockTodo.storekit; path = Resources/LockTodo.storekit; sourceTree = "<group>"; };
-		61A25BA04F03F4C452059BF2 /* SwipeActionsRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeActionsRow.swift; path = Components/SwipeActionsRow.swift; sourceTree = "<group>"; };
-		19DE5B0CE0F07C3764A7B504 /* LockTodoToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoToast.swift; path = Components/LockTodoToast.swift; sourceTree = "<group>"; };
-		D1DB1EDB54BDC3B7F9DB827B /* InsightsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InsightsView.swift; path = Views/InsightsView.swift; sourceTree = "<group>"; };
 		041A24AAFAEFCAB0563F6DFB /* BoardDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoardDetailView.swift; path = LockTodo/Views/BoardDetailView.swift; sourceTree = "<group>"; };
 		08F2EF863FA035E9254F9EBE /* TaskCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskCategory.swift; path = Models/TaskCategory.swift; sourceTree = "<group>"; };
 		0961A7CBFDCA48739A361E68 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
@@ -158,7 +149,9 @@
 		0D14B944B75D6D1424DA5214 /* AddTaskView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AddTaskView.swift; path = Views/AddTaskView.swift; sourceTree = "<group>"; };
 		0F6647048329BCA10AF6A8D1 /* HabitRecord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitRecord.swift; path = LockTodo/Models/HabitRecord.swift; sourceTree = "<group>"; };
 		16B6E8C411012693E5F60D26 /* LiveActivityService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LiveActivityService.swift; path = Services/LiveActivityService.swift; sourceTree = "<group>"; };
+		19DE5B0CE0F07C3764A7B504 /* LockTodoToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoToast.swift; path = Components/LockTodoToast.swift; sourceTree = "<group>"; };
 		1C001F100B51EBD0969C8631 /* AppRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppRouter.swift; path = App/AppRouter.swift; sourceTree = "<group>"; };
+		1E440085FB629EAC3A6A4431 /* FocusSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FocusSession.swift; path = Models/FocusSession.swift; sourceTree = "<group>"; };
 		1E867E3A8DD3CE331C5D4FED /* LockTodoLockScreenWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoLockScreenWidget.swift; path = Widgets/LockTodoLockScreenWidget.swift; sourceTree = "<group>"; };
 		1EF159162C8F3ABD37E7E43C /* LockTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2787BCBAFB8C6BD90D08CCC7 /* TodayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TodayView.swift; path = Views/TodayView.swift; sourceTree = "<group>"; };
@@ -169,9 +162,8 @@
 		55F151216282666DAA975B67 /* CalendarViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarViewModel.swift; path = ViewModels/CalendarViewModel.swift; sourceTree = "<group>"; };
 		56A640FDF388C495DD96D310 /* TaskBoard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskBoard.swift; path = LockTodo/Models/TaskBoard.swift; sourceTree = "<group>"; };
 		5B85841DFDC9967788D6BB68 /* WidgetPreviewView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetPreviewView.swift; path = Views/WidgetPreviewView.swift; sourceTree = "<group>"; };
-		E800B001FDC9967788D6BB68 /* HabitManagementView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitManagementView.swift; path = Views/HabitManagementView.swift; sourceTree = "<group>"; };
-		E800B002FDC9967788D6BB68 /* HabitEditView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitEditView.swift; path = Views/HabitEditView.swift; sourceTree = "<group>"; };
 		5C9060DC7B79BA83588C3B2E /* CalendarDayCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarDayCell.swift; path = Components/CalendarDayCell.swift; sourceTree = "<group>"; };
+		61A25BA04F03F4C452059BF2 /* SwipeActionsRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeActionsRow.swift; path = Components/SwipeActionsRow.swift; sourceTree = "<group>"; };
 		6A8E2C4D9B7F135024681ACE /* LockTodoQuickAddControlWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoQuickAddControlWidget.swift; path = Widgets/LockTodoQuickAddControlWidget.swift; sourceTree = "<group>"; };
 		7154AB50D88153A18ABEC115 /* Habit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Habit.swift; path = LockTodo/Models/Habit.swift; sourceTree = "<group>"; };
 		749AAD5DC937C890A12019AB /* LockTodoApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoApp.swift; path = App/LockTodoApp.swift; sourceTree = "<group>"; };
@@ -186,6 +178,7 @@
 		B157C8BA761E4BDB3DB08271 /* TaskItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskItem.swift; path = Models/TaskItem.swift; sourceTree = "<group>"; };
 		B4EE29C3408B2EEBEDDCBA09 /* TaskDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDetailView.swift; path = Views/TaskDetailView.swift; sourceTree = "<group>"; };
 		B6A8D2E4F9C1012345678902 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B70E52A79783FDA303BC8ACF /* TaskFocusTimerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskFocusTimerView.swift; path = Views/TaskFocusTimerView.swift; sourceTree = "<group>"; };
 		BFB593BB4D202201654CA2E0 /* WidgetDataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WidgetDataStore.swift; path = Services/WidgetDataStore.swift; sourceTree = "<group>"; };
 		C05A6CC60DD18B82BBD81226 /* HabitFocusTimerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitFocusTimerView.swift; path = LockTodo/Views/HabitFocusTimerView.swift; sourceTree = "<group>"; };
 		C1F4AC1847E4FF1AF82A6140 /* DiaryWriteView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiaryWriteView.swift; path = LockTodo/Views/DiaryWriteView.swift; sourceTree = "<group>"; };
@@ -193,12 +186,15 @@
 		C81F3349645669B659D91E6F /* Contents.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = Contents.json; path = Resources/Assets.xcassets/Contents.json; sourceTree = "<group>"; };
 		CFA56D25B04A9A332E3E93A1 /* MemoryCapsuleCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MemoryCapsuleCard.swift; path = LockTodo/Components/MemoryCapsuleCard.swift; sourceTree = "<group>"; };
 		D070F9A9E0A91E8D2C22D5F9 /* LockTodoWidgetBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoWidgetBundle.swift; path = Widgets/LockTodoWidgetBundle.swift; sourceTree = "<group>"; };
+		D1DB1EDB54BDC3B7F9DB827B /* InsightsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InsightsView.swift; path = Views/InsightsView.swift; sourceTree = "<group>"; };
 		D2F1173F368F98D7E4680393 /* BoardEditView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoardEditView.swift; path = LockTodo/Views/BoardEditView.swift; sourceTree = "<group>"; };
 		D42A8EE0C8C08BDA62345559 /* ProgressRing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProgressRing.swift; path = Components/ProgressRing.swift; sourceTree = "<group>"; };
 		D5B9BC42BD526B2B48A96A72 /* Contents.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = Contents.json; path = Resources/Assets.xcassets/AccentColor.colorset/Contents.json; sourceTree = "<group>"; };
 		DDD2DAF198DB0CAF903667B0 /* LockTodoActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoActivityAttributes.swift; path = LiveActivity/LockTodoActivityAttributes.swift; sourceTree = "<group>"; };
 		E0EB2DB705284DE2112017A4 /* ShortcutGuideView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShortcutGuideView.swift; path = Views/ShortcutGuideView.swift; sourceTree = "<group>"; };
 		E5F3B936093AC851F5691D95 /* AddTaskIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AddTaskIntent.swift; path = Intents/AddTaskIntent.swift; sourceTree = "<group>"; };
+		E800B001FDC9967788D6BB68 /* HabitManagementView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitManagementView.swift; path = Views/HabitManagementView.swift; sourceTree = "<group>"; };
+		E800B002FDC9967788D6BB68 /* HabitEditView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HabitEditView.swift; path = Views/HabitEditView.swift; sourceTree = "<group>"; };
 		F1CAFA0CA966A5C9270AF809 /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Views/SettingsView.swift; sourceTree = "<group>"; };
 		F489CB4DC3419240C1100C66 /* LockTodoWidgetProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockTodoWidgetProvider.swift; path = Widgets/LockTodoWidgetProvider.swift; sourceTree = "<group>"; };
 		F48D84E5D8A1DBEC7DDB7F05 /* CalendarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarView.swift; path = Views/CalendarView.swift; sourceTree = "<group>"; };
@@ -209,7 +205,11 @@
 		FF811173D022364ABF436503 /* TutorialView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = Views/TutorialView.swift; sourceTree = "<group>"; };
 		LOCREM000000000000000002 /* LocationReminderService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocationReminderService.swift; path = LockTodo/Services/LocationReminderService.swift; sourceTree = "<group>"; };
 		MAPTOD000000000000000002 /* MapTodoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapTodoView.swift; path = Views/MapTodoView.swift; sourceTree = "<group>"; };
+		PRIVACY00000000000000002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Resources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		PROACCESS0000000000000002 /* ProAccessService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProAccessService.swift; path = Services/ProAccessService.swift; sourceTree = "<group>"; };
+		PROUPGRADE000000000000002 /* ProUpgradeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProUpgradeView.swift; path = Views/ProUpgradeView.swift; sourceTree = "<group>"; };
 		SHOWTODAY000000000000001 /* ShowTodayTasksIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShowTodayTasksIntent.swift; path = Intents/ShowTodayTasksIntent.swift; sourceTree = "<group>"; };
+		STOREKIT00000000000000001 /* LockTodo.storekit */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LockTodo.storekit; path = Resources/LockTodo.storekit; sourceTree = "<group>"; };
 		TACTILE00000000000000001 /* TactileButtonStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TactileButtonStyle.swift; path = LockTodo/Components/TactileButtonStyle.swift; sourceTree = "<group>"; };
 		WATCH00000000000000000002 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchConnectivityService.swift; path = LockTodo/Services/WatchConnectivityService.swift; sourceTree = "<group>"; };
 		WATCH00000000000000000004 /* LockTodoWatchApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockTodoWatchApp.swift; sourceTree = "<group>"; };

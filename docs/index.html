@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LockTodo — 웹 데모</title>
+<meta name="description" content="LockTodo 핵심 기능 웹 체험판 — 잠금화면에서 오늘 할 일을 확인하고 바로 완료해 보세요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --page:#0b0f17; --page-2:#121a28;
+    --accent:#0A84FF; --accent-soft:#3E9BFF; --teal:#12B0A0;
+    --ink:#EAF1FB; --muted:#9AA7BC; --faint:#6B7789; --line:rgba(150,180,225,.14);
+    /* app (light) surfaces */
+    --app-bg:#EFF2F7; --app-card:#FFFFFF; --app-tile:#F1F4F9; --app-ink:#14171E;
+    --app-muted:#5C6675; --app-faint:#98A1B0; --app-line:rgba(18,28,48,.10);
+    --orange:#FF9F0A; --red:#FF3B30; --green:#34C759; --gold:#FFB800;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 50% -10%, #16233b 0%, transparent 55%),
+      radial-gradient(90% 60% at 85% 110%, #0f2033 0%, transparent 50%),
+      var(--page);
+    font-family:'IBM Plex Sans KR',-apple-system,'Apple SD Gothic Neo',system-ui,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    display:flex; flex-direction:column; align-items:center;
+    padding:26px 16px 48px;
+  }
+  a{color:inherit}
+  .mono{font-family:'IBM Plex Mono',monospace}
+
+  /* ---------- page header ---------- */
+  .head{width:100%; max-width:960px; display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px}
+  .brand{display:flex; align-items:center; gap:11px; font-weight:600; font-size:17px; letter-spacing:-.01em}
+  .brand .g{width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,var(--accent),#0466cc);
+    display:grid;place-items:center;box-shadow:0 6px 16px -6px rgba(10,132,255,.7)}
+  .brand .g svg{width:17px;height:17px}
+  .brand small{display:block;font-weight:400;font-size:12px;color:var(--muted);letter-spacing:0}
+  .ghlink{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:11px;
+    background:rgba(150,180,225,.08);border:1px solid var(--line);font-size:13.5px;font-weight:500;text-decoration:none;color:var(--ink)}
+  .ghlink:hover{border-color:var(--accent-soft)}
+
+  .layout{width:100%;max-width:960px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  @media (max-width:840px){.layout{grid-template-columns:1fr;justify-items:center;gap:26px}}
+
+  /* ---------- guide panel ---------- */
+  .guide{max-width:360px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-soft)}
+  .guide h1{font-size:30px;line-height:1.15;letter-spacing:-.03em;font-weight:700;margin:12px 0 0;text-wrap:balance}
+  .guide p{color:var(--muted);font-size:14.5px;margin:14px 0 0}
+  .steps{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+  .steps li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--ink)}
+  .steps b{flex:none;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;background:rgba(10,132,255,.16);color:var(--accent-soft);font-weight:600}
+  .steps span{color:var(--muted)}
+  .steps b.t{background:rgba(18,176,160,.18);color:#4fd8c6}
+  .disclaimer{margin-top:22px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px}
+
+  /* ---------- phone ---------- */
+  .phone-col{display:flex;flex-direction:column;align-items:center;gap:16px}
+  .phone{
+    position:relative; width:min(384px,90vw); aspect-ratio:384/812; border-radius:52px;
+    background:#000; padding:12px;
+    box-shadow:0 0 0 2px #1c222c, 0 2px 6px rgba(0,0,0,.5), 0 46px 90px -34px rgba(0,0,0,.85);
+  }
+  .screen{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#000}
+  .island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;background:#000;border-radius:20px;z-index:40;pointer-events:none;
+    transition:width .35s cubic-bezier(.3,.9,.3,1.2), height .35s cubic-bezier(.3,.9,.3,1.2)}
+  .island.live{width:224px}
+  .statusbar{position:absolute;top:0;left:0;right:0;height:52px;z-index:30;display:flex;align-items:center;justify-content:space-between;
+    padding:16px 26px 0;font-size:15px;font-weight:600;pointer-events:none}
+  .statusbar .r{display:flex;align-items:center;gap:6px}
+  .statusbar svg{display:block}
+
+  .view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+  .view::-webkit-scrollbar{display:none}
+  .view{scrollbar-width:none}
+
+  /* ===== LOCK SCREEN ===== */
+  #lock{background:
+      radial-gradient(120% 70% at 62% 20%, #2b4a8f 0%, #14294e 45%, #0a1730 78%),
+      radial-gradient(90% 60% at 30% 92%, #12574f 0%, transparent 55%), #0a1428;
+    color:#fff; display:flex; flex-direction:column; padding:0 16px 20px}
+  #lock .clockwrap{text-align:center;margin-top:76px;filter:drop-shadow(0 2px 20px rgba(0,0,0,.3))}
+  #lock .date{font-size:16px;font-weight:600;opacity:.92;letter-spacing:.01em}
+  #lock .clock{font-size:80px;font-weight:600;line-height:1;letter-spacing:-.02em;margin-top:2px;font-feature-settings:"tnum"}
+  #lock .spacer{flex:1;min-height:20px}
+  .la{background:rgba(22,30,46,.62);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:14px 15px;box-shadow:0 20px 50px -24px rgba(0,0,0,.7)}
+  .la-head{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+  .la-head .ic{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.10);display:grid;place-items:center}
+  .la-head .ic svg{width:15px;height:15px}
+  .la-head .t{flex:1;min-width:0}
+  .la-head .t b{display:block;font-size:9.5px;letter-spacing:.02em;color:rgba(255,255,255,.6);font-weight:600;text-transform:uppercase}
+  .la-head .t span{display:block;font-size:14px;font-weight:700;letter-spacing:-.01em}
+  .la-head .pct{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+  .la-bar{height:4px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-bottom:12px}
+  .la-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#5aa9ff,#3e9bff);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .la-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .la-item{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+    border-radius:11px;padding:9px 10px;cursor:pointer;transition:background .15s}
+  .la-item:hover{background:rgba(255,255,255,.11)}
+  .la-item .ck{flex:none;width:17px;height:17px;border-radius:50%;border:1.6px solid rgba(255,255,255,.55);display:grid;place-items:center;transition:.15s}
+  .la-item.done .ck{background:#3e9bff;border-color:#3e9bff}
+  .la-item .ck svg{width:11px;height:11px;opacity:0;transition:.15s}
+  .la-item.done .ck svg{opacity:1}
+  .la-item .lbl{font-size:12.5px;font-weight:500;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .la-item.done .lbl{color:rgba(255,255,255,.5);text-decoration:line-through}
+  #lock .swipe{text-align:center;margin-top:14px;font-size:12.5px;color:rgba(255,255,255,.62)}
+  #lock .grip{width:130px;height:5px;border-radius:99px;background:rgba(255,255,255,.5);margin:16px auto 4px}
+
+  /* ===== APP (오늘) ===== */
+  #app{background:var(--app-bg);color:var(--app-ink);display:flex;flex-direction:column}
+  #app .top{padding:60px 18px 0}
+  #app .toolbar{display:flex;justify-content:flex-end;gap:8px;margin-bottom:6px}
+  #app .tbtn{width:38px;height:38px;border-radius:50%;background:var(--app-card);border:1px solid var(--app-line);display:grid;place-items:center;cursor:pointer;
+    box-shadow:0 2px 6px rgba(16,26,48,.06)}
+  #app .tbtn svg{width:19px;height:19px;color:var(--accent)}
+  #app .tbtn.solid{background:var(--accent);border-color:var(--accent)} #app .tbtn.solid svg{color:#fff}
+  #app h2.title{font-size:32px;font-weight:700;letter-spacing:-.03em;margin:2px 0 14px}
+
+  .hero{background:var(--app-card);border:1px solid var(--app-line);border-radius:22px;padding:16px 16px 14px;box-shadow:0 1px 2px rgba(16,26,48,.05),0 16px 34px -24px rgba(16,26,48,.4)}
+  .hero-top{display:flex;align-items:center;justify-content:space-between}
+  .hero-date{font-size:13px;font-weight:600;color:var(--app-muted)}
+  .streak{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:#F08300;background:rgba(255,159,10,.13);padding:3px 9px;border-radius:99px}
+  .streak svg{width:12px;height:12px}
+  .hero-title{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:9px 0 2px}
+  .hero-sub{font-size:13px;color:var(--app-muted)}
+  .bar{height:8px;border-radius:99px;background:rgba(18,28,48,.08);overflow:hidden;margin:13px 0 7px}
+  .bar i{display:block;height:100%;border-radius:99px;background:var(--accent);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .pctline{font-size:12.5px;color:var(--app-muted);font-weight:600}
+  .pctline b{color:var(--app-ink)}
+  .tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:13px}
+  .tile{background:var(--app-tile);border-radius:13px;padding:11px 12px}
+  .tile .k{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--app-muted);font-weight:600}
+  .tile .k svg{width:13px;height:13px}
+  .tile .v{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+
+  .listwrap{padding:16px 18px 8px;flex:1}
+  .listhead{display:flex;align-items:baseline;justify-content:space-between;padding:0 2px 8px;color:var(--app-muted);font-size:12.5px;font-weight:600}
+  .card-list{background:var(--app-card);border:1px solid var(--app-line);border-radius:20px;overflow:hidden;box-shadow:0 1px 2px rgba(16,26,48,.05)}
+  .row{display:flex;align-items:center;gap:12px;padding:14px 15px;cursor:pointer}
+  .row + .row{border-top:1px solid var(--app-line)}
+  .row .ck{flex:none;width:23px;height:23px;border-radius:50%;border:2px solid var(--accent);display:grid;place-items:center;transition:.15s}
+  .row.done .ck{background:var(--accent);border-color:var(--accent)}
+  .row .ck svg{width:13px;height:13px;color:#fff;opacity:0;transition:.15s}
+  .row.done .ck svg{opacity:1}
+  .row .txt{flex:1;min-width:0;font-size:15.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row.done .txt{color:var(--app-faint);text-decoration:line-through}
+  .row .star{flex:none;color:var(--orange)}
+  .row .star svg{width:16px;height:16px;display:block}
+  .row .del{flex:none;color:var(--app-faint);opacity:0;transition:.15s;background:none;border:0;cursor:pointer;padding:4px}
+  .row:hover .del{opacity:1}
+  .empty{padding:34px 20px;text-align:center;color:var(--app-muted)}
+  .empty svg{width:34px;height:34px;color:var(--accent);opacity:.7}
+  .empty p{margin:10px 0 0;font-size:13.5px}
+
+  .addbar{position:sticky;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--app-bg) 26%)}
+  .addfield{display:flex;align-items:center;gap:8px;background:var(--app-card);border:1px solid var(--app-line);border-radius:15px;padding:6px 6px 6px 15px;box-shadow:0 8px 24px -14px rgba(16,26,48,.4)}
+  .addfield input{flex:1;border:0;background:none;font:inherit;font-size:15px;color:var(--app-ink);padding:8px 0;outline:none}
+  .addfield input::placeholder{color:var(--app-faint)}
+  .addfield .star-t{border:0;background:none;cursor:pointer;color:var(--app-faint);padding:6px}
+  .addfield .star-t.on{color:var(--orange)}
+  .addfield .go{flex:none;width:36px;height:36px;border-radius:11px;background:var(--accent);border:0;color:#fff;display:grid;place-items:center;cursor:pointer}
+  .addfield .go:disabled{opacity:.35}
+  .addfield .go svg{width:18px;height:18px}
+
+  .tabbar{display:flex;justify-content:space-around;padding:9px 8px calc(6px + env(safe-area-inset-bottom));background:var(--app-card);border-top:1px solid var(--app-line)}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--app-faint)}
+  .tab.on{color:var(--accent)} .tab svg{width:23px;height:23px}
+  .homebar{height:5px;width:130px;border-radius:99px;background:var(--app-ink);opacity:.25;margin:5px auto 8px}
+
+  /* toast */
+  .toast{position:absolute;left:50%;bottom:96px;transform:translateX(-50%) translateY(12px);z-index:60;
+    background:rgba(20,23,30,.92);color:#fff;font-size:13px;font-weight:500;padding:10px 16px;border-radius:13px;
+    box-shadow:0 12px 30px -10px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.28s;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast svg{width:15px;height:15px;color:#4fd8c6}
+
+  /* controls under phone */
+  .controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .ctl{display:inline-flex;align-items:center;gap:8px;padding:11px 17px;border-radius:13px;font-weight:600;font-size:14px;cursor:pointer;border:1px solid var(--line);
+    background:rgba(150,180,225,.06);color:var(--ink);transition:.15s}
+  .ctl:hover{border-color:var(--accent-soft)}
+  .ctl.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .ctl.primary:hover{background:#0a76e6}
+  .ctl svg{width:16px;height:16px}
+
+  footer{margin-top:34px;color:var(--faint);font-size:12.5px;text-align:center}
+  footer a{color:var(--muted);text-decoration:none} footer a:hover{color:var(--accent-soft)}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  :focus-visible{outline:2px solid var(--accent-soft);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="brand">
+    <span class="g"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <div>LockTodo <small>웹 체험판 · 핵심 기능 데모</small></div>
+  </div>
+  <a class="ghlink" href="https://github.com/jjs111190/LockTodo" target="_blank" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    GitHub
+  </a>
+</div>
+
+<div class="layout">
+  <div class="guide">
+    <span class="eyebrow">Interactive demo</span>
+    <h1>잠금화면에서<br>할 일을 끝내보세요.</h1>
+    <p>실제 앱의 핵심 흐름을 그대로 옮긴 체험판입니다. 잠금화면과 앱 어디서든 체크하면 서로 실시간으로 동기화됩니다.</p>
+    <ol class="steps">
+      <li><b>1</b><span>아래 <b style="all:unset;font-weight:600;color:var(--ink)">앱 열기</b>에서 할 일을 추가하고 원형 버튼으로 완료해 보세요.</span></li>
+      <li><b class="t">2</b><span><b style="all:unset;font-weight:600;color:var(--ink)">잠금화면</b>으로 전환하면 Live Activity 카드에서 <b style="all:unset;font-weight:600;color:var(--ink)">바로 체크</b>됩니다.</span></li>
+      <li><b>3</b><span>완료율·연속 기록이 양쪽에서 함께 갱신되는 걸 확인하세요.</span></li>
+    </ol>
+    <div class="disclaimer">이 웹 데모는 네이티브 iOS 앱(SwiftUI·WidgetKit·ActivityKit)의 핵심 UX를 브라우저에서 재현한 것입니다. 실제 잠금화면 위젯·Live Activity·Apple Watch 연동은 iOS 기기에서 동작합니다.</div>
+  </div>
+
+  <div class="phone-col">
+    <div class="phone">
+      <div class="screen">
+        <div class="island" id="island"></div>
+        <div class="statusbar">
+          <span id="sbclock">16:55</span>
+          <span class="r">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="4.5" width="3" height="7.5" rx="1"/><rect x="9" y="2" width="3" height="10" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1" opacity=".4"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1.5" width="19" height="9" rx="2.6" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/><rect x="2.6" y="3" width="14" height="6" rx="1.4" fill="currentColor"/><rect x="21" y="4" width="1.6" height="4" rx=".8" fill="currentColor" fill-opacity=".5"/></svg>
+          </span>
+        </div>
+        <div class="view" id="lock"></div>
+        <div class="view" id="app" hidden></div>
+        <div class="toast" id="toast"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="ctl" id="btn-lock">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.8"/></svg>
+        잠금화면
+      </button>
+      <button class="ctl primary" id="btn-app">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        앱 열기
+      </button>
+      <button class="ctl" id="btn-reset">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 108-8M4 4v4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        초기화
+      </button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 LockTodo · JS Studio · 원티드 AI Championship 2026 ·
+  <a href="https://github.com/jjs111190/LockTodo" target="_blank" rel="noopener">github.com/jjs111190/LockTodo</a>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "locktodo.demo.v1";
+  var SEED = {
+    tasks: [
+      {id:1, title:"기획안 초안 마무리", done:false, important:true},
+      {id:2, title:"운동 30분", done:false, important:false},
+      {id:3, title:"장보기", done:false, important:false},
+      {id:4, title:"팀 이메일 회신", done:true, important:false}
+    ],
+    seq: 5, streak: 3, addImportant:false
+  };
+  var S = load();
+
+  function load(){
+    try{ var r = JSON.parse(localStorage.getItem(KEY)); if(r && r.tasks) return r; }catch(e){}
+    return JSON.parse(JSON.stringify(SEED));
+  }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+  // ---- derived ----
+  function counts(){
+    var total=S.tasks.length, done=S.tasks.filter(function(t){return t.done;}).length;
+    var remaining=total-done, important=S.tasks.filter(function(t){return t.important&&!t.done;}).length;
+    var pct= total? Math.round(done/total*100) : 100;
+    return {total:total,done:done,remaining:remaining,important:important,pct:pct};
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+  // ---- svg bits ----
+  var CHK='<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var CHKW='<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var STAR='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 18.9 6.1 21l1.2-6.5L2.5 9.9l6.6-.9z"/></svg>';
+  var FLAME='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-1 4-2.5 6C8 10 7 11.5 7 14a5 5 0 0010 0c0-2-1-3.7-2.3-5.2C13.6 7.2 13 5 12 2z"/></svg>';
+
+  // ---- date/clock ----
+  function fmtDate(){
+    var d=new Date(); var days=["일","월","화","수","목","금","토"];
+    return (d.getMonth()+1)+"월 "+d.getDate()+"일 "+days[d.getDay()]+"요일";
+  }
+  function fmtDateShort(){
+    var d=new Date(); var days=["일","월","화","수","목","금","토"];
+    return (d.getMonth()+1)+"월 "+d.getDate()+"일 ("+days[d.getDay()]+")";
+  }
+  function fmtClock(){
+    var d=new Date(); function p(n){return (n<10?"0":"")+n;}
+    return p(d.getHours())+":"+p(d.getMinutes());
+  }
+  function tickClock(){
+    var c=fmtClock(); var a=document.getElementById("sbclock"); if(a)a.textContent=c;
+    var b=document.getElementById("lockclock"); if(b)b.textContent=c;
+  }
+
+  // ---- toast ----
+  var toastT;
+  function toast(msg){
+    var el=document.getElementById("toast");
+    el.innerHTML='<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'+esc(msg);
+    el.classList.add("show"); clearTimeout(toastT);
+    toastT=setTimeout(function(){el.classList.remove("show");},1500);
+  }
+
+  // ---- actions ----
+  function toggle(id, from){
+    var t=S.tasks.filter(function(x){return x.id===id;})[0]; if(!t)return;
+    t.done=!t.done;
+    if(t.done){ S.streak = S.streak || 0; if(S.streak<1) S.streak=1; }
+    save(); render();
+    if(t.done) toast("‘"+ (t.title.length>10?t.title.slice(0,10)+"…":t.title) +"’ 완료");
+    if(from) haptic(from);
+  }
+  function addTask(title){
+    title=(title||"").trim(); if(!title)return;
+    S.tasks.unshift({id:S.seq++, title:title, done:false, important:S.addImportant});
+    S.addImportant=false; save(); render(); toast("할 일을 추가했어요");
+  }
+  function del(id){ S.tasks=S.tasks.filter(function(t){return t.id!==id;}); save(); render(); }
+  function reset(){ S=JSON.parse(JSON.stringify(SEED)); save(); render(); toast("데모를 초기화했어요"); }
+  function haptic(el){ if(!el||!el.animate)return; try{ el.animate([{transform:"scale(1)"},{transform:"scale(.9)"},{transform:"scale(1)"}],{duration:180,easing:"ease"});}catch(e){} }
+
+  // ---- render app (오늘) ----
+  function heroTitle(c){
+    if(c.total===0) return {t:"오늘 목록이 비어 있어요", s:"아래 입력창으로 새 할 일을 추가하세요."};
+    if(c.remaining===0) return {t:"오늘 할 일을 모두 끝냈어요", s:"완료된 항목은 아래에서 확인할 수 있어요."};
+    var first=S.tasks.filter(function(t){return !t.done;})[0];
+    return {t:first?first.title:"오늘의 할 일", s:(first&&first.important)?"중요 표시된 항목이라 먼저 잡는 게 좋아요":c.remaining+"개만 정리하면 돼요"};
+  }
+  function renderApp(){
+    var c=counts(), h=heroTitle(c);
+    var rows = S.tasks.length ? S.tasks.map(function(t){
+      return '<div class="row'+(t.done?' done':'')+'" data-toggle="'+t.id+'">'+
+        '<span class="ck">'+CHKW+'</span>'+
+        '<span class="txt">'+esc(t.title)+'</span>'+
+        (t.important?'<span class="star">'+STAR+'</span>':'')+
+        '<button class="del" data-del="'+t.id+'" aria-label="삭제"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>'+
+      '</div>';
+    }).join('') : '<div class="empty"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><p>표시할 할 일이 없어요</p></div>';
+
+    document.getElementById("app").innerHTML =
+      '<div class="top">'+
+        '<div class="toolbar">'+
+          '<div class="tbtn" id="pinbtn" title="잠금화면에 고정"><svg viewBox="0 0 24 24" fill="none"><path d="M9 4h6l-1 6 3 3v2H7v-2l3-3-1-6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 15v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>'+
+          '<div class="tbtn solid" id="addtop"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></div>'+
+        '</div>'+
+        '<h2 class="title">오늘</h2>'+
+        '<div class="hero">'+
+          '<div class="hero-top"><span class="hero-date">'+fmtDate()+'</span>'+
+            (S.streak>0?'<span class="streak">'+FLAME+S.streak+'</span>':'')+'</div>'+
+          '<div class="hero-title">'+esc(h.t)+'</div>'+
+          '<div class="hero-sub">'+esc(h.s)+'</div>'+
+          '<div class="bar"><i style="width:'+c.pct+'%"></i></div>'+
+          '<div class="pctline"><b>'+c.pct+'%</b> 완료</div>'+
+          '<div class="tiles">'+
+            tile('남음', c.remaining, '<circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>')+
+            tile('완료', c.done, '<path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>')+
+            tile('중요', c.important, '<path d="M12 3l2.5 5.3L20 9l-4 3.8 1 5.6L12 15.8 7 18.4l1-5.6L4 9l5.5-.7z" fill="currentColor" stroke="none"/>')+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="listwrap">'+
+        '<div class="listhead"><span>오늘</span><span>'+c.total+'</span></div>'+
+        '<div class="card-list">'+rows+'</div>'+
+      '</div>'+
+      '<div class="addbar"><div class="addfield">'+
+        '<input id="addinput" type="text" placeholder="새 할 일 추가…" autocomplete="off" enterkeyhint="done" maxlength="80">'+
+        '<button class="star-t'+(S.addImportant?' on':'')+'" id="startoggle" title="중요">'+STAR+'</button>'+
+        '<button class="go" id="addgo" disabled><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'+
+      '</div></div>'+
+      '<div class="tabbar">'+
+        tab('오늘', true, '<path d="M5 6h3M5 12h3M5 18h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11.5" cy="6" r="1.4" fill="currentColor"/><circle cx="11.5" cy="18" r="1.4" fill="currentColor"/><path d="M11 12l1.3 1.3L15 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>')+
+        tab('지도', false, '<path d="M9 4L4 6v14l5-2 6 2 5-2V4l-5 2-6-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="1.8"/>')+
+        tab('달력', false, '<rect x="4" y="5" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>')+
+        tab('설정', false, '<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>')+
+      '</div>'+
+      '<div class="homebar"></div>';
+
+    // wire
+    var input=document.getElementById("addinput"), go=document.getElementById("addgo");
+    function sync(){ go.disabled = !input.value.trim(); }
+    input.addEventListener("input", sync);
+    input.addEventListener("keydown", function(e){ if(e.key==="Enter" && input.value.trim()){ addTask(input.value); } });
+    go.addEventListener("click", function(){ if(input.value.trim()) addTask(input.value); });
+    document.getElementById("startoggle").addEventListener("click", function(){ S.addImportant=!S.addImportant; save(); this.classList.toggle("on", S.addImportant); });
+    document.getElementById("addtop").addEventListener("click", function(){ input.focus(); });
+    document.getElementById("pinbtn").addEventListener("click", function(){ showLock(); toast("잠금화면에 고정했어요"); });
+  }
+  function tile(k,v,ic){ return '<div class="tile"><div class="k"><svg viewBox="0 0 24 24" fill="none">'+ic+'</svg>'+k+'</div><div class="v">'+v+'</div></div>'; }
+  function tab(name,on,ic){ return '<div class="tab'+(on?' on':'')+'"><svg viewBox="0 0 24 24" fill="none">'+ic+'</svg>'+name+'</div>'; }
+
+  // ---- render lock ----
+  function renderLock(){
+    var c=counts();
+    var items = S.tasks.slice(0,4).map(function(t){
+      return '<div class="la-item'+(t.done?' done':'')+'" data-toggle="'+t.id+'"><span class="ck">'+CHKW+'</span><span class="lbl">'+esc(t.title)+'</span></div>';
+    }).join('');
+    if(!items) items='<div class="la-item" style="grid-column:span 2;cursor:default"><span class="lbl" style="color:rgba(255,255,255,.6)">오늘 할 일이 없어요</span></div>';
+    document.getElementById("lock").innerHTML =
+      '<div class="clockwrap"><div class="date">'+fmtDateShort()+'</div><div class="clock" id="lockclock">'+fmtClock()+'</div></div>'+
+      '<div class="spacer"></div>'+
+      '<div class="la">'+
+        '<div class="la-head"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h3M5 12h3M5 18h3" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M11 6h8M11 12h8M11 18h5" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/></svg></span>'+
+          '<span class="t"><b>오늘 체크리스트</b><span>'+(c.remaining===0?"모두 완료":c.remaining+"개 남음")+'</span></span>'+
+          '<span class="pct">'+c.pct+'%</span></div>'+
+        '<div class="la-bar"><i style="width:'+c.pct+'%"></i></div>'+
+        '<div class="la-grid">'+items+'</div>'+
+      '</div>'+
+      '<div class="swipe">탭하여 완료 · 아래 <b style="all:unset;font-weight:600">앱 열기</b>로 전체 보기</div>'+
+      '<div class="grip"></div>';
+  }
+
+  // ---- view switch ----
+  var LOCKED=true;
+  function showLock(){ LOCKED=true; document.getElementById("app").hidden=true; document.getElementById("lock").hidden=false;
+    document.getElementById("island").classList.add("live"); render(); }
+  function showApp(){ LOCKED=false; document.getElementById("lock").hidden=true; document.getElementById("app").hidden=false;
+    document.getElementById("island").classList.remove("live"); render(); }
+
+  function render(){ if(LOCKED) renderLock(); else renderApp(); }
+
+  // ---- delegation ----
+  document.addEventListener("click", function(e){
+    var tg=e.target.closest("[data-toggle]");
+    if(tg){ var d=e.target.closest("[data-del]"); if(d){ del(+d.getAttribute("data-del")); return;} toggle(+tg.getAttribute("data-toggle"), tg); return; }
+    var dd=e.target.closest("[data-del]"); if(dd){ del(+dd.getAttribute("data-del")); }
+  });
+  document.getElementById("btn-lock").addEventListener("click", showLock);
+  document.getElementById("btn-app").addEventListener("click", showApp);
+  document.getElementById("btn-reset").addEventListener("click", reset);
+
+  // init
+  render();
+  tickClock(); setInterval(tickClock, 15000);
+})();
+</script>
+</body>
+</html>
