@@ -156,6 +156,28 @@
   .listtop{display:flex;align-items:baseline;justify-content:space-between;padding:14px 16px 6px;color:var(--sub);font-size:13px;font-weight:600}
   .card.list .row:first-of-type{border-top:0}
   .tile .kk svg{color:var(--accent)} .mini svg{width:16px;height:16px}
+  /* dynamic island (live) */
+  .island{pointer-events:auto;cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .island .di{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;padding:0 12px;opacity:0;transition:opacity .25s}
+  .island.show .di{opacity:1}
+  .island .di .l{display:flex;align-items:center;gap:6px;min-width:0} .island .di .l svg{width:15px;height:15px;color:#3E9BFF;flex:none} .island .di .l b{font-size:12px;font-weight:600;color:#fff;white-space:nowrap}
+  .island .di .r{display:flex;align-items:center;gap:6px} .island .di .r b{font-size:12.5px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+  .dimini{width:20px;height:20px} .dimini svg{width:20px;height:20px;transform:rotate(-90deg)}
+  .di-panel{position:absolute;top:50px;left:50%;transform:translateX(-50%) translateY(-8px) scale(.96);width:250px;background:#000;border-radius:26px;z-index:59;padding:14px 16px;opacity:0;pointer-events:none;transition:.3s cubic-bezier(.2,.9,.3,1.1);box-shadow:0 24px 46px -16px rgba(0,0,0,.75)}
+  .di-panel.on{opacity:1;transform:translateX(-50%) translateY(0) scale(1);pointer-events:auto}
+  .di-panel .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px} .di-panel .ph b{font-size:12px;color:rgba(255,255,255,.6);font-weight:600;text-transform:uppercase;letter-spacing:.03em} .di-panel .ph .pc{font-size:13px;font-weight:700;color:#3E9BFF}
+  .di-panel .pbar{height:4px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-bottom:10px} .di-panel .pbar i{display:block;height:100%;background:#3E9BFF;transition:width .4s}
+  .di-row{display:flex;align-items:center;gap:9px;padding:6px 0;cursor:pointer} .di-row .k{flex:none;width:18px;height:18px;border-radius:50%;border:1.6px solid rgba(255,255,255,.5);display:grid;place-items:center} .di-row.done .k{background:#3E9BFF;border-color:#3E9BFF} .di-row .k svg{width:11px;height:11px;opacity:0} .di-row.done .k svg{opacity:1} .di-row .t{font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .di-row.done .t{opacity:.5;text-decoration:line-through}
+  /* view transitions */
+  @keyframes tIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+  @keyframes tInL{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+  @keyframes sIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
+  .aIn{animation:tIn .34s cubic-bezier(.2,.8,.2,1)} .aInL{animation:tInL .34s cubic-bezier(.2,.8,.2,1)} .sIn{animation:sIn .44s cubic-bezier(.2,.8,.2,1)}
+  /* back-tap ripple */
+  .backwave{position:absolute;inset:0;z-index:57;pointer-events:none;display:grid;place-items:center;opacity:0}
+  .backwave.go{animation:bw .75s ease-out} .backwave i{width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,rgba(62,155,255,.55),rgba(62,155,255,0) 70%)}
+  @keyframes bw{0%{opacity:0;transform:scale(.4)}25%{opacity:1}100%{opacity:0;transform:scale(3.2)}}
+  @media (prefers-reduced-motion:reduce){.aIn,.aInL,.sIn,.backwave.go{animation:none!important} .island .di,.di-panel{transition:none!important}}
 
   /* calendar */
   .calsum{display:flex;gap:9px;margin:0 18px}
@@ -246,12 +268,15 @@
       </span></div>
       <div class="view" id="lock"></div>
       <div class="view app-scope" id="app" hidden></div>
+      <div class="di-panel" id="dipanel"></div>
+      <div class="backwave" id="backwave"><i></i></div>
       <div class="modal" id="modal"><div class="scrim" data-close></div><div class="sheet" id="sheet"></div></div>
       <div class="toast" id="toast"></div>
     </div></div>
     <div class="controls">
       <button class="ctl" id="btn-lock"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.8"/></svg>잠금화면</button>
       <button class="ctl primary" id="btn-app"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>앱 열기</button>
+      <button class="ctl" id="btn-backtap" title="아이폰 뒷면 두 번 탭 제스처"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="5.5" stroke="currentColor" stroke-width="1.4" opacity=".5"/></svg>뒷면 두 번 탭</button>
       <button class="ctl" id="btn-reset"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 108-8M4 4v4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>초기화</button>
     </div>
   </div>
@@ -319,11 +344,21 @@ function setTheme(t){S.theme=t;save();applyTheme();if(VIEW==="app")render();}
 function applyTheme(){var app=document.getElementById("app");app.classList.toggle("dark",S.theme==="dark");document.getElementById("sbar").classList.toggle("dark",VIEW==="app");}
 
 /* ---------- view switching ---------- */
-function showLock(){VIEW="lock";document.getElementById("app").hidden=true;document.getElementById("lock").hidden=false;document.getElementById("island").classList.add("live");document.getElementById("sbar").classList.remove("dark");closeModal();render();}
-function showApp(){VIEW="app";document.getElementById("lock").hidden=true;document.getElementById("app").hidden=false;document.getElementById("island").classList.remove("live");applyTheme();render();}
-function go(tab){TAB=tab;if(VIEW!=="app")showApp();else render();}
-
-function render(){if(VIEW==="lock")renderLock();else renderApp();}
+var pendingAnim=null,TABS=['today','map','calendar','settings'],islandOpen=false;
+function showLock(){VIEW="lock";pendingAnim="screen";islandOpen=false;document.getElementById("app").hidden=true;document.getElementById("lock").hidden=false;document.getElementById("sbar").classList.remove("dark");closeModal();render();}
+function showApp(){VIEW="app";if(!pendingAnim)pendingAnim="screen";islandOpen=false;document.getElementById("lock").hidden=true;document.getElementById("app").hidden=false;applyTheme();render();}
+function go(tab){var oi=TABS.indexOf(TAB),ni=TABS.indexOf(tab);if(VIEW==="app"&&ni!==oi)pendingAnim=ni>oi?"tab-r":"tab-l";TAB=tab;if(VIEW!=="app")showApp();else render();}
+var CHKLIST='<svg viewBox="0 0 24 24" fill="none"><path d="M5 7h2M5 12h2M5 17h2" stroke="#3E9BFF" stroke-width="2.2" stroke-linecap="round"/><path d="M10 7h9M10 12h9M10 17h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>';
+function miniRing(p){var C=2*Math.PI*8;return '<span class="dimini"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="rgba(255,255,255,.25)" stroke-width="2.6" fill="none"/><circle cx="10" cy="10" r="8" stroke="#3E9BFF" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+(C*(1-p/100))+'"/></svg></span>';}
+function renderIsland(){var c=counts("today"),isl=document.getElementById("island");isl.classList.toggle("live",VIEW==="lock");isl.classList.add("show");
+  if(VIEW==="lock")isl.innerHTML='<div class="di"><span class="l">'+CHKLIST+'<b>오늘 '+(c.remaining===0?"완료":c.remaining+"개")+'</b></span><span class="r">'+miniRing(c.pct)+'<b>'+c.pct+'%</b></span></div>';
+  else isl.innerHTML='<div class="di"><span class="l">'+CHKLIST+'</span><span class="r"><b>'+(c.remaining===0?"✓":c.remaining)+'</b></span></div>';
+}
+function renderDiPanel(){var p=document.getElementById("dipanel");if(!islandOpen){p.classList.remove("on");return;}var c=counts("today");
+  var rows=tasksIn("today").slice(0,4).map(function(t){return '<div class="di-row'+(t.done?" done":"")+'" data-t="'+t.id+'"><span class="k">'+CHKW+'</span><span class="t">'+esc(t.title)+'</span></div>';}).join('')||'<div class="di-row"><span class="t" style="opacity:.6">오늘 할 일이 없어요</span></div>';
+  p.innerHTML='<div class="ph"><b>오늘 체크리스트</b><span class="pc">'+c.pct+'%</span></div><div class="pbar"><i style="width:'+c.pct+'%"></i></div>'+rows;p.classList.add("on");
+}
+function render(){renderIsland();if(VIEW==="lock")renderLock();else renderApp();renderDiPanel();pendingAnim=null;}
 
 /* ---------- LOCK ---------- */
 function renderLock(){var c=counts("today");var all=tasksIn("today");
@@ -347,6 +382,7 @@ function renderLock(){var c=counts("today");var all=tasksIn("today");
     '<div class="la"><div class="la-h"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h3M5 12h3M5 18h3" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M11 6h8M11 12h8M11 18h5" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/></svg></span><span class="t"><b>Live Activity · 실시간</b><span>'+(c.remaining===0?"모두 완료":c.remaining+"개 남음")+'</span></span><span class="pct">'+c.pct+'%</span></div>'+
     '<div class="la-bar"><i style="width:'+c.pct+'%"></i></div><div class="la-g">'+items+'</div></div>'+
     '<div class="swipe">위젯·Live Activity를 탭해 완료 · 아래 <b style="all:unset;font-weight:600">앱 열기</b>로 전체 보기</div><div class="grip"></div>';
+  if(pendingAnim==="screen"){var lk=document.getElementById("lock");lk.classList.remove("sIn");void lk.offsetWidth;lk.classList.add("sIn");setTimeout(function(){lk.classList.remove("sIn");},480);}
 }
 
 /* ---------- APP shell ---------- */
@@ -358,6 +394,8 @@ function renderApp(){
   else if(TAB==="settings")html+=renderSettings();
   html+='</div>'+tabbar()+'<div class="homebar"></div>';
   var app=document.getElementById("app");app.innerHTML=html;applyTheme();
+  if(pendingAnim==="tab-r"||pendingAnim==="tab-l"){var bd=document.getElementById("appbody");bd.classList.add(pendingAnim==="tab-r"?"aIn":"aInL");}
+  else if(pendingAnim==="screen"){app.classList.remove("sIn");void app.offsetWidth;app.classList.add("sIn");setTimeout(function(){app.classList.remove("sIn");},480);}
   if(TAB==="today")wireToday();
   if(TAB==="map")setTimeout(initMap,30);
   if(TAB==="settings")wireSettings();
@@ -544,6 +582,8 @@ function openPro(){openModal('<h3>LockTodo Pro</h3><p class="sd">웹 데모에�
 
 /* ---------- delegation ---------- */
 document.addEventListener("click",function(e){
+  if(e.target.closest("#island")){e.stopPropagation();islandOpen=!islandOpen;renderIsland();renderDiPanel();return;}
+  if(islandOpen&&!e.target.closest("#dipanel")){islandOpen=false;renderDiPanel();}
   if(e.target.closest("[data-close]")){closeModal();return;}
   var tab=e.target.closest("[data-tab]");if(tab){go(tab.getAttribute("data-tab"));return;}
   var seg=e.target.closest("[data-seg]");if(seg){SEGCAT=seg.getAttribute("data-seg");render();return;}
@@ -568,6 +608,7 @@ document.addEventListener("click",function(e){
 document.getElementById("btn-lock").addEventListener("click",showLock);
 document.getElementById("btn-app").addEventListener("click",function(){TAB="today";showApp();});
 document.getElementById("btn-reset").addEventListener("click",reset);
+document.getElementById("btn-backtap").addEventListener("click",function(){var w=document.getElementById("backwave");w.classList.remove("go");void w.offsetWidth;w.classList.add("go");if(VIEW==="lock"){islandOpen=true;renderIsland();renderDiPanel();toast("뒷면 두 번 탭 → 빠른 추가 열림");}else{toast("뒷면 두 번 탭 → 빠른 추가");}openAdd();});
 
 render();tickClock();setInterval(tickClock,15000);
 })();
