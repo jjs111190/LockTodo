@@ -167,9 +167,17 @@
 
   /* map */
   #mapEl{width:100%;height:100%} .map-wrap{position:absolute;inset:0}
-  .map-fab{position:absolute;left:16px;right:16px;bottom:78px;z-index:500;display:flex;gap:10px}
-  .map-fab .b{flex:1;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-radius:14px;padding:12px;text-align:center;font-weight:600;font-size:14px;color:#14171E;box-shadow:0 8px 24px -10px rgba(0,0,0,.4);border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px} .map-fab .b svg{width:17px;height:17px;color:var(--accent)}
+  .map-top{position:absolute;top:58px;right:16px;z-index:500;display:flex;gap:10px}
+  .map-cbtn{width:48px;height:48px;border-radius:50%;background:rgba(250,250,252,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 14px -4px rgba(0,0,0,.28);display:grid;place-items:center;cursor:pointer;border:0} .map-cbtn svg{width:22px;height:22px;color:#1c1c1e} .map-cbtn.loc svg{color:var(--accent)}
+  .map-bottom{position:absolute;left:16px;right:16px;bottom:78px;z-index:500;display:flex;align-items:center;gap:12px}
+  .map-pill{flex:1;background:rgba(250,250,252,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;padding:15px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;color:#1c1c1e;box-shadow:0 8px 24px -10px rgba(0,0,0,.32);cursor:pointer;border:0} .map-pill svg{width:19px;height:19px;color:var(--accent)}
+  .map-fabbtn{flex:none;width:58px;height:58px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;box-shadow:0 10px 26px -8px rgba(10,132,255,.7);cursor:pointer;border:0} .map-fabbtn svg{width:26px;height:26px}
+  .map-attr{position:absolute;left:14px;bottom:80px;z-index:400;font-size:10px;color:rgba(0,0,0,.45)}
   .leaflet-container{font-family:inherit;background:#aadaff}
+  .mk{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.97);border-radius:14px;padding:7px 11px 7px 8px;box-shadow:0 5px 16px -5px rgba(0,0,0,.4);position:relative;white-space:nowrap}
+  .mk:after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:6px solid transparent;border-top-color:rgba(255,255,255,.97)}
+  .mkc{flex:none;width:27px;height:27px;border-radius:50%;background:var(--accent);display:grid;place-items:center} .mkc svg{width:15px;height:15px;color:#fff}
+  .mkl{font-size:13px;font-weight:600;color:#1c1c1e;max-width:120px;overflow:hidden;text-overflow:ellipsis}
 
   /* settings */
   .sgroup{margin:8px 18px 16px} .sglabel{font-size:12px;color:var(--sub);font-weight:600;padding:0 6px 7px;text-transform:uppercase;letter-spacing:.04em}
@@ -416,23 +424,29 @@ function wireToday(){
 }
 
 /* ---------- MAP ---------- */
-function renderMap(){return '<div class="map-wrap"><div id="mapEl"></div></div><div class="map-fab"><button class="b" data-act="addloc"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>위치 할 일</button></div>';}
+function renderMap(){return '<div class="map-wrap"><div id="mapEl"></div></div>'+
+  '<div class="map-top">'+
+    '<button class="map-cbtn" data-act="mapsearch" title="검색"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.4-3.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>'+
+    '<button class="map-cbtn loc" data-act="maploc" title="현재 위치"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3L3 10.6l7.2 2.5 2.5 7.2L21 3z"/></svg></button>'+
+  '</div>'+
+  '<div class="map-attr">© OpenStreetMap</div>'+
+  '<div class="map-bottom">'+
+    '<button class="map-pill" data-act="addloc"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>위치 할 일</button>'+
+    '<button class="map-fabbtn" data-act="addloc" title="새 위치 할 일"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></button>'+
+  '</div>';}
 function initMap(){
   var el=document.getElementById("mapEl");if(!el||typeof L==="undefined")return;
   if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}
-  mapObj=L.map(el,{zoomControl:false,attributionControl:false}).setView([37.5013,127.0396],14);
+  mapObj=L.map(el,{zoomControl:false,attributionControl:false}).setView([37.4979,127.0276],15);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,crossOrigin:true}).addTo(mapObj);
-  L.control.attribution({prefix:false,position:"bottomright"}).addAttribution('© OpenStreetMap').addTo(mapObj);
   var locTasks=S.tasks.filter(function(t){return t.loc;});
   if(!locTasks.length){locTasks=[{title:"장보기",loc:[37.4979,127.0276,"강남역"]}];}
-  var b=[];
   locTasks.forEach(function(t){
-    var m=L.marker([t.loc[0],t.loc[1]]).addTo(mapObj);
-    m.bindPopup('<b>'+esc(t.title)+'</b><br>'+esc(t.loc[2]||'저장한 장소'));
-    b.push([t.loc[0],t.loc[1]]);
+    var html='<div style="transform:translate(-50%,-100%)"><div class="mk"><span class="mkc"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mkl">'+esc(t.title)+'</span></div></div>';
+    var ic=L.divIcon({className:'mkwrap',html:html,iconSize:[0,0],iconAnchor:[0,0]});
+    L.marker([t.loc[0],t.loc[1]],{icon:ic}).addTo(mapObj);
   });
-  L.circle([37.4979,127.0276],{radius:400,color:"#0A84FF",fillColor:"#0A84FF",fillOpacity:.12,weight:1.5}).addTo(mapObj);
-  if(b.length>1)mapObj.fitBounds(b,{padding:[60,60]});
+  L.circle([37.4979,127.0276],{radius:380,color:"#0A84FF",fillColor:"#0A84FF",fillOpacity:.10,weight:1.5}).addTo(mapObj);
   setTimeout(function(){if(mapObj)mapObj.invalidateSize();},60);
 }
 
@@ -543,7 +557,9 @@ document.addEventListener("click",function(e){
     if(k==="add")openAdd();else if(k==="pin"){showLock();toast("잠금화면에 고정했어요");}
     else if(k==="theme")setTheme(S.theme==="dark"?"light":"dark");
     else if(k==="focus")openFocus();else if(k==="insights")openInsights();else if(k==="diary")openDiary();else if(k==="pro")openPro();
-    else if(k==="addloc")toast("데모에서는 지도의 파란 원(강남역 반경)에 예시 할 일이 표시됩니다");
+    else if(k==="addloc")toast("데모: 강남역 반경(파란 원)에 예시 위치 할 일이 표시돼요");
+    else if(k==="mapsearch")toast("장소 검색 · 데모");
+    else if(k==="maploc"){if(mapObj)mapObj.flyTo([37.4979,127.0276],15);toast("현재 위치로 이동");}
     else if(k==="openapp"){TAB="today";showApp();toast("위젯에서 앱을 열었어요");}
     else if(k==="board")toast("보드 필터 · 데모에서는 전체 보드");
     else if(k==="more")toast("더보기 · 정렬·필터·완료 항목 보기");
