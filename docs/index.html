@@ -237,6 +237,15 @@
 
   .toast{position:absolute;left:50%;bottom:92px;transform:translateX(-50%) translateY(12px);z-index:80;background:rgba(20,23,30,.92);color:#fff;font-size:13px;font-weight:500;padding:10px 16px;border-radius:13px;box-shadow:0 12px 30px -10px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.28s;display:flex;align-items:center;gap:8px;white-space:nowrap} .toast.show{opacity:1;transform:translateX(-50%) translateY(0)} .toast svg{width:15px;height:15px;color:#4fd8c6}
 
+  /* auto-play tour */
+  .tapfx{position:absolute;z-index:70;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(10,132,255,.28);border:2px solid #0A84FF;pointer-events:none;animation:tap .62s ease-out forwards}
+  @keyframes tap{0%{transform:scale(.35);opacity:.95}70%{opacity:.6}100%{transform:scale(1.35);opacity:0}}
+  .tourcap{display:flex;align-items:center;gap:11px;width:min(390px,92vw);box-sizing:border-box;padding:13px 16px;border-radius:16px;background:linear-gradient(180deg,#171b24,#0f131b);border:1px solid rgba(150,180,225,.16);box-shadow:0 14px 34px -14px rgba(0,0,0,.6);animation:capin .3s ease}
+  @keyframes capin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .tourcap .tc-dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(10,132,255,.5);animation:pulse 1.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(10,132,255,.5)}70%{box-shadow:0 0 0 8px rgba(10,132,255,0)}100%{box-shadow:0 0 0 0 rgba(10,132,255,0)}}
+  .tourcap .tc-txt{flex:1;color:#EAF1FB;font-size:13.5px;line-height:1.45;font-weight:500}
+  .tourcap .tc-prog{flex:none;color:#7f8ba0;font-size:11.5px;font-weight:600;font-variant-numeric:tabular-nums}
   .controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
   .ctl{display:inline-flex;align-items:center;gap:8px;padding:11px 17px;border-radius:13px;font-weight:600;font-size:14px;cursor:pointer;border:1px solid var(--line);background:rgba(150,180,225,.06);color:var(--ink)} .ctl:hover{border-color:var(--accent-soft)} .ctl.primary{background:var(--accent);border-color:var(--accent);color:#fff} .ctl svg{width:16px;height:16px}
   footer{margin-top:30px;color:var(--faint);font-size:12.5px;text-align:center} footer a{color:var(--muted);text-decoration:none} footer a:hover{color:var(--accent-soft)}
@@ -252,9 +261,9 @@
   <div class="guide">
     <span class="eyebrow">Interactive demo</span>
     <h1>앱을 그대로,<br>브라우저에서.</h1>
-    <p>오늘·지도·달력·설정 탭과 습관·집중 타이머·인사이트·다이어리까지 실제로 동작합니다. 잠금화면에서 완료한 것도 앱과 실시간 동기화됩니다.</p>
+    <p>페이지를 열면 <span class="k">자동 시연</span>이 시작돼 잠금화면부터 앱 전체 기능을 순서대로 보여줍니다. 아무 곳이나 누르면 멈추고 직접 사용할 수 있어요.</p>
     <ol class="steps">
-      <li><b>1</b><span>하단 <span class="k">앱 열기</span> → 탭바로 <span class="k">오늘·지도·달력·설정</span>을 오가며 사용하세요.</span></li>
+      <li><b>1</b><span><span class="k">▶ 자동 시연</span>으로 전체 흐름을 재생, 또는 <span class="k">앱 열기</span>로 <span class="k">오늘·지도·달력·설정</span>을 직접 사용하세요.</span></li>
       <li><b class="t">2</b><span><span class="k">잠금화면</span>의 Live Activity에서 바로 체크 → 앱과 동기화.</span></li>
       <li><b>3</b><span>설정에서 <span class="k">다크 모드</span>, 오늘에서 <span class="k">습관·집중 타이머·인사이트</span>까지.</span></li>
     </ol>
@@ -274,9 +283,11 @@
       <div class="modal" id="modal"><div class="scrim" data-close></div><div class="sheet" id="sheet"></div></div>
       <div class="toast" id="toast"></div>
     </div></div>
+    <div class="tourcap" id="caption" hidden><span class="tc-dot"></span><span class="tc-txt" id="captxt"></span><span class="tc-prog" id="capprog"></span></div>
     <div class="controls">
+      <button class="ctl primary" id="btn-tour"></button>
       <button class="ctl" id="btn-lock"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.8"/></svg>잠금화면</button>
-      <button class="ctl primary" id="btn-app"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>앱 열기</button>
+      <button class="ctl" id="btn-app"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>앱 열기</button>
       <button class="ctl" id="btn-backtap" title="아이폰 뒷면 두 번 탭 제스처"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="5.5" stroke="currentColor" stroke-width="1.4" opacity=".5"/></svg>뒷면 두 번 탭</button>
       <button class="ctl" id="btn-reset"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 108-8M4 4v4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>초기화</button>
     </div>
@@ -581,6 +592,34 @@ function openDiary(){
 }
 function openPro(){openModal('<h3>LockTodo Pro</h3><p class="sd">웹 데모에서는 결제가 비활성화되어 있습니다.</p><div class="scard" style="margin-bottom:8px"><div class="srow"><span class="lb">월간 인사이트 · 완료 추이 분석</span></div><div class="srow"><span class="lb">고급 잠금화면 위젯 스타일</span></div><div class="srow"><span class="lb">앞으로 추가되는 Pro 기능</span></div></div><p class="sd" style="font-size:12px">실제 앱에서는 StoreKit 2로 월간·연간 구독 및 평생 해제를 제공합니다.</p><button class="btnfull sec" data-close>닫기</button>');}
 
+/* ---------- auto-play guided tour ---------- */
+var ICON_PLAY='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+var ICON_STOP='<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+var tour={running:false,step:0,timers:[]},userActed=false;
+function firstUndone(){var a=tasksIn("today").filter(function(t){return !t.done;});return (a[0]||tasksIn("today")[0]||{}).id;}
+function ripple(sel){var scr=document.querySelector(".screen"),el=scr&&scr.querySelector(sel);if(!el)return;var r=el.getBoundingClientRect(),sr=scr.getBoundingClientRect();var fx=document.createElement("div");fx.className="tapfx";fx.style.left=(r.left-sr.left+r.width/2)+"px";fx.style.top=(r.top-sr.top+r.height/2)+"px";scr.appendChild(fx);setTimeout(function(){fx.remove();},640);}
+function backwaveGo(){var w=document.getElementById("backwave");if(!w)return;w.classList.remove("go");void w.offsetWidth;w.classList.add("go");}
+var TOURSTEPS=[
+  {cap:"잠금화면에서 오늘 할 일이 바로 보여요. 앱을 열 필요가 없죠.",run:function(){showLock();},wait:2700},
+  {cap:"위젯·Live Activity를 탭하면 잠금화면에서 바로 완료 체크 — 진행률이 실시간으로 갱신돼요.",run:function(){var id=firstUndone();ripple('.la-i[data-t="'+id+'"]');setTimeout(function(){toggle(id);},430);},wait:2700},
+  {cap:"다이나믹 아일랜드를 누르면 오늘 체크리스트가 펼쳐집니다.",run:function(){ripple("#island");setTimeout(function(){islandOpen=true;renderIsland();renderDiPanel();},430);},wait:2600},
+  {cap:"아이폰 뒷면을 두 번 탭 — 앱을 열지 않고 빠른 추가.",run:function(){islandOpen=false;renderDiPanel();backwaveGo();setTimeout(function(){openAdd();var i=document.getElementById("madd");if(i)i.value="영양제 챙기기";},360);},wait:2500},
+  {cap:"입력하고 추가하면 잠금화면·위젯·앱에 즉시 반영돼요.",run:function(){var i=document.getElementById("madd");if(i&&i.value){S.addImportant=false;addTask(i.value);}closeModal();},wait:2400},
+  {cap:"‘앱 열기’ — 오늘 화면. 진행률 히어로와 다음 액션이 한눈에.",run:function(){TAB="today";showApp();},wait:2700},
+  {cap:"지도 — 특정 장소 근처에서만 뜨는 위치 기반 할 일(지오펜스).",run:function(){ripple('[data-tab="map"]');setTimeout(function(){go("map");},430);},wait:3100},
+  {cap:"달력 — 날짜별 할 일과 완료 추이를 한눈에.",run:function(){ripple('[data-tab="calendar"]');setTimeout(function(){go("calendar");},430);},wait:2700},
+  {cap:"인사이트 — 완료 추이 차트와 연속 기록(streak).",run:function(){go("today");setTimeout(openInsights,520);},wait:3100},
+  {cap:"앱·위젯·잠금화면·워치가 같은 데이터를 봅니다. ‘다시 보기’로 언제든 재생하세요.",run:function(){closeModal();showLock();},wait:4200,last:true}
+];
+function showCaption(t,i,n){var c=document.getElementById("caption");document.getElementById("captxt").textContent=t;document.getElementById("capprog").textContent=i+" / "+n;c.hidden=false;}
+function updateTourBtn(){var b=document.getElementById("btn-tour");if(!b)return;b.innerHTML=tour.running?ICON_STOP+"시연 정지":ICON_PLAY+(tour.everRan?"다시 보기":"자동 시연");b.classList.toggle("primary",!tour.running);}
+function stopTour(){tour.running=false;tour.timers.forEach(clearTimeout);tour.timers=[];var c=document.getElementById("caption");if(c)c.hidden=true;updateTourBtn();}
+function runStep(){if(!tour.running)return;if(tour.step>=TOURSTEPS.length){stopTour();return;}var s=TOURSTEPS[tour.step];showCaption(s.cap,tour.step+1,TOURSTEPS.length);try{s.run();}catch(e){}var id=setTimeout(function(){tour.step++;runStep();},s.wait||2600);tour.timers.push(id);}
+function startTour(){stopTour();tour.running=true;tour.everRan=true;tour.step=0;if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}S=seed();save();updateTourBtn();runStep();}
+function toggleTour(){userActed=true;if(tour.running)stopTour();else startTour();}
+function tourInterrupt(){userActed=true;if(tour.running)stopTour();}
+document.querySelector(".screen").addEventListener("click",tourInterrupt,true);
+
 /* ---------- delegation ---------- */
 document.addEventListener("click",function(e){
   if(e.target.closest("#island")){e.stopPropagation();islandOpen=!islandOpen;renderIsland();renderDiPanel();return;}
@@ -606,12 +645,15 @@ document.addEventListener("click",function(e){
     else if(k==="more")toast("더보기 · 정렬·필터·완료 항목 보기");
     return;}
 });
-document.getElementById("btn-lock").addEventListener("click",showLock);
-document.getElementById("btn-app").addEventListener("click",function(){TAB="today";showApp();});
-document.getElementById("btn-reset").addEventListener("click",reset);
-document.getElementById("btn-backtap").addEventListener("click",function(){var w=document.getElementById("backwave");w.classList.remove("go");void w.offsetWidth;w.classList.add("go");if(VIEW==="lock"){islandOpen=true;renderIsland();renderDiPanel();toast("뒷면 두 번 탭 → 빠른 추가 열림");}else{toast("뒷면 두 번 탭 → 빠른 추가");}openAdd();});
+document.getElementById("btn-tour").addEventListener("click",toggleTour);
+document.getElementById("btn-lock").addEventListener("click",function(){tourInterrupt();showLock();});
+document.getElementById("btn-app").addEventListener("click",function(){tourInterrupt();TAB="today";showApp();});
+document.getElementById("btn-reset").addEventListener("click",function(){tourInterrupt();reset();});
+document.getElementById("btn-backtap").addEventListener("click",function(){tourInterrupt();var w=document.getElementById("backwave");w.classList.remove("go");void w.offsetWidth;w.classList.add("go");if(VIEW==="lock"){islandOpen=true;renderIsland();renderDiPanel();toast("뒷면 두 번 탭 → 빠른 추가 열림");}else{toast("뒷면 두 번 탭 → 빠른 추가");}openAdd();});
 
+updateTourBtn();
 render();tickClock();setInterval(tickClock,15000);
+setTimeout(function(){if(!userActed)startTour();},1500);
 })();
 </script>
 </body>
