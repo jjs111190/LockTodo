@@ -47,7 +47,9 @@
   .phone-col{display:flex;flex-direction:column;align-items:center;gap:16px}
   .phone{position:relative;width:min(390px,92vw);aspect-ratio:390/820;border-radius:52px;background:#000;padding:12px;
     box-shadow:0 0 0 2px #1c222c,0 2px 6px rgba(0,0,0,.5),0 46px 90px -34px rgba(0,0,0,.85)}
-  .screen{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#000}
+  .screen{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#000;
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",system-ui,"Malgun Gothic",sans-serif}
+  .screen *{font-family:inherit}
   .island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;background:#000;border-radius:20px;z-index:60;pointer-events:none;transition:width .35s cubic-bezier(.3,.9,.3,1.2)}
   .island.live{width:224px}
   .statusbar{position:absolute;top:0;left:0;right:0;height:52px;z-index:55;display:flex;align-items:center;justify-content:space-between;padding:16px 26px 0;font-size:15px;font-weight:600;pointer-events:none;color:#fff}
@@ -106,7 +108,7 @@
   .mini{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;cursor:pointer} .mini.g{background:rgba(52,199,89,.15)} .mini.g svg{width:16px;height:16px;color:var(--green)}
 
   .seg{display:flex;gap:6px;padding:16px 18px 0;overflow-x:auto} .seg::-webkit-scrollbar{display:none}
-  .segb{flex:none;display:flex;align-items:center;gap:5px;padding:8px 14px;border-radius:12px;font-size:13.5px;font-weight:600;color:var(--sub);background:transparent;border:0;cursor:pointer} .segb.on{background:var(--card);color:var(--fg);box-shadow:0 1px 3px rgba(16,26,48,.1)} .segb svg{width:15px;height:15px}
+  .segb{flex:none;display:flex;align-items:center;gap:6px;padding:9px 16px;border-radius:13px;font-size:14px;font-weight:600;color:var(--sub);background:transparent;border:0;cursor:pointer} .segb.on{background:var(--card);color:var(--fg);box-shadow:0 1px 3px rgba(16,26,48,.12)} .segb svg{width:15px;height:15px}
 
   .sechead{display:flex;align-items:baseline;justify-content:space-between;padding:18px 20px 8px;color:var(--sub);font-size:12.5px;font-weight:600}
   .list{margin:0 18px}
@@ -133,9 +135,27 @@
   .addfield .stt{border:0;background:none;cursor:pointer;color:var(--hint);padding:6px} .addfield .stt.on{color:var(--orange)}
   .addfield .go{flex:none;width:36px;height:36px;border-radius:11px;background:var(--accent);border:0;color:#fff;display:grid;place-items:center;cursor:pointer} .addfield .go:disabled{opacity:.35} .addfield .go svg{width:18px;height:18px}
 
-  .tabbar{display:flex;justify-content:space-around;padding:9px 8px 6px;background:var(--card);border-top:1px solid var(--bd)}
-  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--hint);background:none;border:0;cursor:pointer} .tab.on{color:var(--accent)} .tab svg{width:23px;height:23px}
+  .tabbar{display:flex;justify-content:space-around;gap:4px;margin:0 12px 4px;padding:8px 8px;background:var(--card);border:1px solid var(--bd);border-radius:26px;box-shadow:0 8px 26px -12px rgba(16,26,48,.34)}
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--hint);background:none;border:0;cursor:pointer;padding:6px 0;border-radius:18px} .tab.on{color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)} .tab svg{width:22px;height:22px}
   .homebar{height:5px;width:130px;border-radius:99px;background:var(--fg);opacity:.22;margin:5px auto 8px}
+  /* toolbar to match app */
+  .tbtn.sq{border-radius:14px;width:46px;height:46px} .tbtn.sq svg{width:22px;height:22px}
+  .tbpill{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:5px;box-shadow:0 2px 6px rgba(16,26,48,.06)}
+  .pbtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:0;background:none;color:var(--accent)} .pbtn svg{width:20px;height:20px}
+  .pbtn.ring{box-shadow:inset 0 0 0 1.6px color-mix(in srgb,var(--accent) 45%,transparent)}
+  .pbtn.solid{background:var(--accent);color:#fff}
+  /* hero big pin */
+  .hbody{flex:1;min-width:0} .hpin{flex:none;width:54px;height:54px;border-radius:50%;background:var(--accent);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 22px -10px color-mix(in srgb,var(--accent) 80%,transparent);margin-left:12px} .hpin svg{width:24px;height:24px;color:#fff}
+  .hrow{display:flex;align-items:center}
+  /* row more button */
+  .more{flex:none;color:var(--hint);background:none;border:0;cursor:pointer;padding:4px 2px} .more svg{width:20px;height:20px;display:block}
+  /* filter row + board pill */
+  .filterrow{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 10px}
+  .filterrow .fl{font-size:13px;color:var(--sub);font-weight:500}
+  .boardpill{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);font-size:13px;font-weight:600;padding:7px 12px;border-radius:12px;cursor:pointer} .boardpill svg{width:14px;height:14px}
+  .listtop{display:flex;align-items:baseline;justify-content:space-between;padding:14px 16px 6px;color:var(--sub);font-size:13px;font-weight:600}
+  .card.list .row:first-of-type{border-top:0}
+  .tile .kk svg{color:var(--accent)} .mini svg{width:16px;height:16px}
 
   /* calendar */
   .calsum{display:flex;gap:9px;margin:0 18px}
@@ -346,22 +366,40 @@ function tabbar(){function tb(id,nm,ic){return '<button class="tab'+(TAB===id?' 
 /* ---------- TODAY ---------- */
 function heroTitle(c){if(c.total===0)return{t:"목록이 비어 있어요",s:"아래 입력창으로 새 할 일을 추가하세요."};if(c.remaining===0)return{t:"모두 끝냈어요",s:"완료된 항목은 목록에서 확인할 수 있어요."};var f=tasksIn(SEGCAT).filter(function(t){return !t.done;})[0];return{t:f?f.title:"오늘의 할 일",s:(f&&f.important)?"중요 표시된 항목이라 먼저 잡는 게 좋아요":c.remaining+"개만 정리하면 돼요"};}
 function tile(k,v,ic){return '<div class="tile"><div class="kk"><svg viewBox="0 0 24 24" fill="none">'+ic+'</svg>'+k+'</div><div class="v">'+v+'</div></div>';}
-function segTitle(id){return{today:"오늘",tomorrow:"내일",later:"나중에"}[id];}
+function segTitle(id){return{today:"오늘",tomorrow:"내일",later:"나중에",scheduled:"예약됨"}[id];}
 function renderToday(){
   var c=counts(SEGCAT),h=heroTitle(c);
   var arr=tasksIn(SEGCAT);
-  var rows=arr.length?arr.map(function(t){return '<div class="row'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="ck">'+CHKW+'</span><span class="txt">'+esc(t.title)+'</span>'+(t.important?'<span class="star">'+STAR+'</span>':'')+'<button class="del" data-del="'+t.id+'" aria-label="삭제"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>';}).join(''):'<div class="empty"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><p>표시할 할 일이 없어요</p></div>';
+  var rows=arr.length?arr.map(function(t){return '<div class="row'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="ck">'+CHKW+'</span><span class="txt">'+esc(t.title)+'</span>'+(t.important?'<span class="star">'+STAR+'</span>':'')+'<button class="more" data-del="'+t.id+'" aria-label="더보기(삭제)"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="18" cy="12" r="1.7"/></svg></button></div>';}).join(''):'<div class="empty"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><p>표시할 할 일이 없어요</p></div>';
   var first=tasksIn("today").filter(function(t){return !t.done;})[0];
   var hb=S.habits.map(function(x){return '<div class="habit'+(x.done?' done':'')+'" data-hab="'+x.id+'" style="--h:'+x.color+'"><div class="ring">'+(x.done?'<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>':'<svg viewBox="0 0 24 24" fill="none">'+HABIC[x.icon]+'</svg>')+'</div><div class="nm">'+esc(x.title)+'</div><div class="st">'+x.streak+'일</div></div>';}).join('');
   function sg(id,ic){return '<button class="segb'+(SEGCAT===id?' on':'')+'" data-seg="'+id+'"><svg viewBox="0 0 24 24" fill="none">'+ic+'</svg>'+segTitle(id)+'</button>';}
+  var PIN='<path d="M9 4h6l-1 6 3 3v2H7v-2l3-3-1-6z" stroke="STK" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 15v5" stroke="STK" stroke-width="1.8" stroke-linecap="round"/>';
   return '<div class="top-space"></div>'+
-    '<div class="toolbar"><div></div><div class="r"><div class="tbtn" data-act="pin" title="잠금화면 고정"><svg viewBox="0 0 24 24" fill="none"><path d="M9 4h6l-1 6 3 3v2H7v-2l3-3-1-6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 15v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="tbtn solid" data-act="add"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></div></div></div>'+
-    '<h2 class="ptitle">오늘</h2>'+
-    '<div class="pad"><div class="hero"><div class="hero-top"><span class="hdate">'+fmtDate()+'</span>'+(S.streak>0?'<span class="streak">'+FLAME+S.streak+'</span>':'')+'</div><div class="htitle">'+esc(h.t)+'</div><div class="hsub">'+esc(h.s)+'</div><div class="bar"><i style="width:'+c.pct+'%"></i></div><div class="pctline"><b>'+c.pct+'%</b> 완료</div><div class="tiles">'+tile("남음",c.remaining,'<circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>')+tile("완료",c.done,'<path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>')+tile("중요",c.important,'<path d="M12 3l2.5 5.3L20 9l-4 3.8 1 5.6L12 15.8 7 18.4l1-5.6L4 9l5.5-.7z" fill="currentColor"/>')+'</div>'+
-      (first?'<div class="next"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span><span class="tx"><b>다음 액션</b><span>'+esc(first.title)+'</span></span><span class="mini g" data-t="'+first.id+'"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>':'')+
+    '<div class="toolbar">'+
+      '<div class="tbtn sq" data-act="board" title="보드"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7a2 2 0 012-2h3.5l1.5 2H18a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2V7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="16.5" cy="13" r="2.3" stroke="currentColor" stroke-width="1.4"/><path d="M16.5 10.8v.6M16.5 14.6v.6M14.3 13h.6M18.1 13h.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>'+
+      '<div class="tbpill">'+
+        '<button class="pbtn" data-act="pin" title="잠금화면 고정"><svg viewBox="0 0 24 24" fill="none">'+PIN.replace(/STK/g,"currentColor")+'</svg></button>'+
+        '<button class="pbtn ring" data-act="more" title="더보기"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="18" cy="12" r="1.7"/></svg></button>'+
+        '<button class="pbtn solid" data-act="add" title="추가"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>'+
       '</div></div>'+
-    '<div class="seg">'+sg("today",'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>')+sg("tomorrow",'<path d="M4 8h16M4 8l4-4M4 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>')+sg("later",'<rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M4 10h16" stroke="currentColor" stroke-width="1.8"/>')+'</div>'+
-    '<div class="sechead"><span>'+segTitle(SEGCAT)+'</span><span>'+c.total+'</span></div><div class="card list">'+rows+'</div>'+
+    '<h2 class="ptitle">오늘</h2>'+
+    '<div class="pad"><div class="hero">'+
+      '<div class="hero-top"><span class="hdate">'+fmtDate()+'</span>'+(S.streak>0?'<span class="streak">'+FLAME+S.streak+'</span>':'')+'</div>'+
+      '<div class="hrow"><div class="hbody"><div class="htitle">'+esc(h.t)+'</div><div class="hsub">'+esc(h.s)+'</div></div>'+
+        '<div class="hpin" data-act="pin" title="잠금화면 고정"><svg viewBox="0 0 24 24" fill="none">'+PIN.replace(/STK/g,"#fff")+'</svg></div></div>'+
+      '<div class="bar"><i style="width:'+c.pct+'%"></i></div><div class="pctline"><b>'+c.pct+'%</b> 완료</div>'+
+      '<div class="tiles">'+tile("남음",c.remaining,'<circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>')+tile("완료",c.done,'<circle cx="12" cy="12" r="8" fill="currentColor"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8" stroke="var(--card)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>')+tile("중요",c.important,'<path d="M12 3l2.5 5.3L20 9l-4 3.8 1 5.6L12 15.8 7 18.4l1-5.6L4 9l5.5-.7z" fill="currentColor"/>')+'</div>'+
+      (first?'<div class="next"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span><span class="tx"><b>다음 액션</b><span>'+esc(first.title)+'</span></span><span class="mini" data-act="pin" style="background:color-mix(in srgb,var(--accent) 14%,transparent);margin-right:6px"><svg viewBox="0 0 24 24" fill="none">'+PIN.replace(/STK/g,"var(--accent)")+'</svg></span><span class="mini g" data-t="'+first.id+'"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>':'')+
+      '</div></div>'+
+    '<div class="seg">'+
+      sg("today",'<circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.8"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>')+
+      sg("tomorrow",'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>')+
+      sg("later",'<path d="M4 13l2-8h12l2 8M4 13v4a2 2 0 002 2h12a2 2 0 002-2v-4M4 13h5l1 2h4l1-2h5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>')+
+      sg("scheduled",'<rect x="4" y="5" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M4 9.5h16M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>')+
+    '</div>'+
+    '<div class="filterrow"><span class="fl">'+c.remaining+'개 남음 · '+c.done+'개 완료</span><span class="boardpill" data-act="board"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7a2 2 0 012-2h3.5l1.5 2H18a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2V7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>전체 보드<svg viewBox="0 0 24 24" fill="none"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>'+
+    '<div class="card list"><div class="listtop"><span>'+segTitle(SEGCAT)+'</span><span>'+c.total+'</span></div>'+rows+'</div>'+
     '<div class="sechead"><span>습관</span><span>'+S.habits.filter(function(x){return x.done;}).length+'/'+S.habits.length+'</span></div><div class="habits">'+hb+'</div>'+
     '<div class="sechead"><span>도구</span><span></span></div><div class="tools">'+
       tool("focus","집중 타이머","뽀모도로 15·25·50분",'rgba(10,132,255,.14)','#0A84FF','<circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M12 9v4l3 2M9 3h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>')+
@@ -507,6 +545,8 @@ document.addEventListener("click",function(e){
     else if(k==="focus")openFocus();else if(k==="insights")openInsights();else if(k==="diary")openDiary();else if(k==="pro")openPro();
     else if(k==="addloc")toast("데모에서는 지도의 파란 원(강남역 반경)에 예시 할 일이 표시됩니다");
     else if(k==="openapp"){TAB="today";showApp();toast("위젯에서 앱을 열었어요");}
+    else if(k==="board")toast("보드 필터 · 데모에서는 전체 보드");
+    else if(k==="more")toast("더보기 · 정렬·필터·완료 항목 보기");
     return;}
 });
 document.getElementById("btn-lock").addEventListener("click",showLock);
