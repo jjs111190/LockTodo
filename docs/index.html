@@ -224,6 +224,13 @@
   .mk:after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:6px solid transparent;border-top-color:rgba(255,255,255,.97)}
   .mkc{flex:none;width:27px;height:27px;border-radius:50%;background:var(--accent);display:grid;place-items:center} .mkc svg{width:15px;height:15px;color:#fff}
   .mkl{font-size:13px;font-weight:600;color:#1c1c1e;max-width:120px;overflow:hidden;text-overflow:ellipsis}
+  .mk.done .mkc{background:var(--green)} .mk.done .mkl{text-decoration:line-through;opacity:.55}
+  .loclist{margin:4px 0 14px}
+  .locrow{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px solid var(--bd);cursor:pointer} .locrow:last-child{border-bottom:0}
+  .locrow .lc-pin{flex:none;width:36px;height:36px;border-radius:50%;background:color-mix(in srgb,var(--accent) 13%,transparent);display:grid;place-items:center} .locrow .lc-pin svg{width:19px;height:19px;color:var(--accent)}
+  .locrow .lc-tx{flex:1;min-width:0} .locrow .lc-tx b{font-size:15px;font-weight:600;display:block} .locrow .lc-tx span{font-size:12.5px;color:var(--sub)}
+  .locrow .lc-ck{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--bd);display:grid;place-items:center} .locrow .lc-ck.on{background:var(--green);border-color:var(--green)} .locrow .lc-ck svg{width:13px;height:13px;color:#fff;opacity:0} .locrow .lc-ck.on svg{opacity:1}
+  .locrow.done .lc-tx b{text-decoration:line-through;opacity:.5}
 
   /* settings */
   .sgroup{margin:8px 18px 16px} .sglabel{font-size:12px;color:var(--sub);font-weight:600;padding:0 6px 7px;text-transform:uppercase;letter-spacing:.04em}
@@ -235,7 +242,7 @@
   .prohero b{font-size:19px;font-weight:700;display:block} .prohero p{font-size:13px;opacity:.92;margin:6px 0 14px} .prohero .pb{display:inline-block;background:#fff;color:#0A63C9;font-weight:700;font-size:14px;padding:9px 18px;border-radius:11px;border:0;cursor:pointer}
 
   /* modal */
-  .modal{position:absolute;inset:0;z-index:70;display:none} .modal.on{display:block}
+  .modal{position:absolute;inset:0;z-index:900;display:none} .modal.on{display:block}
   .scrim{position:absolute;inset:0;background:rgba(6,10,18,.5);backdrop-filter:blur(2px)}
   .sheet{position:absolute;left:0;right:0;bottom:0;max-height:92%;overflow-y:auto;background:var(--card);color:var(--fg);border-radius:26px 26px 0 0;padding:8px 20px 26px;box-shadow:0 -20px 50px -20px rgba(0,0,0,.5)} .sheet::-webkit-scrollbar{display:none}
   .shandle{width:40px;height:5px;border-radius:99px;background:var(--bd);margin:8px auto 14px}
@@ -258,7 +265,7 @@
   .barchart{display:flex;align-items:flex-end;gap:8px;height:130px;padding:10px 4px 0} .barchart .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
   .barchart .bx{width:100%;max-width:26px;border-radius:6px 6px 0 0;background:var(--accent);min-height:4px;transition:height .4s} .barchart .lb{font-size:10px;color:var(--sub)}
 
-  .toast{position:absolute;left:50%;bottom:92px;transform:translateX(-50%) translateY(12px);z-index:80;background:rgba(20,23,30,.92);color:#fff;font-size:13px;font-weight:500;padding:10px 16px;border-radius:13px;box-shadow:0 12px 30px -10px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.28s;display:flex;align-items:center;gap:8px;white-space:nowrap} .toast.show{opacity:1;transform:translateX(-50%) translateY(0)} .toast svg{width:15px;height:15px;color:#4fd8c6}
+  .toast{position:absolute;left:50%;bottom:92px;transform:translateX(-50%) translateY(12px);z-index:950;background:rgba(20,23,30,.92);color:#fff;font-size:13px;font-weight:500;padding:10px 16px;border-radius:13px;box-shadow:0 12px 30px -10px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.28s;display:flex;align-items:center;gap:8px;white-space:nowrap} .toast.show{opacity:1;transform:translateX(-50%) translateY(0)} .toast svg{width:15px;height:15px;color:#4fd8c6}
 
   /* auto-play tour */
   .tapfx{position:absolute;z-index:70;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(10,132,255,.28);border:2px solid #0A84FF;pointer-events:none;animation:tap .62s ease-out forwards}
@@ -520,7 +527,7 @@ function renderMap(){return '<div class="map-wrap"><div id="mapEl"></div></div>'
   '</div>'+
   '<div class="map-attr">© OpenStreetMap</div>'+
   '<div class="map-bottom">'+
-    '<button class="map-pill" data-act="addloc"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>위치 할 일</button>'+
+    '<button class="map-pill" data-act="mapsheet"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>위치 할 일</button>'+
     '<button class="map-fabbtn" data-act="addloc" title="새 위치 할 일"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></button>'+
   '</div>';}
 function initMap(){
@@ -529,13 +536,14 @@ function initMap(){
   mapObj=L.map(el,{zoomControl:false,attributionControl:false}).setView([37.4979,127.0276],15);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,crossOrigin:true}).addTo(mapObj);
   var locTasks=S.tasks.filter(function(t){return t.loc;});
-  if(!locTasks.length){locTasks=[{title:"장보기",loc:[37.4979,127.0276,"강남역"]}];}
+  if(!locTasks.length){locTasks=[{title:"장보기",loc:[37.4979,127.0276,"강남역"],done:false}];}
   locTasks.forEach(function(t){
-    var html='<div style="transform:translate(-50%,-100%);display:inline-block;width:max-content"><div class="mk"><span class="mkc"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mkl">'+esc(t.title)+'</span></div></div>';
+    var html='<div style="transform:translate(-50%,-100%);display:inline-block;width:max-content"><div class="mk'+(t.done?' done':'')+'"><span class="mkc"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mkl">'+esc(t.title)+'</span></div></div>';
     var ic=L.divIcon({className:'mkwrap',html:html,iconSize:[0,0],iconAnchor:[0,0]});
-    L.marker([t.loc[0],t.loc[1]],{icon:ic}).addTo(mapObj);
+    L.marker([t.loc[0],t.loc[1]],{icon:ic}).addTo(mapObj).on('click',openMapSheet);
+    L.circle([t.loc[0],t.loc[1]],{radius:280,color:t.done?"#34C759":"#0A84FF",fillColor:t.done?"#34C759":"#0A84FF",fillOpacity:.10,weight:1.5}).addTo(mapObj);
   });
-  L.circle([37.4979,127.0276],{radius:380,color:"#0A84FF",fillColor:"#0A84FF",fillOpacity:.10,weight:1.5}).addTo(mapObj);
+  mapObj.setView([locTasks[0].loc[0],locTasks[0].loc[1]],15);
   setTimeout(function(){if(mapObj)mapObj.invalidateSize();},60);
 }
 
@@ -632,6 +640,18 @@ function openDiary(){
   var mood=1;document.getElementById("dmoods").addEventListener("click",function(e){var c=e.target.closest("[data-mood]");if(!c)return;Array.prototype.forEach.call(this.children,function(x){x.classList.remove("on");});c.classList.add("on");mood=+c.getAttribute("data-mood");});
   document.getElementById("dsave").addEventListener("click",function(){var t=document.getElementById("dtext").value.trim();S.diary.unshift({date:new Date().toISOString(),mood:mood,text:t});save();closeModal();toast("오늘 하루를 기록했어요");});
 }
+var MAPLOCS={"강남역":[37.4979,127.0276],"서울역":[37.5547,126.9707],"홍대입구":[37.5572,126.9245],"성수동":[37.5446,127.0559]};
+function locTaskList(){return S.tasks.filter(function(t){return t.loc;});}
+function openMapSheet(){var lt=locTaskList();
+  var GREENCK='<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var rows=lt.length?lt.map(function(t){return '<div class="locrow'+(t.done?' done':'')+'" data-loct="'+t.id+'"><span class="lc-pin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span><span class="lc-tx"><b>'+esc(t.title)+'</b><span>'+esc(t.loc[2])+' · 약 '+(120+((t.id*37)%180))+'m</span></span><span class="lc-ck'+(t.done?' on':'')+'">'+GREENCK+'</span></div>';}).join(''):'<div class="empty" style="padding:20px"><p>저장한 위치 할 일이 없어요</p></div>';
+  openModal('<h3>위치 할 일</h3><p class="sd">저장한 장소 근처에서만 표시되고, 벗어나면 자동으로 사라져요.</p><div class="loclist">'+rows+'</div><button class="btnfull" data-act="addloc">새 위치 할 일 추가</button>');
+}
+function openAddLoc(){var place=Object.keys(MAPLOCS)[0];
+  openModal('<h3>새 위치 할 일</h3><p class="sd">장소 근처에 도착하면 잠금화면·앱에 표시돼요.</p><div class="field"><input id="mloc" type="text" placeholder="할 일 제목 (예: 우유 사기)" maxlength="60"></div><div class="chips" id="locchips">'+Object.keys(MAPLOCS).map(function(p,i){return '<span class="chip'+(i===0?' on':'')+'" data-loc="'+p+'"><svg viewBox="0 0 24 24" fill="none" style="width:13px;height:13px;vertical-align:-2px;margin-right:3px"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="currentColor" stroke-width="2"/></svg>'+p+'</span>';}).join('')+'</div><button class="btnfull" id="mlocsave">추가하기</button>');
+  document.querySelectorAll('#locchips .chip').forEach(function(ch){ch.addEventListener('click',function(){document.querySelectorAll('#locchips .chip').forEach(function(x){x.classList.remove('on');});this.classList.add('on');place=this.getAttribute('data-loc');});});
+  document.getElementById('mlocsave').addEventListener('click',function(){var v=document.getElementById('mloc').value.trim()||'새 위치 할 일';var co=MAPLOCS[place];S.tasks.unshift({id:S.seq++,title:v,done:false,important:false,cat:'today',loc:[co[0],co[1],place]});save();closeModal();render();if(TAB==="map")setTimeout(function(){if(mapObj)mapObj.flyTo(co,15);},120);toast('‘'+place+'’ 위치 할 일을 추가했어요');});
+}
 function openPro(){openModal('<h3>LockTodo Pro</h3><p class="sd">웹 데모에서는 결제가 비활성화되어 있습니다.</p><div class="scard" style="margin-bottom:8px"><div class="srow"><span class="lb">월간 인사이트 · 완료 추이 분석</span></div><div class="srow"><span class="lb">고급 잠금화면 위젯 스타일</span></div><div class="srow"><span class="lb">앞으로 추가되는 Pro 기능</span></div></div><p class="sd" style="font-size:12px">실제 앱에서는 StoreKit 2로 월간·연간 구독 및 평생 해제를 제공합니다.</p><button class="btnfull sec" data-close>닫기</button>');}
 
 /* ---------- auto-play guided tour ---------- */
@@ -670,6 +690,7 @@ document.addEventListener("click",function(e){
   var tab=e.target.closest("[data-tab]");if(tab){go(tab.getAttribute("data-tab"));return;}
   var seg=e.target.closest("[data-seg]");if(seg){SEGCAT=seg.getAttribute("data-seg");render();return;}
   var del2=e.target.closest("[data-del]");if(del2){del(+del2.getAttribute("data-del"));return;}
+  var lct=e.target.closest("[data-loct]");if(lct){toggle(+lct.getAttribute("data-loct"));openMapSheet();return;}
   var tg=e.target.closest("[data-t]");if(tg){toggle(+tg.getAttribute("data-t"));return;}
   var hab=e.target.closest("[data-hab]");if(hab){toggleHabit(+hab.getAttribute("data-hab"));return;}
   var cal=e.target.closest("[data-cal]");if(cal){calMonth.setMonth(calMonth.getMonth()+(+cal.getAttribute("data-cal")));render();return;}
@@ -679,9 +700,10 @@ document.addEventListener("click",function(e){
     if(k==="add")openAdd();else if(k==="pin"){showLock();toast("잠금화면에 고정했어요");}
     else if(k==="theme")setTheme(S.theme==="dark"?"light":"dark");
     else if(k==="focus")openFocus();else if(k==="insights")openInsights();else if(k==="diary")openDiary();else if(k==="pro")openPro();
-    else if(k==="addloc")toast("데모: 강남역 반경(파란 원)에 예시 위치 할 일이 표시돼요");
-    else if(k==="mapsearch")toast("장소 검색 · 데모");
-    else if(k==="maploc"){if(mapObj)mapObj.flyTo([37.4979,127.0276],15);toast("현재 위치로 이동");}
+    else if(k==="addloc")openAddLoc();
+    else if(k==="mapsheet")openMapSheet();
+    else if(k==="mapsearch")openMapSheet();
+    else if(k==="maploc"){var lt=locTaskList();var co=lt.length?[lt[0].loc[0],lt[0].loc[1]]:[37.4979,127.0276];if(mapObj)mapObj.flyTo(co,15);toast("현재 위치로 이동");}
     else if(k==="openapp"){TAB="today";showApp();toast("위젯에서 앱을 열었어요");}
     else if(k==="board")toast("보드 필터 · 데모에서는 전체 보드");
     else if(k==="more")toast("더보기 · 정렬·필터·완료 항목 보기");
