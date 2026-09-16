@@ -148,11 +148,14 @@ open LockTodo.xcodeproj
 | --- | --- | --- | --- |
 | ![](docs/screenshot-lockscreen.png) | ![](docs/screenshot-today.png) | ![](docs/screenshot-calendar.png) | ![](docs/screenshot-map.png) |
 
-### 데모 영상
+### 소개 영상 (30초)
 
-전체 흐름(할 일 완료 → 달력 → 지도 → 잠금화면 Live Activity) 데모: [`docs/demo.mp4`](docs/demo.mp4)
+실제 앱 화면으로 만든 소개 영상: [`docs/intro.mp4`](docs/intro.mp4)
+(오늘 → 달력 → 지도 → 다크 모드 → **잠금화면 위젯 · Live Activity** → 웹 체험 안내)
 
-> GitHub README에 영상을 인라인으로 넣으려면, 저장소 편집 화면에서 `docs/demo.mp4`를 본문에 드래그&드롭하면 자동으로 임베드됩니다.
+웹 데모( https://jjs111190.github.io/LockTodo/ ) 최상단에서 자동 재생됩니다.
+
+> GitHub README에 영상을 인라인으로 넣으려면, 저장소 편집 화면에서 `docs/intro.mp4`를 본문에 드래그&드롭하면 자동으로 임베드됩니다.
 
 ---
 
