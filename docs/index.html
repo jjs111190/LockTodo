@@ -202,6 +202,11 @@
   .calsum{display:flex;gap:9px;margin:0 18px}
   .calsum .t{flex:1;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px 12px} .calsum .t .k2{font-size:11px;color:var(--sub)} .calsum .t .v2{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
   .calnav{display:flex;align-items:center;justify-content:space-between;padding:8px 20px} .calnav b{font-size:19px;font-weight:700;letter-spacing:-.02em} .calnav .a{display:flex;gap:6px} .calnav button{width:32px;height:32px;border-radius:9px;border:1px solid var(--bd);background:var(--card);color:var(--accent);cursor:pointer;display:grid;place-items:center} .calnav svg{width:16px;height:16px}
+  .calhead{position:relative} .calplus{position:absolute;right:18px;top:12px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--bd);color:var(--accent);display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 6px rgba(16,26,48,.06)} .calplus svg{width:18px;height:18px}
+  .calsum2{display:flex;align-items:center;gap:8px;margin:0 18px;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px 14px;box-shadow:0 1px 2px rgba(16,26,48,.04)}
+  .calsum2 .cs-stat{flex:1;min-width:0} .calsum2 .cs-stat .k2{font-size:11px;color:var(--sub);font-weight:600} .calsum2 .cs-stat .v2{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:1px;letter-spacing:-.02em}
+  .cs-ring{flex:none;width:46px;height:46px;position:relative} .cs-ring svg{width:46px;height:46px;transform:rotate(-90deg)} .cs-ring .rp{position:absolute;inset:0;display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--fg)}
+  .dayhead{display:flex;align-items:center;justify-content:space-between;margin:16px 18px 8px;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px 15px} .dayhead .dh-l b{font-size:15px;font-weight:700;display:block} .dayhead .dh-l span{font-size:12.5px;color:var(--sub)}
   .grid7{display:grid;grid-template-columns:repeat(7,1fr);padding:4px 14px} .dow{text-align:center;font-size:11px;color:var(--sub);padding:6px 0;font-weight:600}
   .day{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:14px;font-weight:500;cursor:pointer;border-radius:12px;position:relative} .day.today{background:var(--accent);color:#fff;font-weight:700} .day.sel{box-shadow:inset 0 0 0 2px var(--accent)} .day .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:3px} .day.today .dot{background:#fff} .day.empty{cursor:default}
   .daytasks{margin:6px 18px 0}
@@ -395,6 +400,7 @@ function showApp(){VIEW="app";if(!pendingAnim)pendingAnim="screen";islandOpen=fa
 function go(tab){var oi=TABS.indexOf(TAB),ni=TABS.indexOf(tab);if(VIEW==="app"&&ni!==oi)pendingAnim=ni>oi?"tab-r":"tab-l";TAB=tab;if(VIEW!=="app")showApp();else render();}
 var CHKLIST='<svg viewBox="0 0 24 24" fill="none"><path d="M5 7h2M5 12h2M5 17h2" stroke="#3E9BFF" stroke-width="2.2" stroke-linecap="round"/><path d="M10 7h9M10 12h9M10 17h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>';
 function miniRing(p){var C=2*Math.PI*8;return '<span class="dimini"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="rgba(255,255,255,.25)" stroke-width="2.6" fill="none"/><circle cx="10" cy="10" r="8" stroke="#3E9BFF" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+(C*(1-p/100))+'"/></svg></span>';}
+function calRing(p){var R=19,C=2*Math.PI*R;return '<div class="cs-ring"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="'+R+'" stroke="var(--tile)" stroke-width="5" fill="none"/><circle cx="23" cy="23" r="'+R+'" stroke="var(--accent)" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+(C*(1-p/100))+'"/></svg><div class="rp">'+p+'%</div></div>';}
 function renderIsland(){var c=counts("today"),isl=document.getElementById("island");isl.classList.toggle("live",VIEW==="lock");isl.classList.add("show");
   if(VIEW==="lock")isl.innerHTML='<div class="di"><span class="l">'+CHKLIST+'</span><span class="r">'+miniRing(c.pct)+'<b>'+c.pct+'%</b></span></div>';
   else isl.innerHTML='<div class="di"><span class="l">'+CHKLIST+'</span><span class="r"><b>'+(c.remaining===0?"✓":c.remaining)+'</b></span></div>';
@@ -546,11 +552,14 @@ function renderCalendar(){
   var selT=sameDay(calSel,today)?tasksIn("today"):[];
   var dayList=selT.length?('<div class="card list">'+selT.map(function(t){return '<div class="row'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="ck">'+CHKW+'</span><span class="txt">'+esc(t.title)+'</span></div>';}).join('')+'</div>'):'<div class="empty" style="padding:24px"><p>이 날짜에 할 일이 없어요</p></div>';
   var mn=["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"][m];
-  return '<div class="top-space"></div><h2 class="ptitle c">달력</h2>'+
+  var DOWF=["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+  var selDone=selT.filter(function(t){return t.done;}).length,selPct=selT.length?Math.round(selDone/selT.length*100):0;
+  var selRemain=selT.length-selDone;
+  return '<div class="top-space"></div><div class="calhead"><h2 class="ptitle c">달력</h2><button class="calplus" data-act="add" title="추가"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button></div>'+
     '<div class="calnav"><b>'+y+'년 '+mn+'</b><div class="a"><button data-cal="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button data-cal="1"><svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>'+
-    '<div class="calsum"><div class="t"><div class="k2">남음</div><div class="v2" style="color:var(--accent)">'+c.remaining+'</div></div><div class="t"><div class="k2">완료</div><div class="v2" style="color:var(--green)">'+c.done+'</div></div><div class="t"><div class="k2">완료율</div><div class="v2">'+c.pct+'%</div></div></div>'+
+    '<div class="calsum2"><div class="cs-stat"><div class="k2">남음</div><div class="v2" style="color:var(--accent)">'+c.remaining+'</div></div><div class="cs-stat"><div class="k2">완료</div><div class="v2" style="color:var(--green)">'+c.done+'</div></div><div class="cs-stat"><div class="k2">이번 주</div><div class="v2" style="color:#AF52DE">'+c.total+'</div></div>'+calRing(c.pct)+'</div>'+
     '<div class="grid7">'+DOW+'</div><div class="grid7">'+cells+'</div>'+
-    '<div class="sechead"><span>'+(calSel.getMonth()+1)+'월 '+calSel.getDate()+'일</span><span>'+selT.length+'</span></div><div class="daytasks">'+dayList+'</div><div style="height:12px"></div>';
+    '<div class="dayhead"><div class="dh-l"><b>'+DOWF[calSel.getDay()]+', '+(calSel.getMonth()+1)+'월 '+calSel.getDate()+'일</b><span>'+(selT.length?selRemain+'개 남음':'할 일 없음')+'</span></div>'+(selT.length?calRing(selPct):'')+'</div><div class="daytasks">'+dayList+'</div><div style="height:12px"></div>';
 }
 
 /* ---------- SETTINGS ---------- */
