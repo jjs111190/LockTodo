@@ -103,7 +103,15 @@
   .wswrap{display:flex;gap:11px;flex-wrap:wrap}
   .wsw{width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;padding:0;transition:transform .15s} .wsw.on{transform:scale(1.12);box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--fg)}
   .wstwrap{display:flex;gap:8px;flex-wrap:wrap}
-  .wst{font-size:13px;font-weight:600;padding:9px 14px;border-radius:11px;border:1px solid var(--bd);background:var(--tile);color:var(--fg);cursor:pointer} .wst.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .wst{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;padding:9px 14px;border-radius:11px;border:1px solid var(--bd);background:var(--tile);color:var(--fg);cursor:pointer} .wst.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .wst .dot{width:16px;height:16px;border-radius:5px;flex:none;border:1px solid rgba(128,128,128,.3)} .wst.on .dot{border-color:rgba(255,255,255,.5)}
+  /* tab bar position variants */
+  .tabbar.dock{margin:0;border-radius:16px 16px 0 0;border-left:0;border-right:0;border-bottom:0;box-shadow:0 -6px 22px -14px rgba(16,26,48,.4)}
+  .tabbar.mini{margin:0 auto 4px;width:max-content;padding:8px 14px;gap:14px} .tabbar.mini .tab{font-size:0;padding:6px} .tabbar.mini .tab svg{width:24px;height:24px} .tabbar.mini .tab.on{background:none} .tabbar.mini .tab.on svg{color:var(--accent)}
+  /* sharp corners */
+  .app-scope.sharp .hero,.app-scope.sharp .card,.app-scope.sharp .scard,.app-scope.sharp .calsum2,.app-scope.sharp .prohero,.app-scope.sharp .dayhead,.app-scope.sharp .ins-hero,.app-scope.sharp .addbar,.app-scope.sharp .addfield{border-radius:9px}
+  .app-scope.sharp .tile,.app-scope.sharp .next,.app-scope.sharp .segb,.app-scope.sharp .tbtn.sq,.app-scope.sharp .boardpill,.app-scope.sharp .habit{border-radius:7px}
+  .app-scope.sharp .tabbar{border-radius:12px} .app-scope.sharp.tabbar.dock,.app-scope.sharp .tabbar.dock{border-radius:0}
   .lw-hint{text-align:center;font-size:11px;color:rgba(255,255,255,.5);margin-top:12px}
 
   /* APP shared */
@@ -379,7 +387,7 @@ function seed(){return{
     {id:3,title:"독서",icon:"book",color:"#AF52DE",done:true,streak:8},
     {id:4,title:"비타민",icon:"pill",color:"#FF453A",done:false,streak:2}
   ],
-  diary:[], seq:7, streak:3, addImportant:false, theme:"light", accent:"#0A84FF", lockStyle:"ring-list",
+  diary:[], seq:7, streak:3, addImportant:false, theme:"light", accent:"#0A84FF", lockStyle:"ring-list", appearance:"light", tabbar:"float", radius:"round",
   history:[2,3,1,4,2,3,0] // last 7 days completed count (mon..sun-ish, demo)
 };}
 var S=load();
@@ -415,11 +423,21 @@ function trunc(s){return s.length>11?s.slice(0,11)+"…":s;}
 function addTask(title,cat){title=(title||"").trim();if(!title)return;S.tasks.unshift({id:S.seq++,title:title,done:false,important:S.addImportant,cat:cat||SEGCAT});S.addImportant=false;save();render();toast("할 일을 추가했어요");}
 function del(id){S.tasks=S.tasks.filter(function(t){return t.id!==id;});save();render();}
 function toggleHabit(id){var h=S.habits.filter(function(x){return x.id===id;})[0];if(!h)return;h.done=!h.done;h.streak+=h.done?1:-1;if(h.streak<0)h.streak=0;save();render();if(h.done)toast("‘"+h.title+"’ 완료 · "+h.streak+"일 연속");}
-function reset(){if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}S=seed();save();render();toast("데모를 초기화했어요");}
-function setTheme(t){S.theme=t;save();applyTheme();if(VIEW==="app")render();}
+function reset(){if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}S=seed();save();applyAppearance();applyAccent();render();toast("데모를 초기화했어요");}
+function setTheme(t){S.appearance=(t==="dark")?"dark":"light";S.theme=t;save();applyAppearance();applyTheme();if(VIEW==="app")render();}
 function applyTheme(){var app=document.getElementById("app");app.classList.toggle("dark",S.theme==="dark");document.getElementById("sbar").classList.toggle("dark",VIEW==="app");}
 var ACCENTS=[["파랑","#0A84FF"],["보라","#AF52DE"],["핑크","#FF375F"],["초록","#34C759"],["주황","#FF9F0A"],["청록","#12B0A0"],["레드","#FF3B30"],["인디고","#5E5CE6"]];
 function applyAccent(){var a=S.accent||"#0A84FF";document.documentElement.style.setProperty("--accent",a);document.documentElement.style.setProperty("--accent-soft",a);}
+var APPEARANCES={
+ light:{dark:false,label:"라이트",bg:"#EFF2F7",card:"#FFFFFF",tile:"#F1F4F9",fg:"#14171E",sub:"#5C6675",hint:"#98A1B0",bd:"rgba(18,28,48,.10)"},
+ dark:{dark:true,label:"다크",bg:"#0C1017",card:"#161C27",tile:"#1B2230",fg:"#EAF1FB",sub:"#93A0B4",hint:"#6B7789",bd:"rgba(150,180,225,.13)"},
+ midnight:{dark:true,label:"미드나잇",bg:"#070B18",card:"#0F1730",tile:"#141E3C",fg:"#E7EDFB",sub:"#8A97BD",hint:"#5D6A93",bd:"rgba(120,150,220,.16)"},
+ sepia:{dark:false,label:"세피아",bg:"#F3ECE0",card:"#FBF6EE",tile:"#EFE6D6",fg:"#2A2016",sub:"#7A6C57",hint:"#A99C86",bd:"rgba(80,60,30,.14)"},
+ forest:{dark:true,label:"포레스트",bg:"#0A1512",card:"#11201B",tile:"#16281F",fg:"#E4F1E9",sub:"#8DA99B",hint:"#5F7A6C",bd:"rgba(120,200,160,.15)"},
+ rose:{dark:false,label:"로즈",bg:"#F6ECEE",card:"#FEF7F8",tile:"#F3E3E7",fg:"#2A1A20",sub:"#7C6169",hint:"#B499A0",bd:"rgba(120,40,60,.12)"}
+};
+function applyAppearance(){var a=APPEARANCES[S.appearance||"light"]||APPEARANCES.light;var el=document.getElementById("app");var s=el.style;s.setProperty("--bg",a.bg);s.setProperty("--card",a.card);s.setProperty("--tile",a.tile);s.setProperty("--fg",a.fg);s.setProperty("--sub",a.sub);s.setProperty("--hint",a.hint);s.setProperty("--bd",a.bd);el.classList.toggle("dark",a.dark);el.classList.toggle("sharp",S.radius==="sharp");S.theme=a.dark?"dark":"light";}
+function markOn(attr,val){var ns=document.querySelectorAll("["+attr+"]");for(var i=0;i<ns.length;i++)ns[i].classList.toggle("on",ns[i].getAttribute(attr)===val);}
 
 /* ---------- view switching ---------- */
 var pendingAnim=null,TABS=['today','map','calendar','settings'],islandOpen=false;
@@ -482,7 +500,7 @@ function renderApp(){
   if(TAB==="settings")wireSettings();
 }
 function tabbar(){function tb(id,nm,ic){return '<button class="tab'+(TAB===id?' on':'')+'" data-tab="'+id+'"><svg viewBox="0 0 24 24" fill="none">'+ic+'</svg>'+nm+'</button>';}
-  return '<div class="tabbar">'+
+  return '<div class="tabbar '+(S.tabbar||"float")+'">'+
     tb("today","오늘",'<circle cx="6" cy="7" r="1.5" fill="currentColor"/><circle cx="6" cy="17" r="1.5" fill="currentColor"/><path d="M4.7 12l1.3 1.3L8.6 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 7h8M11 12h8M11 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>')+
     tb("map","지도",'<path d="M9 4L4 6v14l5-2 6 2 5-2V4l-5 2-6-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="1.8"/>')+
     tb("calendar","달력",'<rect x="4" y="5" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>')+
@@ -601,7 +619,8 @@ function renderSettings(){
   return '<div class="top-space"></div><h2 class="ptitle c">설정</h2>'+
     '<div class="prohero"><b>LockTodo Pro</b><p>월간 인사이트와 고급 잠금화면 스타일을 잠금 해제하세요.</p><button class="pb" data-act="pro">업그레이드</button></div>'+
     '<div class="sgroup"><div class="sglabel">화면</div><div class="scard">'+
-      '<div class="srow" data-act="widgets"><span class="ic" style="background:var(--accent)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.6 3.9L17.5 8l-3.9 1.6L12 13.5 10.4 9.6 6.5 8l3.9-1.5z" fill="#fff"/><circle cx="17.6" cy="15.6" r="1.4" fill="#fff"/><circle cx="6.8" cy="16" r="1.1" fill="#fff"/></svg></span><span class="lb">잠금화면 위젯 꾸미기</span><span class="rt" style="background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)">NEW</span>'+chev+'</div>'+
+      '<div class="srow" data-act="design"><span class="ic" style="background:var(--accent)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.6 3.9L17.5 8l-3.9 1.6L12 13.5 10.4 9.6 6.5 8l3.9-1.5z" fill="#fff"/><circle cx="17.6" cy="15.6" r="1.4" fill="#fff"/><circle cx="6.8" cy="16" r="1.1" fill="#fff"/></svg></span><span class="lb">테마 &amp; 디자인 꾸미기</span><span class="rt" style="background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)">NEW</span>'+chev+'</div>'+
+      '<div class="srow" data-act="widgets"><span class="ic" style="background:#5E5CE6"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="2" stroke="#fff" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="2" stroke="#fff" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="2" stroke="#fff" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="2" stroke="#fff" stroke-width="1.8"/></svg></span><span class="lb">잠금화면 위젯</span>'+chev+'</div>'+
       '<div class="srow" data-act="theme"><span class="ic" style="background:#1C1C1E"><svg viewBox="0 0 24 24" fill="none"><path d="M20 13a8 8 0 11-9-9 7 7 0 009 9z" fill="#fff"/></svg></span><span class="lb">다크 모드</span><span class="switch'+(on?' on':'')+'"><i></i></span></div>'+
     '</div></div>'+
     '<div class="sgroup"><div class="sglabel">기능</div><div class="scard">'+
@@ -683,6 +702,22 @@ function widgetStudioHTML(){
   return '<h3>잠금화면 위젯 꾸미기</h3><p class="sd">색상과 위젯 스타일을 고르면 잠금화면 위젯에 바로 적용돼요.</p><div class="wslabel">테마 색상</div><div class="wswrap">'+sw+'</div><div class="wslabel">위젯 스타일</div><div class="wstwrap">'+st+'</div><button class="btnfull" data-act="previewlock" style="margin-top:16px">잠금화면에서 보기</button>';
 }
 function openWidgetStudio(){if(VIEW!=="lock")showLock();openModal(widgetStudioHTML());}
+var TABBARS=[["float","플로팅"],["dock","도킹"],["mini","미니"]],RADII=[["round","둥글게"],["sharp","각지게"]];
+function designStudioHTML(){
+  var acc=ACCENTS.map(function(a){return '<button class="wsw'+(S.accent===a[1]?' on':'')+'" data-acc="'+a[1]+'" style="background:'+a[1]+'" title="'+a[0]+'" aria-label="'+a[0]+'"></button>';}).join('');
+  var app=Object.keys(APPEARANCES).map(function(k){var a=APPEARANCES[k];return '<button class="wst'+((S.appearance||"light")===k?' on':'')+'" data-app="'+k+'"><i class="dot" style="background:'+a.card+'"></i>'+a.label+'</button>';}).join('');
+  var tbs=TABBARS.map(function(s){return '<button class="wst'+((S.tabbar||"float")===s[0]?' on':'')+'" data-tbs="'+s[0]+'">'+s[1]+'</button>';}).join('');
+  var rad=RADII.map(function(s){return '<button class="wst'+((S.radius||"round")===s[0]?' on':'')+'" data-rad="'+s[0]+'">'+s[1]+'</button>';}).join('');
+  var lock=LWSTYLES.map(function(s){return '<button class="wst'+((S.lockStyle||"ring-list")===s[0]?' on':'')+'" data-lst="'+s[0]+'">'+s[1]+'</button>';}).join('');
+  return '<h3>테마 &amp; 디자인</h3><p class="sd">색상·배경·탭바·모서리를 골라 나만의 앱으로 꾸며보세요. 지금 화면이 기본값이에요.</p>'+
+    '<div class="wslabel">강조 색상</div><div class="wswrap">'+acc+'</div>'+
+    '<div class="wslabel">배경 테마</div><div class="wstwrap">'+app+'</div>'+
+    '<div class="wslabel">하단 탭바 위치</div><div class="wstwrap">'+tbs+'</div>'+
+    '<div class="wslabel">모서리</div><div class="wstwrap">'+rad+'</div>'+
+    '<div class="wslabel">잠금화면 위젯</div><div class="wstwrap">'+lock+'</div>'+
+    '<button class="btnfull" data-act="previewlock" style="margin-top:16px">잠금화면에서 보기</button>';
+}
+function openDesignStudio(){TAB="today";if(VIEW!=="app"){showApp();}else{render();}openModal(designStudioHTML());}
 function openPro(){openModal('<h3>LockTodo Pro</h3><p class="sd">웹 데모에서는 결제가 비활성화되어 있습니다.</p><div class="scard" style="margin-bottom:8px"><div class="srow"><span class="lb">월간 인사이트 · 완료 추이 분석</span></div><div class="srow"><span class="lb">고급 잠금화면 위젯 스타일</span></div><div class="srow"><span class="lb">앞으로 추가되는 Pro 기능</span></div></div><p class="sd" style="font-size:12px">실제 앱에서는 StoreKit 2로 월간·연간 구독 및 평생 해제를 제공합니다.</p><button class="btnfull sec" data-close>닫기</button>');}
 
 /* ---------- auto-play guided tour ---------- */
@@ -708,7 +743,7 @@ function showCaption(t,i,n){var c=document.getElementById("caption");document.ge
 function updateTourBtn(){var b=document.getElementById("btn-tour");if(!b)return;b.innerHTML=tour.running?ICON_STOP+"시연 정지":ICON_PLAY+(tour.everRan?"다시 보기":"자동 시연");b.classList.toggle("primary",!tour.running);}
 function stopTour(){tour.running=false;tour.timers.forEach(clearTimeout);tour.timers=[];var c=document.getElementById("caption");if(c)c.hidden=true;updateTourBtn();}
 function runStep(){if(!tour.running)return;if(tour.step>=TOURSTEPS.length){stopTour();return;}var s=TOURSTEPS[tour.step];showCaption(s.cap,tour.step+1,TOURSTEPS.length);try{s.run();}catch(e){}var id=setTimeout(function(){tour.step++;runStep();},s.wait||2600);tour.timers.push(id);}
-function startTour(){stopTour();tour.running=true;tour.everRan=true;tour.step=0;if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}S=seed();save();updateTourBtn();runStep();}
+function startTour(){stopTour();tour.running=true;tour.everRan=true;tour.step=0;if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}S=seed();save();applyAppearance();applyAccent();updateTourBtn();runStep();}
 function toggleTour(){userActed=true;if(tour.running)stopTour();else startTour();}
 function tourInterrupt(){userActed=true;if(tour.running)stopTour();}
 document.querySelector(".screen").addEventListener("click",tourInterrupt,true);
@@ -723,7 +758,7 @@ var COACH=[
  {view:"app",tab:"map",sel:".map-pill",b:"<b>위치 할 일</b>저장한 장소 근처에서만 뜨는 할 일이에요."},
  {view:"app",tab:"map",sel:".map-fabbtn",b:"<b>새 위치 할 일</b>특정 장소에 할 일을 추가합니다."},
  {view:"app",tab:"calendar",sel:".calsum2 .cs-ring",b:"<b>완료율</b>이번 달 진행 상황을 한눈에 봅니다."},
- {view:"app",tab:"settings",sel:'[data-act="widgets"]',b:"<b>잠금화면 위젯 꾸미기 (NEW)</b>색상·스타일을 골라 잠금화면 위젯을 나만의 스타일로 바꿔요."},
+ {view:"app",tab:"settings",sel:'[data-act="design"]',b:"<b>테마 &amp; 디자인 (NEW)</b>색상·배경·탭바 위치·모서리까지 골라 나만의 개성으로 앱을 꾸며요."},
  {view:"lock",sel:".la",b:"<b>잠금화면 Live Activity</b>앱을 열지 않고 여기서 바로 확인하고 완료해요."}
 ];
 var coachI=0,coachOn=false;
@@ -755,7 +790,10 @@ document.addEventListener("click",function(e){
   var seg=e.target.closest("[data-seg]");if(seg){SEGCAT=seg.getAttribute("data-seg");render();return;}
   var del2=e.target.closest("[data-del]");if(del2){del(+del2.getAttribute("data-del"));return;}
   var acc=e.target.closest("[data-acc]");if(acc){S.accent=acc.getAttribute("data-acc");save();applyAccent();var ws=document.querySelectorAll(".wsw");for(var i=0;i<ws.length;i++)ws[i].classList.toggle("on",ws[i].getAttribute("data-acc")===S.accent);if(VIEW==="lock")renderLock();return;}
-  var lst=e.target.closest("[data-lst]");if(lst){S.lockStyle=lst.getAttribute("data-lst");save();var wt=document.querySelectorAll(".wst");for(var j=0;j<wt.length;j++)wt[j].classList.toggle("on",wt[j].getAttribute("data-lst")===S.lockStyle);if(VIEW==="lock")renderLock();return;}
+  var lst=e.target.closest("[data-lst]");if(lst){S.lockStyle=lst.getAttribute("data-lst");save();markOn("data-lst",S.lockStyle);if(VIEW==="lock")renderLock();return;}
+  var dapp=e.target.closest("[data-app]");if(dapp){S.appearance=dapp.getAttribute("data-app");save();applyAppearance();markOn("data-app",S.appearance);if(VIEW==="app")render();return;}
+  var dtbs=e.target.closest("[data-tbs]");if(dtbs){S.tabbar=dtbs.getAttribute("data-tbs");save();markOn("data-tbs",S.tabbar);if(VIEW==="app")render();return;}
+  var drad=e.target.closest("[data-rad]");if(drad){S.radius=drad.getAttribute("data-rad");save();applyAppearance();markOn("data-rad",S.radius);if(VIEW==="app")render();return;}
   var lct=e.target.closest("[data-loct]");if(lct){toggle(+lct.getAttribute("data-loct"));openMapSheet();return;}
   var tg=e.target.closest("[data-t]");if(tg){toggle(+tg.getAttribute("data-t"));return;}
   var hab=e.target.closest("[data-hab]");if(hab){toggleHabit(+hab.getAttribute("data-hab"));return;}
@@ -771,6 +809,7 @@ document.addEventListener("click",function(e){
     else if(k==="mapsearch")openMapSheet();
     else if(k==="maploc"){var lt=locTaskList();var co=lt.length?[lt[0].loc[0],lt[0].loc[1]]:[37.4979,127.0276];if(mapObj)mapObj.flyTo(co,15);toast("현재 위치로 이동");}
     else if(k==="widgets")openWidgetStudio();
+    else if(k==="design")openDesignStudio();
     else if(k==="previewlock"){closeModal();showLock();}
     else if(k==="openapp"){TAB="today";showApp();toast("위젯에서 앱을 열었어요");}
     else if(k==="board")toast("보드 필터 · 데모에서는 전체 보드");
@@ -783,7 +822,7 @@ document.getElementById("btn-app").addEventListener("click",function(){tourInter
 document.getElementById("btn-reset").addEventListener("click",function(){tourInterrupt();reset();});
 document.getElementById("btn-backtap").addEventListener("click",function(){tourInterrupt();var w=document.getElementById("backwave");w.classList.remove("go");void w.offsetWidth;w.classList.add("go");if(VIEW==="lock"){islandOpen=true;renderIsland();renderDiPanel();toast("뒷면 두 번 탭 → 빠른 추가 열림");}else{toast("뒷면 두 번 탭 → 빠른 추가");}openAdd();});
 
-applyAccent();updateTourBtn();
+applyAppearance();applyAccent();updateTourBtn();
 render();tickClock();setInterval(tickClock,15000);
 setTimeout(function(){if(!userActed)startTour();},1500);
 })();
