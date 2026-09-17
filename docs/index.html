@@ -276,6 +276,15 @@
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(10,132,255,.5)}70%{box-shadow:0 0 0 8px rgba(10,132,255,0)}100%{box-shadow:0 0 0 0 rgba(10,132,255,0)}}
   .tourcap .tc-txt{flex:1;color:#EAF1FB;font-size:13.5px;line-height:1.45;font-weight:500}
   .tourcap .tc-prog{flex:none;color:#7f8ba0;font-size:11.5px;font-weight:600;font-variant-numeric:tabular-nums}
+  /* coach marks */
+  .coach{position:absolute;inset:0;z-index:880} .coach[hidden]{display:none}
+  .coach-hole{position:absolute;border-radius:14px;box-shadow:0 0 0 9999px rgba(6,10,18,.62);transition:all .35s cubic-bezier(.3,.8,.3,1);pointer-events:none}
+  .coach-bubble{position:absolute;background:#1b2028;color:#fff;border-radius:15px;padding:14px 15px;box-shadow:0 18px 44px -16px rgba(0,0,0,.7);pointer-events:auto;animation:capin .28s ease}
+  .coach-bubble .cb-body{font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.9)} .coach-bubble .cb-body b{display:block;font-size:15px;font-weight:700;color:#fff;margin-bottom:3px}
+  .coach-bubble .cb-foot{display:flex;align-items:center;justify-content:space-between;margin-top:13px}
+  .coach-bubble .cb-step{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.5);font-variant-numeric:tabular-nums}
+  .coach-bubble .cb-btns{display:flex;gap:8px}
+  .coach-bubble button{font-size:13px;font-weight:600;border:0;border-radius:9px;padding:8px 14px;cursor:pointer;background:rgba(255,255,255,.14);color:#fff} .coach-bubble button.p{background:var(--accent);color:#fff}
   .controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
   .ctl{display:inline-flex;align-items:center;gap:8px;padding:11px 17px;border-radius:13px;font-weight:600;font-size:14px;cursor:pointer;border:1px solid var(--line);background:rgba(150,180,225,.06);color:var(--ink)} .ctl:hover{border-color:var(--accent-soft)} .ctl.primary{background:var(--accent);border-color:var(--accent);color:#fff} .ctl svg{width:16px;height:16px}
   footer{margin-top:30px;color:var(--faint);font-size:12.5px;text-align:center} footer a{color:var(--muted);text-decoration:none} footer a:hover{color:var(--accent-soft)}
@@ -326,6 +335,7 @@
       <div class="di-panel" id="dipanel"></div>
       <div class="backwave" id="backwave"><i></i></div>
       <div class="modal" id="modal"><div class="scrim" data-close></div><div class="sheet" id="sheet"></div></div>
+      <div class="coach" id="coach" hidden><div class="coach-hole" id="coachHole"></div><div class="coach-bubble" id="coachBubble"><div class="cb-body" id="cbBody"></div><div class="cb-foot"><span class="cb-step" id="cbStep"></span><span class="cb-btns"><button id="cbSkip">건너뛰기</button><button id="cbNext" class="p">다음</button></span></div></div></div>
       <div class="toast" id="toast"></div>
     </div></div>
     <div class="tourcap" id="caption" hidden><span class="tc-dot"></span><span class="tc-txt" id="captxt"></span><span class="tc-prog" id="capprog"></span></div>
@@ -334,6 +344,7 @@
       <button class="ctl" id="btn-lock"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.8"/></svg>잠금화면</button>
       <button class="ctl" id="btn-app"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>앱 열기</button>
       <button class="ctl" id="btn-backtap" title="아이폰 뒷면 두 번 탭 제스처"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="5.5" stroke="currentColor" stroke-width="1.4" opacity=".5"/></svg>뒷면 두 번 탭</button>
+      <button class="ctl" id="btn-coach" title="화면별 사용법 안내"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="currentColor"/></svg>사용법</button>
       <button class="ctl" id="btn-reset"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 108-8M4 4v4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>초기화</button>
     </div>
   </div>
@@ -681,6 +692,38 @@ function startTour(){stopTour();tour.running=true;tour.everRan=true;tour.step=0;
 function toggleTour(){userActed=true;if(tour.running)stopTour();else startTour();}
 function tourInterrupt(){userActed=true;if(tour.running)stopTour();}
 document.querySelector(".screen").addEventListener("click",tourInterrupt,true);
+
+/* ---------- coach marks (화면별 사용법) ---------- */
+var COACH=[
+ {view:"app",tab:"today",sel:".tbpill .solid",b:"<b>할 일 추가</b>여기를 눌러 새 할 일을 추가해요."},
+ {view:"app",tab:"today",sel:".hpin",b:"<b>잠금화면 고정</b>가장 중요한 할 일을 잠금화면 위젯에 띄웁니다."},
+ {view:"app",tab:"today",sel:".list .row",b:"<b>탭하여 완료</b>목록에서 바로 체크할 수 있어요."},
+ {view:"app",tab:"today",sel:".seg",b:"<b>분류</b>오늘·내일·나중에·예약됨으로 나눠 봅니다."},
+ {view:"app",tab:"today",sel:".tabbar",b:"<b>탭 바</b>오늘·지도·달력·설정을 오갑니다."},
+ {view:"app",tab:"map",sel:".map-pill",b:"<b>위치 할 일</b>저장한 장소 근처에서만 뜨는 할 일이에요."},
+ {view:"app",tab:"map",sel:".map-fabbtn",b:"<b>새 위치 할 일</b>특정 장소에 할 일을 추가합니다."},
+ {view:"app",tab:"calendar",sel:".calsum2 .cs-ring",b:"<b>완료율</b>이번 달 진행 상황을 한눈에 봅니다."},
+ {view:"lock",sel:".la",b:"<b>잠금화면 Live Activity</b>앱을 열지 않고 여기서 바로 확인하고 완료해요."}
+];
+var coachI=0,coachOn=false;
+function startCoach(){tourInterrupt();closeModal();coachOn=true;coachI=0;document.getElementById("coach").hidden=false;coachStep();}
+function endCoach(){coachOn=false;document.getElementById("coach").hidden=true;}
+function coachStep(){if(!coachOn)return;if(coachI>=COACH.length){endCoach();return;}var s=COACH[coachI];
+  if(s.view==="lock"){if(VIEW!=="lock")showLock();else render();}
+  else{if(VIEW!=="app"){TAB=s.tab;showApp();}else if(TAB!==s.tab){go(s.tab);}else render();}
+  setTimeout(function(){coachPlace(s);},520);}
+function coachPlace(s){if(!coachOn)return;var scr=document.querySelector(".screen"),el=scr.querySelector(s.sel);
+  if(!el){coachI++;coachStep();return;}
+  var r=el.getBoundingClientRect(),sr=scr.getBoundingClientRect(),pad=8;
+  var x=r.left-sr.left-pad,y=r.top-sr.top-pad,w=r.width+pad*2,h=r.height+pad*2;
+  var hole=document.getElementById("coachHole");hole.style.left=x+"px";hole.style.top=y+"px";hole.style.width=w+"px";hole.style.height=h+"px";
+  document.getElementById("cbBody").innerHTML=s.b;document.getElementById("cbStep").textContent=(coachI+1)+" / "+COACH.length;
+  document.getElementById("cbNext").textContent=(coachI===COACH.length-1)?"완료":"다음";
+  var bub=document.getElementById("coachBubble");bub.style.left="14px";bub.style.right="14px";
+  if(y+h < sr.height*0.52){bub.style.top=(y+h+14)+"px";bub.style.bottom="auto";}else{bub.style.top="auto";bub.style.bottom=(sr.height-y+14)+"px";}}
+document.getElementById("btn-coach").addEventListener("click",startCoach);
+document.getElementById("cbNext").addEventListener("click",function(){coachI++;coachStep();});
+document.getElementById("cbSkip").addEventListener("click",endCoach);
 
 /* ---------- delegation ---------- */
 document.addEventListener("click",function(e){
