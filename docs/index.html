@@ -83,10 +83,10 @@
   .la{background:rgba(28,38,58,.72);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:14px 15px;box-shadow:0 20px 50px -24px rgba(0,0,0,.7)}
   .la-h{display:flex;align-items:center;gap:9px;margin-bottom:11px} .la-h .ic{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.1);display:grid;place-items:center} .la-h .ic svg{width:15px;height:15px}
   .la-h .t{flex:1;min-width:0} .la-h .t b{display:block;font-size:9.5px;letter-spacing:.02em;color:rgba(255,255,255,.6);font-weight:600;text-transform:uppercase} .la-h .t span{display:block;font-size:14px;font-weight:700} .la-h .pct{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
-  .la-bar{height:4px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-bottom:12px} .la-bar i{display:block;height:100%;background:linear-gradient(90deg,#5aa9ff,#3e9bff);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .la-bar{height:4px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-bottom:12px} .la-bar i{display:block;height:100%;background:var(--accent);transition:width .5s cubic-bezier(.2,.8,.2,1)}
   .la-g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .la-i{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:9px 10px;cursor:pointer;transition:background .15s} .la-i:hover{background:rgba(255,255,255,.11)}
-  .la-i .ck{flex:none;width:17px;height:17px;border-radius:50%;border:1.6px solid rgba(255,255,255,.55);display:grid;place-items:center;transition:.15s} .la-i.done .ck{background:#3e9bff;border-color:#3e9bff} .la-i .ck svg{width:11px;height:11px;opacity:0} .la-i.done .ck svg{opacity:1}
+  .la-i .ck{flex:none;width:17px;height:17px;border-radius:50%;border:1.6px solid rgba(255,255,255,.55);display:grid;place-items:center;transition:.15s} .la-i.done .ck{background:var(--accent);border-color:var(--accent)} .la-i .ck svg{width:11px;height:11px;opacity:0} .la-i.done .ck svg{opacity:1}
   .la-i .lbl{font-size:12.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .la-i.done .lbl{color:rgba(255,255,255,.5);text-decoration:line-through}
   #lock .swipe{text-align:center;margin-top:14px;font-size:12.5px;color:rgba(255,255,255,.62)} #lock .grip{width:130px;height:5px;border-radius:99px;background:rgba(255,255,255,.5);margin:16px auto 4px}
   /* lock-screen accessory widgets */
@@ -97,6 +97,13 @@
   .lw-rect .rh{display:flex;align-items:center;gap:6px;margin-bottom:6px} .lw-rect .rh svg{width:12px;height:12px;color:#fff;opacity:.85} .lw-rect .rh b{font-size:10px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.03em;flex:1} .lw-rect .rh span{font-size:10px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
   .lw-rr{display:flex;align-items:center;gap:6px;padding:2px 0;cursor:pointer} .lw-rr .k{flex:none;width:13px;height:13px;border-radius:50%;border:1.4px solid rgba(255,255,255,.6);display:grid;place-items:center} .lw-rr.done .k{background:#fff;border-color:#fff} .lw-rr .k svg{width:9px;height:9px;color:#0a1730;opacity:0} .lw-rr.done .k svg{opacity:1}
   .lw-rr .l{font-size:11.5px;color:#fff;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .lw-rr.done .l{opacity:.5;text-decoration:line-through}
+  .lw-row.one{justify-content:center} .lw-rect.full{max-width:none;flex:1;width:100%} .lw-circ.big{width:112px;height:112px} .lw-circ.big .cc b{font-size:26px} .lw-circ.big .cc span{font-size:10px}
+  /* widget customizer */
+  .wslabel{font-size:11.5px;font-weight:700;color:var(--sub);margin:15px 0 9px;text-transform:uppercase;letter-spacing:.03em}
+  .wswrap{display:flex;gap:11px;flex-wrap:wrap}
+  .wsw{width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;padding:0;transition:transform .15s} .wsw.on{transform:scale(1.12);box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--fg)}
+  .wstwrap{display:flex;gap:8px;flex-wrap:wrap}
+  .wst{font-size:13px;font-weight:600;padding:9px 14px;border-radius:11px;border:1px solid var(--bd);background:var(--tile);color:var(--fg);cursor:pointer} .wst.on{background:var(--accent);border-color:var(--accent);color:#fff}
   .lw-hint{text-align:center;font-size:11px;color:rgba(255,255,255,.5);margin-top:12px}
 
   /* APP shared */
@@ -244,7 +251,8 @@
   /* modal */
   .modal{position:absolute;inset:0;z-index:900;display:none} .modal.on{display:block}
   .scrim{position:absolute;inset:0;background:rgba(6,10,18,.5);backdrop-filter:blur(2px)}
-  .sheet{position:absolute;left:0;right:0;bottom:0;max-height:92%;overflow-y:auto;background:var(--card);color:var(--fg);border-radius:26px 26px 0 0;padding:8px 20px 26px;box-shadow:0 -20px 50px -20px rgba(0,0,0,.5)} .sheet::-webkit-scrollbar{display:none}
+  .sheet{--card:#FFFFFF;--fg:#14171E;--tile:#F1F4F9;--sub:#5C6675;--hint:#98A1B0;--bd:rgba(18,28,48,.10);position:absolute;left:0;right:0;bottom:0;max-height:92%;overflow-y:auto;background:var(--card);color:var(--fg);border-radius:26px 26px 0 0;padding:8px 20px 26px;box-shadow:0 -20px 50px -20px rgba(0,0,0,.5)} .sheet::-webkit-scrollbar{display:none}
+  .modal.dark .sheet{--card:#161C27;--fg:#EAF1FB;--tile:#1B2230;--sub:#93A0B4;--hint:#6B7789;--bd:rgba(150,180,225,.13)}
   .shandle{width:40px;height:5px;border-radius:99px;background:var(--bd);margin:8px auto 14px}
   .sheet h3{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:0 0 4px} .sheet .sd{font-size:13.5px;color:var(--sub);margin:0 0 16px}
   .closex{position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--tile);border:0;color:var(--sub);cursor:pointer;display:grid;place-items:center} .closex svg{width:16px;height:16px}
@@ -319,7 +327,7 @@
     <ol class="steps">
       <li><b>1</b><span><span class="k">▶ 자동 시연</span>으로 전체 흐름을 재생, 또는 <span class="k">앱 열기</span>로 <span class="k">오늘·지도·달력·설정</span>을 직접 사용하세요.</span></li>
       <li><b class="t">2</b><span><span class="k">잠금화면</span>의 Live Activity에서 바로 체크 → 앱과 동기화.</span></li>
-      <li><b>3</b><span>설정에서 <span class="k">다크 모드</span>, 오늘에서 <span class="k">습관·집중 타이머·인사이트</span>까지.</span></li>
+      <li><b>3</b><span>설정 → <span class="k">잠금화면 위젯 꾸미기</span>로 <span class="k">색상·스타일</span>을 바꿔 잠금화면을 나만의 위젯으로. (다크 모드·습관·집중 타이머·인사이트도)</span></li>
     </ol>
     <div class="disclaimer">웹 체험판입니다. 실제 잠금화면 위젯·Live Activity·Apple Watch·시스템 알림·앱스토어 결제는 iOS 기기 전용 기능이라 여기서는 UI로 재현됩니다.</div>
   </div>
@@ -371,7 +379,7 @@ function seed(){return{
     {id:3,title:"독서",icon:"book",color:"#AF52DE",done:true,streak:8},
     {id:4,title:"비타민",icon:"pill",color:"#FF453A",done:false,streak:2}
   ],
-  diary:[], seq:7, streak:3, addImportant:false, theme:"light",
+  diary:[], seq:7, streak:3, addImportant:false, theme:"light", accent:"#0A84FF", lockStyle:"ring-list",
   history:[2,3,1,4,2,3,0] // last 7 days completed count (mon..sun-ish, demo)
 };}
 var S=load();
@@ -410,14 +418,16 @@ function toggleHabit(id){var h=S.habits.filter(function(x){return x.id===id;})[0
 function reset(){if(mapObj){try{mapObj.remove();}catch(e){}mapObj=null;}S=seed();save();render();toast("데모를 초기화했어요");}
 function setTheme(t){S.theme=t;save();applyTheme();if(VIEW==="app")render();}
 function applyTheme(){var app=document.getElementById("app");app.classList.toggle("dark",S.theme==="dark");document.getElementById("sbar").classList.toggle("dark",VIEW==="app");}
+var ACCENTS=[["파랑","#0A84FF"],["보라","#AF52DE"],["핑크","#FF375F"],["초록","#34C759"],["주황","#FF9F0A"],["청록","#12B0A0"],["레드","#FF3B30"],["인디고","#5E5CE6"]];
+function applyAccent(){var a=S.accent||"#0A84FF";document.documentElement.style.setProperty("--accent",a);document.documentElement.style.setProperty("--accent-soft",a);}
 
 /* ---------- view switching ---------- */
 var pendingAnim=null,TABS=['today','map','calendar','settings'],islandOpen=false;
 function showLock(){VIEW="lock";pendingAnim="screen";islandOpen=false;document.getElementById("app").hidden=true;document.getElementById("lock").hidden=false;document.getElementById("sbar").classList.remove("dark");closeModal();render();}
 function showApp(){VIEW="app";if(!pendingAnim)pendingAnim="screen";islandOpen=false;document.getElementById("lock").hidden=true;document.getElementById("app").hidden=false;applyTheme();render();}
 function go(tab){var oi=TABS.indexOf(TAB),ni=TABS.indexOf(tab);if(VIEW==="app"&&ni!==oi)pendingAnim=ni>oi?"tab-r":"tab-l";TAB=tab;if(VIEW!=="app")showApp();else render();}
-var CHKLIST='<svg viewBox="0 0 24 24" fill="none"><path d="M5 7h2M5 12h2M5 17h2" stroke="#3E9BFF" stroke-width="2.2" stroke-linecap="round"/><path d="M10 7h9M10 12h9M10 17h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>';
-function miniRing(p){var C=2*Math.PI*8;return '<span class="dimini"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="rgba(255,255,255,.25)" stroke-width="2.6" fill="none"/><circle cx="10" cy="10" r="8" stroke="#3E9BFF" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+(C*(1-p/100))+'"/></svg></span>';}
+var CHKLIST='<svg viewBox="0 0 24 24" fill="none"><path d="M5 7h2M5 12h2M5 17h2" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/><path d="M10 7h9M10 12h9M10 17h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>';
+function miniRing(p){var C=2*Math.PI*8;return '<span class="dimini"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="rgba(255,255,255,.25)" stroke-width="2.6" fill="none"/><circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+(C*(1-p/100))+'"/></svg></span>';}
 function calRing(p){var R=19,C=2*Math.PI*R;return '<div class="cs-ring"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="'+R+'" stroke="var(--tile)" stroke-width="5" fill="none"/><circle cx="23" cy="23" r="'+R+'" stroke="var(--accent)" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+(C*(1-p/100))+'"/></svg><div class="rp">'+p+'%</div></div>';}
 function renderIsland(){var c=counts("today"),isl=document.getElementById("island");isl.classList.toggle("live",VIEW==="lock");isl.classList.add("show");
   if(VIEW==="lock")isl.innerHTML='<div class="di"><span class="l">'+CHKLIST+'</span><span class="r">'+miniRing(c.pct)+'<b>'+c.pct+'%</b></span></div>';
@@ -434,19 +444,21 @@ function renderLock(){var c=counts("today");var all=tasksIn("today");
   // Live Activity items
   var items=all.slice(0,4).map(function(t){return '<div class="la-i'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="ck">'+CHKW+'</span><span class="lbl">'+esc(t.title)+'</span></div>';}).join('');
   if(!items)items='<div class="la-i" style="grid-column:span 2;cursor:default"><span class="lbl" style="color:rgba(255,255,255,.6)">오늘 할 일이 없어요</span></div>';
+  var style=S.lockStyle||"ring-list";
   // Circular accessory widget (progress ring)
   var R=32,C=2*Math.PI*R,off=C*(1-c.pct/100);
-  var circ='<div class="lw-circ" data-act="openapp" title="LockTodo 위젯"><svg viewBox="0 0 76 76"><circle cx="38" cy="38" r="'+R+'" stroke="rgba(255,255,255,.22)" stroke-width="7" fill="none"/><circle cx="38" cy="38" r="'+R+'" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+off+'"/></svg><div class="cc"><b>'+c.pct+'%</b><span>완료</span></div></div>';
+  var circ='<div class="lw-circ'+(style==="ring"?" big":"")+'" data-act="openapp" title="LockTodo 위젯"><svg viewBox="0 0 76 76"><circle cx="38" cy="38" r="'+R+'" stroke="rgba(255,255,255,.22)" stroke-width="7" fill="none"/><circle cx="38" cy="38" r="'+R+'" stroke="var(--accent)" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+off+'"/></svg><div class="cc"><b>'+c.pct+'%</b><span>완료</span></div></div>';
   // Rectangular accessory widget (task list)
-  var rrows=all.slice(0,3).map(function(t){return '<div class="lw-rr'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="k">'+CHKW.replace(/#fff/g,'currentColor')+'</span><span class="l">'+esc(t.title)+'</span></div>';}).join('');
+  var rrows=all.slice(0,style==="list"?5:3).map(function(t){return '<div class="lw-rr'+(t.done?' done':'')+'" data-t="'+t.id+'"><span class="k">'+CHKW.replace(/#fff/g,'currentColor')+'</span><span class="l">'+esc(t.title)+'</span></div>';}).join('');
   if(!rrows)rrows='<div class="lw-rr"><span class="l" style="opacity:.6">할 일 없음</span></div>';
-  var rect='<div class="lw-rect"><div class="rh"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h3M5 12h3M5 18h3M11 6h8M11 12h8M11 18h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><b>오늘 체크리스트</b><span>'+c.done+'/'+c.total+'</span></div>'+rrows+'</div>';
+  var rect='<div class="lw-rect'+(style==="list"?" full":"")+'"><div class="rh"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h3M5 12h3M5 18h3M11 6h8M11 12h8M11 18h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><b>오늘 체크리스트</b><span>'+c.done+'/'+c.total+'</span></div>'+rrows+'</div>';
   var inline='<div class="lw-inline"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'+(c.remaining===0?'오늘 모두 완료':c.remaining+'개 남음')+' · '+c.pct+'%</div>';
+  var lwrow=style==="list"?('<div class="lw-row one">'+rect+'</div>'):style==="ring"?('<div class="lw-row one">'+circ+'</div>'):style==="mini"?'':('<div class="lw-row">'+circ+rect+'</div>');
 
   document.getElementById("lock").innerHTML=
     '<div class="cw">'+inline+'<div class="date">'+fmtDateShort()+'</div><div class="clock" id="lockclock">'+fmtClock()+'</div>'+
-      '<div class="lw-row">'+circ+rect+'</div>'+
-      '<div class="lw-hint">↑ LockTodo 잠금화면 위젯 · 위젯을 누르면 앱이 열려요</div>'+
+      lwrow+
+      '<div class="lw-hint">↑ LockTodo 잠금화면 위젯 · '+({"ring-list":"링 + 목록","list":"목록","ring":"진행률 링","mini":"미니멀"}[style]||"")+' 스타일</div>'+
     '</div><div class="sp"></div>'+
     '<div class="la"><div class="la-h"><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h3M5 12h3M5 18h3" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M11 6h8M11 12h8M11 18h5" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/></svg></span><span class="t"><b>Live Activity · 실시간</b><span>'+(c.remaining===0?"모두 완료":c.remaining+"개 남음")+'</span></span><span class="pct">'+c.pct+'%</span></div>'+
     '<div class="la-bar"><i style="width:'+c.pct+'%"></i></div><div class="la-g">'+items+'</div></div>'+
@@ -589,6 +601,7 @@ function renderSettings(){
   return '<div class="top-space"></div><h2 class="ptitle c">설정</h2>'+
     '<div class="prohero"><b>LockTodo Pro</b><p>월간 인사이트와 고급 잠금화면 스타일을 잠금 해제하세요.</p><button class="pb" data-act="pro">업그레이드</button></div>'+
     '<div class="sgroup"><div class="sglabel">화면</div><div class="scard">'+
+      '<div class="srow" data-act="widgets"><span class="ic" style="background:var(--accent)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.6 3.9L17.5 8l-3.9 1.6L12 13.5 10.4 9.6 6.5 8l3.9-1.5z" fill="#fff"/><circle cx="17.6" cy="15.6" r="1.4" fill="#fff"/><circle cx="6.8" cy="16" r="1.1" fill="#fff"/></svg></span><span class="lb">잠금화면 위젯 꾸미기</span><span class="rt" style="background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)">NEW</span>'+chev+'</div>'+
       '<div class="srow" data-act="theme"><span class="ic" style="background:#1C1C1E"><svg viewBox="0 0 24 24" fill="none"><path d="M20 13a8 8 0 11-9-9 7 7 0 009 9z" fill="#fff"/></svg></span><span class="lb">다크 모드</span><span class="switch'+(on?' on':'')+'"><i></i></span></div>'+
     '</div></div>'+
     '<div class="sgroup"><div class="sglabel">기능</div><div class="scard">'+
@@ -606,7 +619,7 @@ function wireSettings(){}
 
 /* ---------- MODALS ---------- */
 var focusTimer=null;
-function openModal(html){var m=document.getElementById("modal");document.getElementById("sheet").innerHTML='<div class="shandle"></div><button class="closex" data-close><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>'+html;m.classList.add("on");}
+function openModal(html){var m=document.getElementById("modal");m.classList.toggle("dark",S.theme==="dark");document.getElementById("sheet").innerHTML='<div class="shandle"></div><button class="closex" data-close><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>'+html;m.classList.add("on");}
 function closeModal(){document.getElementById("modal").classList.remove("on");if(focusTimer){clearInterval(focusTimer);focusTimer=null;}}
 function openAdd(){openModal('<h3>새 할 일</h3><p class="sd">'+segTitle(SEGCAT)+'에 추가됩니다.</p><div class="field"><input id="madd" type="text" placeholder="할 일 제목" maxlength="80"></div><div class="chips" style="margin-top:12px"><span class="chip" id="mimp">⭐ 중요로 표시</span></div><button class="btnfull" id="msave">추가하기</button>');
   var inp=document.getElementById("madd");inp.focus();var imp=false;
@@ -663,6 +676,13 @@ function openAddLoc(){var place=Object.keys(MAPLOCS)[0];
   document.querySelectorAll('#locchips .chip').forEach(function(ch){ch.addEventListener('click',function(){document.querySelectorAll('#locchips .chip').forEach(function(x){x.classList.remove('on');});this.classList.add('on');place=this.getAttribute('data-loc');});});
   document.getElementById('mlocsave').addEventListener('click',function(){var v=document.getElementById('mloc').value.trim()||'새 위치 할 일';var co=MAPLOCS[place];S.tasks.unshift({id:S.seq++,title:v,done:false,important:false,cat:'today',loc:[co[0],co[1],place]});save();closeModal();render();if(TAB==="map")setTimeout(function(){if(mapObj)mapObj.flyTo(co,15);},120);toast('‘'+place+'’ 위치 할 일을 추가했어요');});
 }
+var LWSTYLES=[["ring-list","링 + 목록"],["list","목록"],["ring","진행률 링"],["mini","미니멀"]];
+function widgetStudioHTML(){
+  var sw=ACCENTS.map(function(a){return '<button class="wsw'+(S.accent===a[1]?' on':'')+'" data-acc="'+a[1]+'" style="background:'+a[1]+'" title="'+a[0]+'" aria-label="'+a[0]+'"></button>';}).join('');
+  var st=LWSTYLES.map(function(s){return '<button class="wst'+((S.lockStyle||"ring-list")===s[0]?' on':'')+'" data-lst="'+s[0]+'">'+s[1]+'</button>';}).join('');
+  return '<h3>잠금화면 위젯 꾸미기</h3><p class="sd">색상과 위젯 스타일을 고르면 잠금화면 위젯에 바로 적용돼요.</p><div class="wslabel">테마 색상</div><div class="wswrap">'+sw+'</div><div class="wslabel">위젯 스타일</div><div class="wstwrap">'+st+'</div><button class="btnfull" data-act="previewlock" style="margin-top:16px">잠금화면에서 보기</button>';
+}
+function openWidgetStudio(){if(VIEW!=="lock")showLock();openModal(widgetStudioHTML());}
 function openPro(){openModal('<h3>LockTodo Pro</h3><p class="sd">웹 데모에서는 결제가 비활성화되어 있습니다.</p><div class="scard" style="margin-bottom:8px"><div class="srow"><span class="lb">월간 인사이트 · 완료 추이 분석</span></div><div class="srow"><span class="lb">고급 잠금화면 위젯 스타일</span></div><div class="srow"><span class="lb">앞으로 추가되는 Pro 기능</span></div></div><p class="sd" style="font-size:12px">실제 앱에서는 StoreKit 2로 월간·연간 구독 및 평생 해제를 제공합니다.</p><button class="btnfull sec" data-close>닫기</button>');}
 
 /* ---------- auto-play guided tour ---------- */
@@ -703,6 +723,7 @@ var COACH=[
  {view:"app",tab:"map",sel:".map-pill",b:"<b>위치 할 일</b>저장한 장소 근처에서만 뜨는 할 일이에요."},
  {view:"app",tab:"map",sel:".map-fabbtn",b:"<b>새 위치 할 일</b>특정 장소에 할 일을 추가합니다."},
  {view:"app",tab:"calendar",sel:".calsum2 .cs-ring",b:"<b>완료율</b>이번 달 진행 상황을 한눈에 봅니다."},
+ {view:"app",tab:"settings",sel:'[data-act="widgets"]',b:"<b>잠금화면 위젯 꾸미기 (NEW)</b>색상·스타일을 골라 잠금화면 위젯을 나만의 스타일로 바꿔요."},
  {view:"lock",sel:".la",b:"<b>잠금화면 Live Activity</b>앱을 열지 않고 여기서 바로 확인하고 완료해요."}
 ];
 var coachI=0,coachOn=false;
@@ -733,6 +754,8 @@ document.addEventListener("click",function(e){
   var tab=e.target.closest("[data-tab]");if(tab){go(tab.getAttribute("data-tab"));return;}
   var seg=e.target.closest("[data-seg]");if(seg){SEGCAT=seg.getAttribute("data-seg");render();return;}
   var del2=e.target.closest("[data-del]");if(del2){del(+del2.getAttribute("data-del"));return;}
+  var acc=e.target.closest("[data-acc]");if(acc){S.accent=acc.getAttribute("data-acc");save();applyAccent();var ws=document.querySelectorAll(".wsw");for(var i=0;i<ws.length;i++)ws[i].classList.toggle("on",ws[i].getAttribute("data-acc")===S.accent);if(VIEW==="lock")renderLock();return;}
+  var lst=e.target.closest("[data-lst]");if(lst){S.lockStyle=lst.getAttribute("data-lst");save();var wt=document.querySelectorAll(".wst");for(var j=0;j<wt.length;j++)wt[j].classList.toggle("on",wt[j].getAttribute("data-lst")===S.lockStyle);if(VIEW==="lock")renderLock();return;}
   var lct=e.target.closest("[data-loct]");if(lct){toggle(+lct.getAttribute("data-loct"));openMapSheet();return;}
   var tg=e.target.closest("[data-t]");if(tg){toggle(+tg.getAttribute("data-t"));return;}
   var hab=e.target.closest("[data-hab]");if(hab){toggleHabit(+hab.getAttribute("data-hab"));return;}
@@ -747,6 +770,8 @@ document.addEventListener("click",function(e){
     else if(k==="mapsheet")openMapSheet();
     else if(k==="mapsearch")openMapSheet();
     else if(k==="maploc"){var lt=locTaskList();var co=lt.length?[lt[0].loc[0],lt[0].loc[1]]:[37.4979,127.0276];if(mapObj)mapObj.flyTo(co,15);toast("현재 위치로 이동");}
+    else if(k==="widgets")openWidgetStudio();
+    else if(k==="previewlock"){closeModal();showLock();}
     else if(k==="openapp"){TAB="today";showApp();toast("위젯에서 앱을 열었어요");}
     else if(k==="board")toast("보드 필터 · 데모에서는 전체 보드");
     else if(k==="more")toast("더보기 · 정렬·필터·완료 항목 보기");
@@ -758,7 +783,7 @@ document.getElementById("btn-app").addEventListener("click",function(){tourInter
 document.getElementById("btn-reset").addEventListener("click",function(){tourInterrupt();reset();});
 document.getElementById("btn-backtap").addEventListener("click",function(){tourInterrupt();var w=document.getElementById("backwave");w.classList.remove("go");void w.offsetWidth;w.classList.add("go");if(VIEW==="lock"){islandOpen=true;renderIsland();renderDiPanel();toast("뒷면 두 번 탭 → 빠른 추가 열림");}else{toast("뒷면 두 번 탭 → 빠른 추가");}openAdd();});
 
-updateTourBtn();
+applyAccent();updateTourBtn();
 render();tickClock();setInterval(tickClock,15000);
 setTimeout(function(){if(!userActed)startTour();},1500);
 })();
